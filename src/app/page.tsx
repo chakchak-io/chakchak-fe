@@ -9,7 +9,7 @@ export default function Home() {
         <div className="flex justify-between max-w-[1200px] m-auto">
           <Link href="/" className="flex items-center gap-2">
             <BrandLogo />
-            <span className="text-primary-2-300 font-bold font-sourceSansPro text-xl">
+            <span className="text-primary-2-300 font-semibold font-sourceSansPro text-xl">
               ChakChak
             </span>
           </Link>
@@ -22,13 +22,13 @@ export default function Home() {
         </div>
       </nav>
 
-      <section className="flex flex-col items-center">
+      <section className="flex flex-col items-center bg-[#FCFDFF]">
         <h2 className="font-bold text-[56px] leading-[68px] mt-[120px]">
           예약시스템, 내 웹사이트에{" "}
           <span className="text-primary-2-300">착!</span>
         </h2>
 
-        <p className="mt-6 text-grey-500 text-xl">
+        <p className="mt-6 text-grey-500 text-xl text-center">
           <span className="text-primary-2-300">
             팝업스토어, 이벤트, 매장 예약
           </span>{" "}
@@ -53,10 +53,11 @@ export default function Home() {
 
         <div className="mt-8">
           <Image
-            src="/home/topSectionImage1.jpg"
+            src="/home/section1Image1.png"
             width={1200}
             height={584}
             alt="Example Image"
+            className="bg-[#FCFDFF]"
           />
         </div>
       </section>
@@ -82,7 +83,7 @@ export default function Home() {
             className="mt-[52px] ml-[52px] mr-[52px]"
           />
           <figcaption className="p-6 min-w-[460px]">
-            <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
+            <span className="font-medium text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
               위젯 UI
             </span>
             <h3 className="font-bold text-[32px] leading-[46px] my-4">
@@ -116,7 +117,7 @@ export default function Home() {
             />
           </div>
           <figcaption className="p-6 min-w-[460px] mb-[120px]">
-            <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
+            <span className="font-medium text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
               예약페이지
             </span>
             <h3 className="font-bold text-[32px] leading-[46px] my-4">
@@ -165,7 +166,7 @@ export default function Home() {
             />
           </div>
           <figcaption className="p-6 min-w-[460px] mb-[120px]">
-            <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
+            <span className="font-medium text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
               브랜드티켓
             </span>
             <h3 className="font-bold text-[32px] leading-[46px] my-4">
@@ -199,7 +200,7 @@ export default function Home() {
             </div>
           </div>
           <figcaption className="p-6 min-w-[460px] mb-[120px]">
-            <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
+            <span className="font-medium text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
               UI커스텀
             </span>
             <h3 className="font-bold text-[32px] leading-[46px] my-4">
@@ -248,7 +249,7 @@ export default function Home() {
             />
           </div>
           <figcaption className="p-6 min-w-[460px] mb-[120px]">
-            <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
+            <span className="font-medium text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
               예약자 관리
             </span>
             <h3 className="font-bold text-[32px] leading-[46px] my-4">
@@ -278,8 +279,8 @@ export default function Home() {
             />
           </div>
           <figcaption className="p-6 min-w-[460px] mb-[120px]">
-            <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
-              CRM 데이
+            <span className="font-medium text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
+              CRM 데이터
             </span>
             <h3 className="font-bold text-[32px] leading-[46px] my-4">
               이벤트 마케팅 효과를
