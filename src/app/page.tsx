@@ -14,7 +14,7 @@ export default function Home() {
             </span>
           </Link>
           <Link
-            href="/to-our-register-link"
+            href="https://tally.so/r/3lrqD5"
             className="bg-grey-900 text-white px-4 py-[10px] rounded-lg"
           >
             사전 예약 신청
@@ -36,7 +36,7 @@ export default function Home() {
         </p>
 
         <Link
-          href="/"
+          href="https://tally.so/r/3lrqD5"
           className="bg-grey-900 text-white flex items-center w-fit text-2xl px-6 py-4 rounded-xl mt-8"
         >
           사전 예약 신청{" "}
@@ -308,7 +308,7 @@ export default function Home() {
         </h2>
 
         <Link
-          href=""
+          href="https://tally.so/r/3lrqD5"
           className="flex text-white text-2xl font-bold bg-primary-2-300 rounded-[12px] px-6 py-4 mt-14"
         >
           사전 예약 신청{" "}
