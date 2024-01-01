@@ -25,7 +25,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${pretendard.className} ${sourceSansPro.className}`}>
+      <body
+        className={`${pretendard.className} ${sourceSansPro.className} bg-white`}
+      >
         {children}
       </body>
     </html>
