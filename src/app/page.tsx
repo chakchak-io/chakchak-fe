@@ -30,7 +30,7 @@ const SectionOne = () => {
     <Flex direction="column" align="center" asChild>
       <section className="my-[120px]">
         <Flex direction="column" align="center" gap="5">
-          <h2 className="font-bold text-[56px] leading-[68px]">
+          <h2 className="font-bold text-[56px] leading-[68px] text-center">
             예약시스템, 내 웹사이트에
             <Space />
             <span className="text-primary-2-300">착!</span>
@@ -94,7 +94,8 @@ const SectionTwo = () => {
               <br /> 이벤트를 직접 관리할 수 있어요.
             </p>
           </Flex>
-          <figure className="w-full flex rounded-3xl bg-[#FAFAFA] h-[480px]">
+          {/* Responsive */}
+          <figure className="w-full flex lg:flex-nowrap flex-wrap rounded-3xl bg-[#FAFAFA] lg:h-[480px] h-auto overflow-hidden">
             <figcaption className="p-6 basis-[460px] shrink-0">
               <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
                 위젯 UI
@@ -116,12 +117,13 @@ const SectionTwo = () => {
                 width={636}
                 height={466}
                 alt="Feature Image1"
-                className="absolute -bottom-2 w-full left-[52px] pr-[52px]"
+                // Responsive
+                className="lg:absolute lg:-bottom-2 lg:w-full lg:left-[52px] lg:pr-[52px] lg:mx-0 mx-auto"
               />
             </div>
           </figure>
 
-          <figure className="flex rounded-3xl bg-[#FAFAFA] h-[480px]">
+          <figure className="w-full flex lg:flex-nowrap flex-wrap rounded-3xl bg-[#FAFAFA] lg:h-[480px] h-auto overflow-hidden">
             <figcaption className="p-6 basis-[460px] shrink-0">
               <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
                 예약페이지
@@ -137,20 +139,20 @@ const SectionTwo = () => {
                 간단하게 고객을 모집할 수 있어요.
               </p>
             </figcaption>
-            <div className="relative w-full overflow-hidden">
+            <div className="relative w-full overflow-hidden flex">
               <Image
                 src="/home/feature2Image1.png"
                 width={436}
                 height={675}
                 alt="Feature Image2 Image 1"
-                className="absolute bottom-0 left-[52px]"
+                className="lg:absolute lg:bottom-0 lg:left-[52px] relative left-20"
               />
               <Image
                 src="/home/feature2Image2.png"
                 alt="feature1 image2"
                 width={436}
                 height={675}
-                className="absolute bottom-0 left-60"
+                className="lg:absolute lg:bottom-0 lg:left-60 relative right-28"
               />
             </div>
           </figure>
@@ -181,7 +183,7 @@ const SectionThree = () => {
             </p>
           </Flex>
 
-          <figure className="flex rounded-3xl overflow-hidden h-[480px] bg-[#FAFAFA]">
+          <figure className="w-full flex lg:flex-nowrap flex-wrap rounded-3xl bg-[#FAFAFA] lg:h-[480px] h-auto overflow-hidden">
             <figcaption className="p-6 basis-[460px] shrink-0">
               <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
                 브랜드티켓
@@ -199,24 +201,24 @@ const SectionThree = () => {
                 <br />
               </p>
             </figcaption>
-            <div className="relative w-full">
+            <div className="relative w-full flex justify-center">
               <Image
                 src="/home/ticket1.png"
                 width={254}
                 height={505}
                 alt="Feature Image3 Ticket Image"
-                className="absolute bottom-0 z-10 left-[82px]"
+                className="lg:absolute lg:bottom-0 lg:z-10 lg:left-[82px]"
               />
               <Image
                 src="/home/ticket2.png"
                 alt="feature3 ticket Image2"
                 width={254}
                 height={505}
-                className="absolute top-0 right-[36px]"
+                className="lg:absolute lg:top-0 lg:right-[36px]"
               />
             </div>
           </figure>
-          <figure className="flex rounded-3xl bg-[#FAFAFA] h-[480px] overflow-hidden">
+          <figure className="w-full flex lg:flex-nowrap flex-wrap rounded-3xl bg-[#FAFAFA] lg:h-[480px] h-auto overflow-hidden">
             <figcaption className="p-6 basis-[460px] shrink-0">
               <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
                 UI커스텀
@@ -235,16 +237,16 @@ const SectionThree = () => {
                 <br />
               </p>
             </figcaption>
-            <div className="relative w-full overflow-hidden">
+            <div className="relative w-full overflow-hidden flex justify-center">
               <Image
                 src="/home/reservationPage.png"
                 width={590}
                 height={428}
                 alt="Feature Image3 Ticket Image"
-                className="absolute bottom-0 left-[52px]"
+                className="lg:absolute lg:bottom-0 lg:left-[52px]"
               />
 
-              <div className=" bg-white rounded-[12px] shadow-custom p-6 w-fit absolute bottom-[24px] right-[52px]">
+              <div className=" bg-white rounded-[12px] shadow-custom p-6 w-fit absolute lg:bottom-[24px] bottom-0 lg:right-[52px]">
                 <div className="px-6 py-4 bg-gradient-to-r from-[#ff00f5] to-[#ff5c00] rounded-[12px] text-white font-bold text-2xl w-[338px] flex justify-center">
                   예약하기
                 </div>
@@ -277,7 +279,7 @@ const SectionFour = () => {
             </p>
           </Flex>
 
-          <figure className="flex rounded-3xl bg-[#FAFAFA] h-[480px]">
+          <figure className="w-full flex lg:flex-nowrap flex-wrap rounded-3xl bg-[#FAFAFA] lg:h-[480px] h-auto overflow-hidden">
             <figcaption className="p-6 basis-[460px] shrink-0">
               <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
                 예약자 관리
@@ -296,25 +298,25 @@ const SectionFour = () => {
                 <br />
               </p>
             </figcaption>
-            <div className="relative w-full overflow-hidden">
+            <div className="relative w-full overflow-hidden flex justify-center lg:h-auto h-[360px]">
               <Image
                 src="/home/reservationManagePage.png"
                 width={450}
                 height={300}
                 alt="Feature Image3 Ticket Image"
-                className="absolute bottom-0 left-0"
+                className="lg:absolute lg:bottom-0 lg:left-0"
               />
               <Image
                 src="/home/ticket3.png"
                 width={254}
                 height={505}
                 alt="ticket"
-                className="absolute top-0 right-[20px]"
+                className="lg:absolute lg:top-0 lg:right-[20px]"
               />
             </div>
           </figure>
 
-          <figure className="flex rounded-3xl bg-[#FAFAFA] h-[480px]">
+          <figure className="w-full flex lg:flex-nowrap flex-wrap rounded-3xl bg-[#FAFAFA] lg:h-[480px] h-auto overflow-hidden">
             <figcaption className="p-6 basis-[460px] shrink-0">
               <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
                 CRM 데이터
@@ -334,13 +336,13 @@ const SectionFour = () => {
                 <br />
               </p>
             </figcaption>
-            <div className="relative w-full overflow-hidden">
+            <div className="relative w-full overflow-hidden flex justify-center">
               <Image
                 src="/home/crmFeature.png"
                 width={740}
                 height={480}
                 alt="CRM feature description Image"
-                className="absolute bottom-0"
+                className="lg:absolute lg:bottom-0"
               />
             </div>
           </figure>
@@ -381,9 +383,8 @@ export default function Home() {
   return (
     <main className="font-pretendard bg-[#FCFDFF]">
       <Header />
-      {/* TODO: replace section one image(which is not padding applied image) */}
-      <SectionOne />
       <div className="px-4 max-w-[1200px] mx-auto">
+        <SectionOne />
         <SectionTwo />
         <SectionThree />
         <SectionFour />
