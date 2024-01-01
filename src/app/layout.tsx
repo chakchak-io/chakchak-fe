@@ -17,8 +17,22 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "ChakChak",
-  description: "ChakChak io",
+  title: "착착",
+  description: "팝업스토어를 위한 예약 플랫폼",
+  openGraph: {
+    title: "착착",
+    type: "website",
+    url: "https://www.chakchak.io/",
+    description: "팝업스토어를 위한 예약 플랫폼",
+    images: [
+      {
+        url: "https://www.chakchak.io/logo.svg",
+        width: 1200,
+        height: 630,
+        alt: "착착",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

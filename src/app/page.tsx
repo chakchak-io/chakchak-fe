@@ -94,7 +94,7 @@ const SectionTwo = () => {
               <br /> 이벤트를 직접 관리할 수 있어요.
             </p>
           </Flex>
-          <figure className="flex rounded-3xl bg-[#FAFAFA] h-[480px]">
+          <figure className="w-full flex rounded-3xl bg-[#FAFAFA] h-[480px]">
             <figcaption className="p-6 basis-[460px] shrink-0">
               <span className="font-semibold text-lg leading-[22px] rounded-lg bg-[#e6e2ff] px-3 py-2 inline-block text-[#3D02E3]">
                 위젯 UI
