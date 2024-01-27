@@ -1,8 +1,8 @@
-import Link from "next/link";
-import BrandLogo from "./components/BrandLogo";
-import Image from "next/image";
-import { Flex } from "@radix-ui/themes";
-import { Space } from "./components/Space";
+import Link from 'next/link';
+import BrandLogo from './components/BrandLogo';
+import Image from 'next/image';
+import { Flex } from '@radix-ui/themes';
+import { Space } from './components/Space';
 
 const Header = () => {
   return (
@@ -53,7 +53,7 @@ const SectionOne = () => {
               <div>
                 <Image
                   priority
-                  src={"/rightArrow.svg"}
+                  src={'/rightArrow.svg'}
                   alt="Right Arrow"
                   height={24}
                   width={24}
