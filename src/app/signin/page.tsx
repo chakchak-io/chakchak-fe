@@ -1,14 +1,14 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import { Container, Flex } from "@radix-ui/themes";
-import Header from "../components/Header";
-import FancyInput from "../components/Forms/FancyInput";
-import Button from "../components/Button";
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { Container, Flex } from '@radix-ui/themes';
+import Header from '../components/Header';
+import FancyInput from '../components/Forms/FancyInput';
+import Button from '../components/Button';
 
 const SigninPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <main>
@@ -37,14 +37,14 @@ const SigninPage = () => {
             />
           </Flex>
           <Flex direction="column" gap="1">
-            <Button onClick={() => console.log("clicked")}>로그인</Button>
+            <Button onClick={() => console.log('clicked')}>로그인</Button>
             <Flex justify="between" className="py-2">
               <div className="font-medium text-[14px]">
                 아직 계정이 없으신가요?
               </div>
               <Link
                 href="/signup"
-                className="text-primary-2-300 font-medium text-[14px] hover:opacity-85"
+                className="text-primary font-medium text-[14px] hover:opacity-85"
               >
                 회원가입
               </Link>
