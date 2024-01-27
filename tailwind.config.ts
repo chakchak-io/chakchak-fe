@@ -21,9 +21,11 @@ const config: Config = {
         "primary-2-300": "#FF6A00",
         "grey-50": "#FAFAFA",
         "grey-100": "#F4F4F5",
+        "grey-300": "#D4D4D8",
         "grey-500": "#71717A",
         "grey-800": "#27272A",
         "grey-900": "#18181B",
+        danger: "#F64582",
       },
       boxShadow: {
         custom:
