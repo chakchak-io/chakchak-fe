@@ -1,6 +1,6 @@
-import { Flex } from "@radix-ui/themes";
-import Link from "next/link";
-import BrandLogo from "./BrandLogo";
+import { Flex } from '@radix-ui/themes';
+import Link from 'next/link';
+import BrandLogo from './BrandLogo';
 
 const Header = () => {
   return (
@@ -8,7 +8,7 @@ const Header = () => {
       <Flex justify="between" className="max-w-[1200px] m-auto">
         <Link href="/" className="flex items-center gap-2">
           <BrandLogo />
-          <span className="text-primary-2-300 font-semibold font-sourceSansPro text-xl">
+          <span className="text-primary font-semibold font-sourceSansPro text-xl">
             ChakChak
           </span>
         </Link>
