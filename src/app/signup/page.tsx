@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Header from '../components/Header';
-import { Flex, Container } from '@radix-ui/themes';
-import FancyInput from '../components/Forms/FancyInput';
-import Link from 'next/link';
-import Button from '../components/Button';
+import React, { useState } from "react";
+import Header from "../components/Header";
+import { Flex, Container } from "@radix-ui/themes";
+import FancyInput from "../components/Forms/FancyInput";
+import Link from "next/link";
+import Button from "../components/Button";
 
 const SignupPage = () => {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [organization, setOrganization] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [organization, setOrganization] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <main>
@@ -22,7 +22,7 @@ const SignupPage = () => {
         </h2>
       </Flex>
       <Container size="1">
-        <Flex direction="column" gap="6" mt="7">
+        <Flex direction="column" gap="5" mt="7">
           <FancyInput
             label="이메일"
             value={email}
@@ -47,9 +47,10 @@ const SignupPage = () => {
             value={password}
             onChange={(newValue) => setPassword(newValue)}
             placeHolder="비밀번호를 입력해주세요."
+            type="password"
           />
           <Flex direction="column" gap="1" className="mt-4">
-            <Button disabled={true} onClick={() => console.log('clicked')}>
+            <Button disabled={true} onClick={() => console.log("clicked")}>
               회원가입
             </Button>
             <Flex justify="between" className="py-2">

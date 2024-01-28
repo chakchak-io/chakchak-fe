@@ -1,14 +1,14 @@
-'use client';
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { Container, Flex } from '@radix-ui/themes';
-import Header from '../components/Header';
-import FancyInput from '../components/Forms/FancyInput';
-import Button from '../components/Button';
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import { Container, Flex } from "@radix-ui/themes";
+import Header from "../components/Header";
+import FancyInput from "../components/Forms/FancyInput";
+import { Button } from "../../components/ui/button";
 
 const SigninPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <main>
@@ -34,10 +34,16 @@ const SigninPage = () => {
               value={password}
               onChange={(newValue) => setPassword(newValue)}
               placeHolder="비밀번호를 입력해주세요."
+              type="password"
             />
           </Flex>
           <Flex direction="column" gap="1">
-            <Button onClick={() => console.log('clicked')}>로그인</Button>
+            <Button
+              className={`bg-black rounded-[6px] hover:bg-black hover:shadow-lg transition-all duration-200`}
+              onClick={() => console.log("clicked")}
+            >
+              로그인
+            </Button>
             <Flex justify="between" className="py-2">
               <div className="font-medium text-[14px]">
                 아직 계정이 없으신가요?
