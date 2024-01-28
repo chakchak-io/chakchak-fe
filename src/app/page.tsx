@@ -1,22 +1,23 @@
-import Link from "next/link";
-import BrandLogo from "./components/BrandLogo";
-import Image from "next/image";
-import { Flex } from "@radix-ui/themes";
-import { Space } from "./components/Space";
+import Link from 'next/link';
+import BrandLogo from './components/BrandLogo';
+import Image from 'next/image';
+import { Flex, Text } from '@radix-ui/themes';
+import { Space } from './components/Space';
+import { Button } from '@/components/ui/button';
 
 const Header = () => {
   return (
-    <nav className="border-b px-2 py-[6px] border-b-grey-100 bg-white">
+    <nav className="border-b px-2 py-[6px] border-b-gray-100 bg-white">
       <Flex justify="between" className="max-w-[1200px] m-auto">
         <Link href="/" className="flex items-center gap-2">
           <BrandLogo />
-          <span className="text-primary-2-300 font-semibold font-sourceSansPro text-xl">
+          <span className="text-primary font-semibold font-sourceSansPro text-xl">
             ChakChak
           </span>
         </Link>
         <Link
           href="https://tally.so/r/3lrqD5"
-          className="bg-grey-900 text-white px-4 py-[10px] rounded-lg"
+          className="bg-gray-900 text-white px-4 py-[10px] rounded-lg"
         >
           사전 예약 신청
         </Link>
@@ -33,11 +34,11 @@ const SectionOne = () => {
           <h2 className="font-bold text-[56px] leading-[68px] text-center">
             예약시스템, 내 웹사이트에
             <Space />
-            <span className="text-primary-2-300">착!</span>
+            <span className="text-primary">착!</span>
           </h2>
           <Flex direction="column" align="center" gap="6">
-            <p className="text-grey-500 text-xl text-center">
-              <span className="text-primary-2-300">
+            <p className="text-gray-500 text-xl text-center">
+              <span className="text-primary">
                 팝업스토어, 이벤트, 매장 예약
               </span>
               <Space />
@@ -47,13 +48,13 @@ const SectionOne = () => {
 
             <Link
               href="https://tally.so/r/3lrqD5"
-              className="bg-grey-900 text-white flex items-center w-fit text-2xl px-6 py-4 rounded-xl"
+              className="bg-gray-900 text-white flex items-center w-fit text-2xl px-6 py-4 rounded-xl"
             >
               사전 예약 신청
               <div>
                 <Image
                   priority
-                  src={"/rightArrow.svg"}
+                  src={'/rightArrow.svg'}
                   alt="Right Arrow"
                   height={24}
                   width={24}
@@ -83,12 +84,12 @@ const SectionTwo = () => {
           <Flex direction="column" align="center" gap="5">
             <h2 className="text-[56px] leading-[72px] font-bold tracking-[-0.84px] text-center">
               이벤트 예약, 내 웹사이트에서 <br />
-              <span className="text-primary-2-300">직접 받으세요</span>
+              <span className="text-primary">직접 받으세요</span>
             </h2>
-            <p className="text-grey-500 text-xl font-medium text-center">
+            <p className="text-gray-500 text-xl font-medium text-center">
               착착은 2가지
               <Space />
-              <span className="text-primary-2-300">Widget SDK</span>
+              <span className="text-primary">Widget SDK</span>
               를 제공하여
               <br /> 나에게 맞는 솔루션으로
               <br /> 이벤트를 직접 관리할 수 있어요.
@@ -105,7 +106,7 @@ const SectionTwo = () => {
                 브랜드 이벤트를 홍보하세요
               </h3>
 
-              <p className="text-grey-500 text-lg leading-[30px] font-medium">
+              <p className="text-gray-500 text-lg leading-[30px] font-medium">
                 착착에서 제공하는 Widget SDK를 통해
                 <br /> 내 웹사이트 어디서든 이벤트 예약 기능을 <br />
                 쉽고 간단하게 추가할 수 있어요.
@@ -133,7 +134,7 @@ const SectionTwo = () => {
                 문제없어요
               </h3>
 
-              <p className="text-grey-500 text-lg leading-[30px] font-medium">
+              <p className="text-gray-500 text-lg leading-[30px] font-medium">
                 착착이 제공하는 <br />
                 기본 예약 페이지와 링크를 생성해서 <br />
                 간단하게 고객을 모집할 수 있어요.
@@ -170,12 +171,12 @@ const SectionThree = () => {
           <Flex direction="column" align="center" gap="5">
             <h2 className="text-[56px] leading-[72px] font-bold tracking-[-0.84px] text-center">
               다양한 커스터마이징으로 <br /> 브랜드를 <Space />
-              <span className="text-primary-2-300">빛내보세요.</span>
+              <span className="text-primary">빛내보세요.</span>
             </h2>
 
-            <p className="text-center text-xl font-medium text-grey-500">
+            <p className="text-center text-xl font-medium text-gray-500">
               착착에서 <Space />
-              <span className="text-primary-2-300">
+              <span className="text-primary">
                 브랜드 로고, 이미지, 프라이머리 컬러
               </span>
               를 <br /> 활용해 예약 페이지 및 티켓 UI를 <br />
@@ -193,7 +194,7 @@ const SectionThree = () => {
                 새로운 창구로 활용해 보세요.
               </h3>
 
-              <p className="text-grey-500 text-lg leading-[30px] font-medium">
+              <p className="text-gray-500 text-lg leading-[30px] font-medium">
                 착착은 참석 확인을 위한 예약 티켓을 생성 가능해요.
                 <br />
                 티켓에 브랜드 이미지를 삽입하고, <br />
@@ -228,7 +229,7 @@ const SectionThree = () => {
                 착착해서 만들어보세요.
               </h3>
 
-              <p className="text-grey-500 text-lg leading-[30px] font-medium">
+              <p className="text-gray-500 text-lg leading-[30px] font-medium">
                 착착의 기본 예약 페이지는
                 <br />
                 브랜드의 프라이머리 컬러, 이미지를 적용할 수 있어요.
@@ -268,14 +269,12 @@ const SectionFour = () => {
             <h2 className="text-[56px] leading-[72px] font-bold tracking-[-0.84px] text-center">
               예약 관리와 고객 CRM도 <br /> 착착!
               <Space />
-              <span className="text-primary-2-300">관리하세요.</span>
+              <span className="text-primary">관리하세요.</span>
             </h2>
-            <p className="text-center text-xl font-medium text-grey-500">
+            <p className="text-center text-xl font-medium text-gray-500">
               직관적인 대시보드로 예약자 관리와 <br />
               고객 CRM을 간편하게 관리하고 <br />
-              <span className="text-primary-2-300">
-                마케팅 기회로 전환하세요.
-              </span>
+              <span className="text-primary">마케팅 기회로 전환하세요.</span>
             </p>
           </Flex>
 
@@ -289,7 +288,7 @@ const SectionFour = () => {
                 간단하게 할 수 있어요
               </h3>
 
-              <p className="text-grey-500 text-lg leading-[30px] font-medium">
+              <p className="text-gray-500 text-lg leading-[30px] font-medium">
                 예약 티켓의 QR 코드로 예약자를 자동으로 인식하며,
                 <br />
                 상태 창을 이용하여 수동으로
@@ -327,7 +326,7 @@ const SectionFour = () => {
                 한눈에 파악하세요
               </h3>
 
-              <p className="text-grey-500 text-lg leading-[30px] font-medium">
+              <p className="text-gray-500 text-lg leading-[30px] font-medium">
                 일별 예약자 상태, 시간대별 참석 비율,
                 <br />
                 성별 분포 등 다양한 CRM 데이터를
@@ -354,26 +353,28 @@ const SectionFour = () => {
 
 const SectionFive = () => {
   return (
-    <Flex direction="column" align="center" asChild>
-      <section className="bg-grey-800 py-[120px]">
+    <Flex direction="column" align="center" gap="8" asChild>
+      <section className="bg-gray-800 py-[120px]">
         <h2 className="text-center text-white text-[44px] leading-[64px] font-bold">
-          지금 <span className="text-primary-2-300">착착</span> 사전예약하고
+          지금 <span className="text-primary">착착</span> 사전예약하고
           <br />
           베타테스터로 가장 먼저 이용해 보세요.
         </h2>
-
-        <Link
-          href="https://tally.so/r/3lrqD5"
-          className="flex text-white text-2xl font-bold bg-primary-2-300 rounded-[12px] px-6 py-4 mt-14"
-        >
-          사전 예약 신청
-          <Image
-            src="/rightArrow.svg"
-            alt="right arrow"
-            height={24}
-            width={24}
-          />
-        </Link>
+        <Flex asChild>
+          <Button className="h-auto" asChild>
+            <Link href="https://tally.so/r/3lrqD5">
+              <Text weight="bold" size="6">
+                사전 예약 신청
+              </Text>
+              <Image
+                src="/rightArrow.svg"
+                alt="right arrow"
+                height={24}
+                width={24}
+              />
+            </Link>
+          </Button>
+        </Flex>
       </section>
     </Flex>
   );
