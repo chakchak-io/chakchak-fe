@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
 import localFont from 'next/font/local';
 import { Theme as RadixTheme } from '@radix-ui/themes';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/theme/theme-provider';
 
 import './globals.css';
 import '@radix-ui/themes/styles.css';
@@ -48,10 +48,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body
-        className={`${pretendard.className} ${sourceSansPro.className} bg-white`}
-      >
-        <ThemeProvider>
+      <body className={`${pretendard.className} ${sourceSansPro.className}`}>
+        <ThemeProvider
+        // @TODO: enable when support dark mode
+        // attribute="class"
+        // defaultTheme="system"
+        // enableSystem
+        // disableTransitionOnChange
+        >
           <RadixTheme>{children}</RadixTheme>
         </ThemeProvider>
       </body>
