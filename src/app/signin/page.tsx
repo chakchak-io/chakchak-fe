@@ -1,10 +1,10 @@
 "use client";
-import React, { useState } from "react";
-import Link from "next/link";
 import { Container, Flex } from "@radix-ui/themes";
-import Header from "../components/Header";
-import FancyInput from "../components/Forms/FancyInput";
+import Link from "next/link";
+import React, { useState } from "react";
 import { Button } from "../../components/ui/button";
+import FancyInput from "../components/Forms/FancyInput";
+import Header from "../components/Header";
 
 const SigninPage = () => {
   const [email, setEmail] = useState("");

@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import Header from "../components/Header";
-import { Flex, Container } from "@radix-ui/themes";
-import FancyInput from "../components/Forms/FancyInput";
+import { Container, Flex } from "@radix-ui/themes";
 import Link from "next/link";
+import React, { useState } from "react";
 import Button from "../components/Button";
+import FancyInput from "../components/Forms/FancyInput";
+import Header from "../components/Header";
 
 const SignupPage = () => {
   const [email, setEmail] = useState("");

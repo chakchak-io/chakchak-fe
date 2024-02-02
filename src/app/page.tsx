@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import BrandLogo from './components/BrandLogo';
-import Image from 'next/image';
 import { Flex, Text } from '@radix-ui/themes';
-import { Space } from './components/Space';
+import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import BrandLogo from './components/BrandLogo';
+import { Space } from './components/Space';
 
 const Header = () => {
   return (
