@@ -3,9 +3,10 @@ import { Container, Flex } from "@radix-ui/themes"
 import Link from "next/link"
 import React, { useState } from "react"
 
+import { AppLayout } from "@/components/layout"
+
 import { Button } from "../../components/ui/button"
 import FancyInput from "../components/Forms/FancyInput"
-import Header from "../components/Header"
 
 const SigninPage = () => {
   const [email, setEmail] = useState("")
@@ -13,7 +14,7 @@ const SigninPage = () => {
 
   return (
     <main>
-      <Header />
+      <AppLayout.Header.Make />
       <Flex direction="column" align="center" asChild className="mt-[62px]">
         <h2 className="text-[32px] font-bold leading-[38px]">이메일로 로그인</h2>
       </Flex>

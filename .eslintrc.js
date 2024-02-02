@@ -2,6 +2,7 @@
 const fs = require("fs")
 
 module.exports = {
+  plugins: ["unused-imports"],
   extends: [
     "next",
     "prettier",
@@ -39,6 +40,21 @@ module.exports = {
         allowSeparatedGroups: true,
       },
     ],
+
+    // for unused imports
+    "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        varsIgnorePattern: "^_",
+        args: "after-used",
+        argsIgnorePattern: "^_",
+      },
+    ],
+
+    // for import order
     "import/order": [
       "error",
       {

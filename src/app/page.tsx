@@ -2,26 +2,10 @@ import { Flex, Text } from "@radix-ui/themes"
 import Image from "next/image"
 import Link from "next/link"
 
+import { AppLayout } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 
-import BrandLogo from "./components/BrandLogo"
 import { Space } from "./components/Space"
-
-const Header = () => {
-  return (
-    <nav className="border-b border-b-gray-100 bg-white px-2 py-[6px]">
-      <Flex justify="between" className="m-auto max-w-[1200px]">
-        <Link href="/" className="flex items-center gap-2">
-          <BrandLogo />
-          <span className="font-sourceSansPro text-xl font-semibold text-primary">ChakChak</span>
-        </Link>
-        <Link href="https://tally.so/r/3lrqD5" className="rounded-lg bg-gray-900 px-4 py-[10px] text-white">
-          사전 예약 신청
-        </Link>
-      </Flex>
-    </nav>
-  )
-}
 
 const SectionOne = () => {
   return (
@@ -359,7 +343,7 @@ const SectionFive = () => {
 export default function Home() {
   return (
     <main className="bg-[#FCFDFF] font-pretendard">
-      <Header />
+      <AppLayout.Header.Make />
       <div className="mx-auto max-w-[1200px] px-4">
         <SectionOne />
         <SectionTwo />
