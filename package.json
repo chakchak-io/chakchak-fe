@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "prepare": "husky .husky",
     "dev": "cross-env FORCE_COLOR=1 next dev",
     "build": "next build",
     "start": "next start",
@@ -87,7 +88,9 @@
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-tailwindcss": "^3.13.0",
+    "husky": ">=7",
     "jsdom": "^24.0.0",
+    "lint-staged": ">=10",
     "postcss": "^8",
     "prettier": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.11",
@@ -95,5 +98,13 @@
     "typescript": "^5",
     "vitest": "^1.2.2"
   },
-  "packageManager": "pnpm@8.14.0"
+  "packageManager": "pnpm@8.14.0",
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --cache --fix"
+    ],
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss, md}": [
+      "prettier --write"
+    ]
+  }
 }
