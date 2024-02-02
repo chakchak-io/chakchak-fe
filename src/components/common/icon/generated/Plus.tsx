@@ -2,15 +2,15 @@ import { Ref, forwardRef, memo } from 'react';
 
 import { PropsFrom } from '@/lib/react-typescript';
 
-import Star from '../svg/star.svg';
+import Plus from '../svg/plus.svg';
 
-type Props = PropsFrom<typeof Star>;
+type Props = PropsFrom<typeof Plus>;
 type PropRef = SVGSVGElement;
 
 // @TODO: apply default setting for icon
 // @TODO: apply auto generator
-const SVGStar = (props: Props, ref: Ref<PropRef>) => <Star {...props} ref={ref} />;
-const Forwarded = forwardRef(SVGStar);
+const SVGPlus = (props: Props, ref: Ref<PropRef>) => <Plus {...props} ref={ref} />;
+const Forwarded = forwardRef(SVGPlus);
 const Memo = memo(Forwarded);
 
 export default Memo;

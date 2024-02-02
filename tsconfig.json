@@ -37,6 +37,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "~/*": ["./*"],
     },
   },
   "include": ["globald.d.ts", "next-env.d.ts", "**/*.mjs", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
