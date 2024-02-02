@@ -1,25 +1,24 @@
-"use client";
+"use client"
 
-import { Container, Flex } from "@radix-ui/themes";
-import Link from "next/link";
-import React, { useState } from "react";
-import Button from "../components/Button";
-import FancyInput from "../components/Forms/FancyInput";
-import Header from "../components/Header";
+import { Container, Flex } from "@radix-ui/themes"
+import Link from "next/link"
+import React, { useState } from "react"
+
+import Button from "../components/Button"
+import FancyInput from "../components/Forms/FancyInput"
+import Header from "../components/Header"
 
 const SignupPage = () => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [organization, setOrganization] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [name, setName] = useState("")
+  const [organization, setOrganization] = useState("")
+  const [password, setPassword] = useState("")
 
   return (
     <main>
       <Header />
       <Flex direction="column" align="center" asChild className="mt-[62px]">
-        <h2 className="text-[32px] leading-[38px] font-bold">
-          이메일로 로그인
-        </h2>
+        <h2 className="text-[32px] font-bold leading-[38px]">이메일로 로그인</h2>
       </Flex>
       <Container size="1">
         <Flex direction="column" gap="5" mt="7">
@@ -54,13 +53,8 @@ const SignupPage = () => {
               회원가입
             </Button>
             <Flex justify="between" className="py-2">
-              <div className="font-medium text-[14px]">
-                이미 계정이 있으신가요?
-              </div>
-              <Link
-                href="/signin"
-                className="text-primary font-medium text-[14px] hover:opacity-85"
-              >
+              <div className="text-[14px] font-medium">이미 계정이 있으신가요?</div>
+              <Link href="/signin" className="text-[14px] font-medium text-primary hover:opacity-85">
                 로그인
               </Link>
             </Flex>
@@ -68,7 +62,7 @@ const SignupPage = () => {
         </Flex>
       </Container>
     </main>
-  );
-};
+  )
+}
 
-export default SignupPage;
+export default SignupPage

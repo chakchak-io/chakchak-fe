@@ -1,22 +1,21 @@
-"use client";
-import { Container, Flex } from "@radix-ui/themes";
-import Link from "next/link";
-import React, { useState } from "react";
-import { Button } from "../../components/ui/button";
-import FancyInput from "../components/Forms/FancyInput";
-import Header from "../components/Header";
+"use client"
+import { Container, Flex } from "@radix-ui/themes"
+import Link from "next/link"
+import React, { useState } from "react"
+
+import { Button } from "../../components/ui/button"
+import FancyInput from "../components/Forms/FancyInput"
+import Header from "../components/Header"
 
 const SigninPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   return (
     <main>
       <Header />
       <Flex direction="column" align="center" asChild className="mt-[62px]">
-        <h2 className="text-[32px] leading-[38px] font-bold">
-          이메일로 로그인
-        </h2>
+        <h2 className="text-[32px] font-bold leading-[38px]">이메일로 로그인</h2>
       </Flex>
       <Container size="1">
         <Flex direction="column" gap="6" mt="7">
@@ -39,19 +38,14 @@ const SigninPage = () => {
           </Flex>
           <Flex direction="column" gap="1">
             <Button
-              className={`bg-black rounded-[6px] hover:bg-black hover:shadow-lg transition-all duration-200`}
+              className={`rounded-[6px] bg-black transition-all duration-200 hover:bg-black hover:shadow-lg`}
               onClick={() => console.log("clicked")}
             >
               로그인
             </Button>
             <Flex justify="between" className="py-2">
-              <div className="font-medium text-[14px]">
-                아직 계정이 없으신가요?
-              </div>
-              <Link
-                href="/signup"
-                className="text-primary font-medium text-[14px] hover:opacity-85"
-              >
+              <div className="text-[14px] font-medium">아직 계정이 없으신가요?</div>
+              <Link href="/signup" className="text-[14px] font-medium text-primary hover:opacity-85">
                 회원가입
               </Link>
             </Flex>
@@ -59,7 +53,7 @@ const SigninPage = () => {
         </Flex>
       </Container>
     </main>
-  );
-};
+  )
+}
 
-export default SigninPage;
+export default SigninPage

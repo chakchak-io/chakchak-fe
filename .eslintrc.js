@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const fs = require("fs");
+const fs = require("fs")
 
 module.exports = {
   extends: [
@@ -32,21 +32,25 @@ module.exports = {
     "sort-imports": [
       "error",
       {
-        ignoreCase: true,
+        ignoreCase: false,
         ignoreDeclarationSort: true,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
+        allowSeparatedGroups: true,
       },
     ],
     "import/order": [
-      1,
+      "error",
       {
         groups: [
-          "external",
-          "builtin",
-          "internal",
-          "sibling",
-          "parent",
-          "index",
+          "builtin", // Built-in imports (come from NodeJS native) go first
+          "external", // <- External imports
+          "internal", // <- Absolute imports
+          ["sibling", "parent"], // <- Relative imports, the sibling and parent types they can be mingled together
+          "index", // <- index imports
+          "unknown", // <- unknown
         ],
+        "newlines-between": "always",
         pathGroups: [
           ...getDirectoriesToSort().map((singleDir) => ({
             pattern: `${singleDir}/**`,
@@ -74,22 +78,15 @@ module.exports = {
       },
     ],
   },
-};
+}
 
 function getDirectoriesToSort() {
-  const ignoredSortingDirectories = [
-    ".git",
-    ".next",
-    ".vscode",
-    "node_modules",
-  ];
-  return getDirectories(process.cwd()).filter(
-    (f) => !ignoredSortingDirectories.includes(f)
-  );
+  const ignoredSortingDirectories = [".git", ".next", ".vscode", "node_modules"]
+  return getDirectories(process.cwd()).filter((f) => !ignoredSortingDirectories.includes(f))
 }
 
 function getDirectories(path) {
   return fs.readdirSync(path).filter(function (file) {
-    return fs.statSync(path + "/" + file).isDirectory();
-  });
+    return fs.statSync(path + "/" + file).isDirectory()
+  })
 }

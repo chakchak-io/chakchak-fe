@@ -11,8 +11,8 @@
     "analyze": "cross-env ANALYZE=true pnpm build",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx}\"",
-    "prettier:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx}\"",
+    "prettier:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx}\"",
     "test": "vitest run",
     "test:watch": "vitest run --watch"
   },
@@ -103,7 +103,7 @@
     "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --cache --fix"
     ],
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss, md}": [
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx}": [
       "prettier --write"
     ]
   }
