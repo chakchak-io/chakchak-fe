@@ -1,38 +1,39 @@
-import { Flex, Text } from "@radix-ui/themes"
-import Image from "next/image"
-import Link from "next/link"
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { AppLayout } from "@/components/layout"
-import { Button } from "@/components/ui/button"
+import { RightArrow } from '@/components/common/icon';
+import { AppLayout } from '@/components/layout';
+import { Button } from '@/components/ui/button';
+import { Flex } from '@/components/ui/flex';
+import { Text } from '@/components/ui/text';
 
-import { Space } from "./components/Space"
+import { Space } from './components/Space';
 
 const SectionOne = () => {
   return (
     <Flex direction="column" align="center" asChild>
       <section className="my-[120px]">
-        <Flex direction="column" align="center" gap="5">
+        <Flex direction="column" align="center" gap="1.5">
           <h2 className="text-center text-[56px] font-bold leading-[68px]">
             예약시스템, 내 웹사이트에
             <Space />
             <span className="text-primary">착!</span>
           </h2>
-          <Flex direction="column" align="center" gap="6">
+          <Flex direction="column" align="center" gap="2">
             <p className="text-center text-xl text-gray-500">
               <span className="text-primary">팝업스토어, 이벤트, 매장 예약</span>
               <Space />
               등 각종 온, 오프라인 행사를 <br /> 내 웹사이트에서 직접 관리하세요.
             </p>
 
-            <Link
-              href="https://tally.so/r/3lrqD5"
-              className="flex w-fit items-center rounded-xl bg-gray-900 px-6 py-4 text-2xl text-white"
-            >
-              사전 예약 신청
-              <div>
-                <Image priority src={"/rightArrow.svg"} alt="Right Arrow" height={24} width={24} />
-              </div>
-            </Link>
+            <Button className="h-auto" asChild>
+              <Link href="https://tally.so/r/3lrqD5">
+                <Text weight="bold" size="24">
+                  사전 예약 신청
+                </Text>
+                <RightArrow width={24} height={24} />
+              </Link>
+            </Button>
             <div>
               <Image src="/home/section1Image1.png" width={1200} height={584} alt="Example Image" />
             </div>
@@ -40,15 +41,15 @@ const SectionOne = () => {
         </Flex>
       </section>
     </Flex>
-  )
-}
+  );
+};
 
 const SectionTwo = () => {
   return (
     <Flex direction="column" align="center" asChild>
       <section className="my-[120px]">
         <Flex direction="column" className="w-full gap-14">
-          <Flex direction="column" align="center" gap="5">
+          <Flex direction="column" align="center" gap="1.5">
             <h2 className="text-center text-[56px] font-bold leading-[72px] tracking-[-0.84px]">
               이벤트 예약, 내 웹사이트에서 <br />
               <span className="text-primary">직접 받으세요</span>
@@ -127,15 +128,15 @@ const SectionTwo = () => {
         </Flex>
       </section>
     </Flex>
-  )
-}
+  );
+};
 
 const SectionThree = () => {
   return (
     <Flex direction="column" align="center" asChild>
       <section className="my-[120px]">
         <Flex direction="column" className="w-full gap-14">
-          <Flex direction="column" align="center" gap="5">
+          <Flex direction="column" align="center" gap="1.5">
             <h2 className="text-center text-[56px] font-bold leading-[72px] tracking-[-0.84px]">
               다양한 커스터마이징으로 <br /> 브랜드를 <Space />
               <span className="text-primary">빛내보세요.</span>
@@ -222,15 +223,15 @@ const SectionThree = () => {
         </Flex>
       </section>
     </Flex>
-  )
-}
+  );
+};
 
 const SectionFour = () => {
   return (
     <Flex direction="column" align="center" asChild>
       <section className="my-[120px]">
         <Flex direction="column" className="w-full gap-14">
-          <Flex direction="column" align="center" gap="5">
+          <Flex direction="column" align="center" gap="1.5">
             <h2 className="text-center text-[56px] font-bold leading-[72px] tracking-[-0.84px]">
               예약 관리와 고객 CRM도 <br /> 착착!
               <Space />
@@ -313,12 +314,12 @@ const SectionFour = () => {
         </Flex>
       </section>
     </Flex>
-  )
-}
+  );
+};
 
 const SectionFive = () => {
   return (
-    <Flex direction="column" align="center" gap="8" asChild>
+    <Flex direction="column" align="center" gap="3.5" asChild>
       <section className="bg-gray-800 py-[120px]">
         <h2 className="text-center text-[44px] font-bold leading-[64px] text-white">
           지금 <span className="text-primary">착착</span> 사전예약하고
@@ -328,17 +329,17 @@ const SectionFive = () => {
         <Flex asChild>
           <Button className="h-auto" asChild>
             <Link href="https://tally.so/r/3lrqD5">
-              <Text weight="bold" size="6">
+              <Text weight="bold" size="24">
                 사전 예약 신청
               </Text>
-              <Image src="/rightArrow.svg" alt="right arrow" height={24} width={24} />
+              <RightArrow width={24} height={24} />
             </Link>
           </Button>
         </Flex>
       </section>
     </Flex>
-  )
-}
+  );
+};
 
 export default function Home() {
   return (
@@ -352,7 +353,7 @@ export default function Home() {
       </div>
       <SectionFive />
     </main>
-  )
+  );
 }
 
 // TODO: Margin Bottom 추가

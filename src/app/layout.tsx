@@ -1,4 +1,3 @@
-import { Theme as RadixTheme } from '@radix-ui/themes';
 import type { Metadata } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
 import localFont from 'next/font/local';
@@ -6,9 +5,9 @@ import localFont from 'next/font/local';
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import { cn } from '@/lib/utils';
 
-import './globals.css';
-import '@radix-ui/themes/styles.css';
 import { Toaster } from '../components/ui/toaster';
+
+import './globals.css';
 
 const sourceSansPro = Source_Sans_3({
   subsets: ['latin'],
@@ -55,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         // enableSystem
         // disableTransitionOnChange
         >
-          <RadixTheme>{children}</RadixTheme>
+          {children}
           <Toaster />
         </ThemeProvider>
       </body>

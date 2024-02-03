@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
-const textVariant = cva([], {
+const textVariant = cva(['m-0'], {
   variants: {
     weight: {
       light: 'font-light',
@@ -14,9 +14,15 @@ const textVariant = cva([], {
       bold: 'font-bold',
     },
     size: {
-      // TODO: 38.19px로 figma에서 확인했음
       '32': 'text-[2rem] leading-[38px]',
+      // title/title01
+      '24': 'text-[1.5rem] leading-[30px]',
+      // body/body01
+      '20': 'text-[1.25rem] leading-[24px]',
+      // body/body02
       '16': 'text-[1rem] leading-[20px]',
+      // body/body03
+      '14': 'text-[0.875rem] leading-[18px]',
     },
     align: {
       left: 'text-left',
@@ -27,7 +33,9 @@ const textVariant = cva([], {
       // @TODO: dynamic color?
       inherit: 'text-inherit',
       'gray/500': 'text-gray-500',
+      'gray/600': 'text-gray-600',
       white: 'text-white',
+      black: 'text-black',
     },
   },
   defaultVariants: {
@@ -63,12 +71,12 @@ const Text = forwardRef<TextElement, TextProps>((props, forwardedRef) => {
     align,
     color,
     //
-    ...rest
+    ...textProps
   } = props;
 
   return (
     <Slot
-      {...rest}
+      {...textProps}
       ref={forwardedRef}
       className={cn(
         textVariant({
