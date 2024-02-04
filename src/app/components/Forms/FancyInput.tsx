@@ -28,6 +28,7 @@ const FancyInput = ({
         onChange={(event) => onChange(event.target.value)}
         value={value}
         required={required}
+        autoComplete="on"
       />
       <p
         className={`invisible peer-invalid:visible text-[14px] text-medium leading-[18px] text-danger`}

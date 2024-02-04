@@ -19,7 +19,7 @@ const SigninPage = () => {
         </h2>
       </Flex>
       <Container size="1">
-        <Flex direction="column" gap="6" mt="7">
+        <Flex direction="column" gap="3" mt="7">
           <Flex direction="column" align="center">
             <FancyInput
               label="이메일"

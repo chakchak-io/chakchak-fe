@@ -1,40 +1,40 @@
-import type { Metadata } from 'next';
-import { Source_Sans_3 } from 'next/font/google';
-import localFont from 'next/font/local';
-import { Theme as RadixTheme } from '@radix-ui/themes';
-import { ThemeProvider } from '@/components/theme/theme-provider';
+import type { Metadata } from "next";
+import { Source_Sans_3 } from "next/font/google";
+import localFont from "next/font/local";
+import { Theme as RadixTheme } from "@radix-ui/themes";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
-import './globals.css';
-import '@radix-ui/themes/styles.css';
+import "./globals.css";
+import "@radix-ui/themes/styles.css";
 
 const sourceSansPro = Source_Sans_3({
-  subsets: ['latin'],
-  variable: '--font-sourceSansPro',
+  subsets: ["latin"],
+  variable: "--font-sourceSansPro",
 });
 
 const pretendard = localFont({
-  src: '../font/PretendardVariable.woff2',
-  variable: '--font-pretendard',
+  src: "../font/PretendardVariable.woff2",
+  variable: "--font-pretendard",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.chakchak.io/'),
-  title: '착착',
-  description: '팝업스토어를 위한 예약 플랫폼',
+  metadataBase: new URL("https://www.chakchak.io/"),
+  title: "착착",
+  description: "팝업스토어를 위한 예약 플랫폼",
   icons: {
-    icon: '/logo.svg',
+    icon: "/logo.svg",
   },
   openGraph: {
-    title: '착착',
-    type: 'website',
-    url: 'https://www.chakchak.io/',
-    description: '팝업스토어를 위한 예약 플랫폼',
+    title: "착착",
+    type: "website",
+    url: "https://www.chakchak.io/",
+    description: "팝업스토어를 위한 예약 플랫폼",
     images: [
       {
-        url: '/logo.svg',
+        url: "/logo.svg",
         width: 1200,
         height: 630,
-        alt: '착착',
+        alt: "착착",
       },
     ],
   },
