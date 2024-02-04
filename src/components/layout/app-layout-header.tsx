@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Flex } from '@/components/ui/flex';
 import { Text } from '@/components/ui/text';
 
+import { TypedLink } from '../common/router';
+
 const Skeleton: FC<{
   children?: React.ReactNode;
 }> = ({ children }) => {
@@ -29,15 +31,25 @@ const Skeleton: FC<{
 };
 
 const Make = () => {
+  // @TODO: login시 header 변경 필요
   return (
     <Skeleton>
-      <Button asChild>
-        <Link href="https://tally.so/r/3lrqD5">
-          <Text weight="medium" size="14">
-            사전 예약 신청
-          </Text>
-        </Link>
-      </Button>
+      <Flex gap="1">
+        <Button variant="secondary" asChild>
+          <TypedLink href="/signin">
+            <Text weight="medium" size="14">
+              로그인/회원가입
+            </Text>
+          </TypedLink>
+        </Button>
+        <Button asChild>
+          <Link href="https://tally.so/r/3lrqD5">
+            <Text weight="medium" size="14">
+              사전 예약 신청
+            </Text>
+          </Link>
+        </Button>
+      </Flex>
     </Skeleton>
   );
 };

@@ -14,7 +14,7 @@ import { Text } from '@/components/ui/text';
 
 const NoCreatedChannels = () => {
   return (
-    <div className="h-[calc(100vh-4rem)]">
+    <div className="h-full">
       <Center>
         <Flex direction="column" gap="2.25">
           <Flex direction="column" gap="0.5">
@@ -49,9 +49,9 @@ const NoCreatedChannels = () => {
 const ChannelPage = () => {
   const [channels] = useState([]);
   return (
-    <main className="size-full">
+    <main>
       <AppLayout.Header.Make />
-      <Container className="h-[calc(100vh-4rem)] w-full">
+      <Container className="h-[calc(100vh-4rem)]">
         {match(channels)
           .with([], () => <NoCreatedChannels />)
           .otherwise(() => (

@@ -1,24 +1,37 @@
 'use client';
 
-import Link from 'next/link';
 import React, { useState } from 'react';
 
+import { TypedLink } from '@/components/common/router';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { Flex } from '@/components/ui/flex';
 import { Text } from '@/components/ui/text';
+import { useToast } from '@/components/ui/use-toast';
+import { useClientTypedRouter } from '@/hooks';
 
 import FancyInput from '../components/Forms/FancyInput';
 
 const SigninPage = () => {
+  const router = useClientTypedRouter();
+  const { toast } = useToast();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    toast({
+      title: 'Need to implement',
+      description: 'This feature is not implemented yet.',
+    });
+    router.push('/channel');
+  };
 
   return (
     <main>
       <AppLayout.Header.Make />
-      <Container size={'sm'}>
+      <Container size="sm">
         <Flex direction="column" align="center" gap="2.25" className="mt-[3.875rem]">
           <Text weight="bold" size="32">
             이메일로 로그인
@@ -38,17 +51,17 @@ const SigninPage = () => {
               type="password"
             />
             <Flex direction="column" gap="0.5">
-              <Button onClick={() => console.log('clicked')}>로그인</Button>
+              <Button onClick={handleLogin}>로그인</Button>
               <Flex align="center" justify="between" className="py-2">
                 <Text size="14" weight="medium">
                   아직 계정이 없으신가요?
                 </Text>
                 <Button variant="link" className="p-0" asChild>
-                  <Link href="/signup">
+                  <TypedLink href="/signup">
                     <Text size="14" weight="medium">
                       회원가입
                     </Text>
-                  </Link>
+                  </TypedLink>
                 </Button>
               </Flex>
             </Flex>

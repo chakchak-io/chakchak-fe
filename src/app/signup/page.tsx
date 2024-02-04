@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import React, { useState } from 'react';
 
+import { TypedLink } from '@/components/common/router';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
@@ -20,7 +20,7 @@ const SignupPage = () => {
   return (
     <main>
       <AppLayout.Header.Make />
-      <Container>
+      <Container size="sm">
         <Flex direction="column" align="center" gap="2.25" className="mt-[3.875rem]">
           <Text weight="bold" size="32">
             회원가입
@@ -61,11 +61,11 @@ const SignupPage = () => {
                   계정이 있으신가요?
                 </Text>
                 <Button variant="link" className="p-0" asChild>
-                  <Link href="/signin">
+                  <TypedLink href="/signin">
                     <Text size="14" weight="medium">
                       로그인
                     </Text>
-                  </Link>
+                  </TypedLink>
                 </Button>
               </Flex>
             </Flex>

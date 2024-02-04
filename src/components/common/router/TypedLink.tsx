@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import { Ref, forwardRef } from 'react';
 
+import { AccessibleRoute } from '@/const/router';
 import type { ExtractRefFromProps, PropsFromWithoutRef } from '@/lib/react-typescript';
-
-import { AccessibleRoute } from './router';
 
 type LinkElement = ExtractRefFromProps<typeof Link>;
 type LinkProps = Omit<PropsFromWithoutRef<typeof Link>, 'href'> & { href: AccessibleRoute };

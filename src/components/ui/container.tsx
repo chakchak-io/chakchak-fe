@@ -15,7 +15,7 @@ const containerVariant = cva(['flex', 'flex-col', 'items-center', 'shrink-0', 'g
   },
 });
 
-const containerInnerVariant = cva(['w-full'], {
+const containerInnerVariant = cva(['size-full'], {
   variants: {
     // check tailwind.config.js for max-width values
     size: {

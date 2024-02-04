@@ -5,9 +5,8 @@ import { RightArrow } from '@/components/common/icon';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Flex } from '@/components/ui/flex';
+import { Literal } from '@/components/ui/literal';
 import { Text } from '@/components/ui/text';
-
-import { Space } from './components/Space';
 
 const SectionOne = () => {
   return (
@@ -16,13 +15,13 @@ const SectionOne = () => {
         <Flex direction="column" align="center" gap="1.5">
           <h2 className="text-center text-[56px] font-bold leading-[68px]">
             예약시스템, 내 웹사이트에
-            <Space />
+            <Literal.Space />
             <span className="text-primary">착!</span>
           </h2>
           <Flex direction="column" align="center" gap="2">
             <p className="text-center text-xl text-gray-500">
               <span className="text-primary">팝업스토어, 이벤트, 매장 예약</span>
-              <Space />
+              <Literal.Space />
               등 각종 온, 오프라인 행사를 <br /> 내 웹사이트에서 직접 관리하세요.
             </p>
 
@@ -56,7 +55,7 @@ const SectionTwo = () => {
             </h2>
             <p className="text-center text-xl font-medium text-gray-500">
               착착은 2가지
-              <Space />
+              <Literal.Space />
               <span className="text-primary">Widget SDK</span>
               를 제공하여
               <br /> 나에게 맞는 솔루션으로
@@ -138,12 +137,12 @@ const SectionThree = () => {
         <Flex direction="column" className="w-full gap-14">
           <Flex direction="column" align="center" gap="1.5">
             <h2 className="text-center text-[56px] font-bold leading-[72px] tracking-[-0.84px]">
-              다양한 커스터마이징으로 <br /> 브랜드를 <Space />
+              다양한 커스터마이징으로 <br /> 브랜드를 <Literal.Space />
               <span className="text-primary">빛내보세요.</span>
             </h2>
 
             <p className="text-center text-xl font-medium text-gray-500">
-              착착에서 <Space />
+              착착에서 <Literal.Space />
               <span className="text-primary">브랜드 로고, 이미지, 프라이머리 컬러</span>
               를 <br /> 활용해 예약 페이지 및 티켓 UI를 <br />
               쉽게 커스텀 할 수 있습니다.
@@ -234,7 +233,7 @@ const SectionFour = () => {
           <Flex direction="column" align="center" gap="1.5">
             <h2 className="text-center text-[56px] font-bold leading-[72px] tracking-[-0.84px]">
               예약 관리와 고객 CRM도 <br /> 착착!
-              <Space />
+              <Literal.Space />
               <span className="text-primary">관리하세요.</span>
             </h2>
             <p className="text-center text-xl font-medium text-gray-500">
