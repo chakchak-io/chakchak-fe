@@ -81,7 +81,7 @@ const ChannelCreatePage = () => {
       <Container size="xs">
         <Flex direction="column" align="center" gap="2.25" className="mt-[3.875rem]">
           <Text weight="bold" size="32">
-            이메일로 로그인
+            채널 생성하기
           </Text>
           <Form {...form}>
             <Flex className="w-full" direction="column" gap="2" asChild>
@@ -143,7 +143,7 @@ const ChannelCreatePage = () => {
                   )}
                 />
                 <Flex>
-                  <Button fullWidth type="submit">
+                  <Button fullWidth type="submit" disabled={!form.formState.isValid}>
                     생성하기
                   </Button>
                 </Flex>
