@@ -354,5 +354,3 @@ export default function Home() {
     </main>
   );
 }
-
-// TODO: Margin Bottom 추가

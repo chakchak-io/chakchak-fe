@@ -78,8 +78,8 @@ const ChannelCreatePage = () => {
   return (
     <main className="size-full">
       <AppLayout.Header.Make />
-      <Container size="xs">
-        <Flex direction="column" align="center" gap="2.25" className="mt-[3.875rem]">
+      <Container size="xs" className="mt-20">
+        <Flex direction="column" align="center" gap="2.25">
           <Text weight="bold" size="32">
             채널 생성하기
           </Text>

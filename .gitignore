@@ -37,3 +37,6 @@ next-env.d.ts
 
 # cache
 .eslintcache
+
+# env
+.env
