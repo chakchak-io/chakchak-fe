@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
 import localFont from 'next/font/local';
-import { Theme as RadixTheme } from '@radix-ui/themes';
+
 import { ThemeProvider } from '@/components/theme/theme-provider';
+import { cn } from '@/lib/utils';
+
+import { Toaster } from '../components/ui/toaster';
 
 import './globals.css';
-import '@radix-ui/themes/styles.css';
 
 const sourceSansPro = Source_Sans_3({
   subsets: ['latin'],
@@ -40,15 +42,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head />
-      <body className={`${pretendard.className} ${sourceSansPro.className}`}>
+      <body className={cn(pretendard.className, sourceSansPro.className)}>
         <ThemeProvider
         // @TODO: enable when support dark mode
         // attribute="class"
@@ -56,7 +54,8 @@ export default function RootLayout({
         // enableSystem
         // disableTransitionOnChange
         >
-          <RadixTheme>{children}</RadixTheme>
+          {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

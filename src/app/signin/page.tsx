@@ -1,61 +1,117 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import { Container, Flex } from "@radix-ui/themes";
-import Header from "../components/Header";
-import FancyInput from "../components/Forms/FancyInput";
-import { Button } from "../../components/ui/button";
+'use client';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+import { TypedLink } from '@/components/common/router';
+import { AppLayout } from '@/components/layout';
+import { Button } from '@/components/ui/button';
+import { Container } from '@/components/ui/container';
+import { Flex } from '@/components/ui/flex';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Text } from '@/components/ui/text';
+import { useToast } from '@/components/ui/use-toast';
+import { useClientTypedRouter } from '@/hooks';
+
+const formSchema = z.object({
+  email: z.string().email({
+    message: '이메일을 입력해주세요',
+  }),
+  password: z.string().min(1, {
+    message: '비밀번호를 입력해주세요',
+  }),
+});
+
+type SigninForm = z.infer<typeof formSchema>;
 
 const SigninPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { toast } = useToast();
+  const router = useClientTypedRouter();
+  const form = useForm<SigninForm>({
+    mode: 'all',
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = (values: SigninForm) => {
+    console.log(values);
+    toast({
+      title: 'Need to implement',
+      description: 'Signin is not implemented yet.',
+    });
+    router.push('/channel');
+  };
 
   return (
     <main>
-      <Header />
-      <Flex direction="column" align="center" asChild className="mt-[62px]">
-        <h2 className="text-[32px] leading-[38px] font-bold">
-          이메일로 로그인
-        </h2>
-      </Flex>
-      <Container size="1">
-        <Flex direction="column" gap="6" mt="7">
-          <Flex direction="column" align="center">
-            <FancyInput
-              label="이메일"
-              value={email}
-              onChange={(newValue: string) => setEmail(newValue)}
-              placeHolder="이메일을 입력해주세요."
-            />
-          </Flex>
-          <Flex direction="column" align="center">
-            <FancyInput
-              label="비밀번호"
-              value={password}
-              onChange={(newValue) => setPassword(newValue)}
-              placeHolder="비밀번호를 입력해주세요."
-              type="password"
-            />
-          </Flex>
-          <Flex direction="column" gap="1">
-            <Button
-              className={`bg-black rounded-[6px] hover:bg-black hover:shadow-lg transition-all duration-200`}
-              onClick={() => console.log("clicked")}
-            >
-              로그인
-            </Button>
-            <Flex justify="between" className="py-2">
-              <div className="font-medium text-[14px]">
-                아직 계정이 없으신가요?
-              </div>
-              <Link
-                href="/signup"
-                className="text-primary font-medium text-[14px] hover:opacity-85"
-              >
-                회원가입
-              </Link>
+      <AppLayout.Header.Make />
+      <Container size="xs" className="mt-20">
+        <Flex direction="column" align="center" gap="2.25">
+          <Text weight="bold" size="32">
+            이메일로 로그인
+          </Text>
+          <Form {...form}>
+            <Flex className="w-full" direction="column" gap="2" asChild>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel required>이메일</FormLabel>
+                      <FormControl>
+                        <Input placeholder="이메일을 입력해주세요." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel required>비밀번호</FormLabel>
+                      <FormControl>
+                        <Input type="password" placeholder="비밀번호를 입력해주세요." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Flex direction="column" gap="0.5">
+                  <Button fullWidth type="submit" disabled={!form.formState.isValid}>
+                    로그인
+                  </Button>
+                  <Flex align="center" justify="between" className="py-2">
+                    <Text size="14" weight="medium">
+                      아직 계정이 없으신가요?
+                    </Text>
+                    <Button variant="link" className="p-0" asChild>
+                      <TypedLink href="/signup">
+                        <Text size="14" weight="medium">
+                          회원가입
+                        </Text>
+                      </TypedLink>
+                    </Button>
+                  </Flex>
+                </Flex>
+              </form>
             </Flex>
-          </Flex>
+          </Form>
         </Flex>
       </Container>
     </main>
