@@ -1,11 +1,10 @@
 name: Prevent Merge on "리뷰중"
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - edited
+  issue_comment:
+    types: [created, deleted]
+  discussion_comment:
+    types: [created, deleted]
 
 jobs:
   check-merge-ability:
