@@ -2,9 +2,13 @@ name: Prevent Merge on "리뷰중"
 
 on:
   issue_comment:
-    types: [created, deleted]
+    types: 
+      - created
+      - deleted
   discussion_comment:
-    types: [created, deleted]
+    types: 
+      - created
+      - deleted
 
 jobs:
   check-merge-ability:
