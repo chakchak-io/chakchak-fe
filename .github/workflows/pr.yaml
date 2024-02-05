@@ -1,0 +1,28 @@
+name: Prevent Merge on "리뷰중"
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  check-merge-ability:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PR Body for "리뷰중"
+        id: check-body
+        run: |
+          body=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}" | jq -r .body)
+
+          if [[ $body == *"리뷰중"* ]]; then
+            echo "PR body contains '리뷰중'. Blocking merge."
+            exit 1
+          fi
+        shell: bash
+
+      - name: Set status check
+        if: failure()
+        run: echo "Merge blocked due to '리뷰중' keyword in PR body." && exit 1
