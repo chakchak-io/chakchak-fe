@@ -1,25 +1,17 @@
-name: Comment Triggered Workflow
-
+name: pull request comment
 on:
-  issue_comment:
-    types:
-      - created
-
+  issue_comment:                                     
+    types: [created, edited, deleted]
 jobs:
-  comment-triggered-job:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check Comment for "리뷰중"
-        id: check-comment
-        run: |
-          body=$(echo "${{ github.event.comment.body }}" | tr '[:upper:]' '[:lower:]')
-          if [[ $body == *"리뷰중"* ]]; then
-            echo "Comment contains '리뷰중'. Blocking merge."
-            exit 1
-          fi
-        shell: bash
-
-      - name: Set status check
-        if: failure()
-        run: echo "Merge blocked due to '리뷰중' keyword in comment." && exit 1
+ job01:
+   if: contains(github.event.comment.html_url, '/pull/')    # check if the comments come from pull request, exclude those from issue.
+   runs-on: [re-centos7]
+   steps:
+    - name: say hello
+      if: contains(github.event.comment.body, '/support')   # check the comment if it contains the keywords
+      run: |
+       echo say hello
+    - name: test
+      if: contains(github.event.comment.body, '/test')  # check the comment if it contains the keywords
+      run: |
+       echo test
