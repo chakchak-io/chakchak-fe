@@ -1,26 +1,25 @@
-name: Prevent Merge on "리뷰중"
+name: Comment Triggered Workflow
 
-on: issue_comment
+on:
+  issue_comment:
+    types:
+      - created
 
 jobs:
-  pr_commented:
-    # This job only runs for pull request comments
-    name: PR comment
-    if: ${{ github.event.issue.pull_request }}
+  comment-triggered-job:
     runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo A comment on PR $NUMBER
-        env:
-          NUMBER: ${{ github.event.issue.number }}
 
-  issue_commented:
-    # This job only runs for issue comments
-    name: Issue comment
-    if: ${{ !github.event.issue.pull_request }}
-    runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo A comment on issue $NUMBER
-        env:
-          NUMBER: ${{ github.event.issue.number }}
+      - name: Check Comment for "리뷰중"
+        id: check-comment
+        run: |
+          body=$(echo "${{ github.event.comment.body }}" | tr '[:upper:]' '[:lower:]')
+          if [[ $body == *"리뷰중"* ]]; then
+            echo "Comment contains '리뷰중'. Blocking merge."
+            exit 1
+          fi
+        shell: bash
+
+      - name: Set status check
+        if: failure()
+        run: echo "Merge blocked due to '리뷰중' keyword in comment." && exit 1
