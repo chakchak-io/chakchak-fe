@@ -20,8 +20,15 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
-import { useToast } from '@/components/ui/use-toast';
-import { useClientTypedRouter } from '@/hooks';
+
+import { signup } from './actions';
+
+export interface SignupRequestData {
+  email: string;
+  name: string;
+  organization: string;
+  password: string;
+}
 
 const formSchema = z.object({
   email: z.string().email({
@@ -38,11 +45,9 @@ const formSchema = z.object({
   }),
 });
 
-type SignupForm = z.infer<typeof formSchema>;
+export type SignupForm = z.infer<typeof formSchema>;
 
 const SignupPage = () => {
-  const { toast } = useToast();
-  const router = useClientTypedRouter();
   const form = useForm<SignupForm>({
     mode: 'all',
     resolver: zodResolver(formSchema),
@@ -54,14 +59,7 @@ const SignupPage = () => {
     },
   });
 
-  const onSubmit = (values: SignupForm) => {
-    console.log(values);
-    toast({
-      title: 'Need to implement',
-      description: 'Signup feature is not implemented yet.',
-    });
-    router.push('/signin');
-  };
+  const onSubmit = (values: SignupForm) => signup(values);
 
   return (
     <main>
