@@ -118,7 +118,7 @@ const ChannelEventPage: NextPage<
 
   return (
     <main>
-      <AppLayout.Header.MakeAuthedHeaderTemporailyMade
+      <AppLayout.Header.MakeAuthedHeaderWithChannelTemporailyMade
         channelName={params.channelName}
         selectedTab="event"
       />

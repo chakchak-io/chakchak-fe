@@ -80,7 +80,7 @@ const ChannelSettingPage: NextPage<
 
   return (
     <main>
-      <AppLayout.Header.MakeAuthedHeaderTemporailyMade
+      <AppLayout.Header.MakeAuthedHeaderWithChannelTemporailyMade
         channelName={params.channelName}
         selectedTab="setting"
       />

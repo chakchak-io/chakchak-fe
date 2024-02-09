@@ -11,7 +11,7 @@ const ChannelTicketPage: NextPage<
 > = ({ params }) => {
   return (
     <main>
-      <AppLayout.Header.MakeAuthedHeaderTemporailyMade
+      <AppLayout.Header.MakeAuthedHeaderWithChannelTemporailyMade
         channelName={params.channelName}
         selectedTab="ticket"
       />
