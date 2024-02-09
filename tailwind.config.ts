@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import color from 'tailwindcss/colors';
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -18,6 +19,12 @@ const config = {
       // desktop
       xl: '1640px',
     },
+    colors: {
+      slate: {
+        ...color.slate,
+        500: '#64748B',
+      },
+    },
     extend: {
       fontFamily: {
         pretendard: ['var(--font-pretendard)'],
@@ -27,6 +34,7 @@ const config = {
         gray: {
           50: '#FAFAFA',
           100: '#F4F4F5',
+          400: '#A1A1AA',
           300: '#D4D4D8',
           500: '#71717A',
           800: '#27272A',

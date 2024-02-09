@@ -1,7 +1,6 @@
-import { Ref, forwardRef, memo } from 'react';
+import { forwardRef, memo, Ref } from 'react';
 
 import { PropsFrom } from '@/lib/react-typescript';
-
 import Ticket from '../svg/ticket.svg';
 
 type Props = PropsFrom<typeof Ticket>;

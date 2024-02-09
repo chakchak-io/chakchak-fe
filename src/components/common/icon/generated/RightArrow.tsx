@@ -1,7 +1,6 @@
-import { Ref, forwardRef, memo } from 'react';
+import { forwardRef, memo, Ref } from 'react';
 
 import { PropsFrom } from '@/lib/react-typescript';
-
 import RightArrow from '../svg/right-arrow.svg';
 
 type Props = PropsFrom<typeof RightArrow>;

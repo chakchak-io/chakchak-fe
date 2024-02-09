@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Ref, forwardRef } from 'react';
+import { forwardRef, Ref } from 'react';
 
 import { AccessibleRoute } from '@/const/router';
 import type { ExtractRefFromProps, PropsFromWithoutRef } from '@/lib/react-typescript';

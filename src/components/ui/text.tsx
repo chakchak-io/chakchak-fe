@@ -1,5 +1,5 @@
 import { Slot } from '@radix-ui/react-slot';
-import { VariantProps, cva } from 'class-variance-authority';
+import { cva, VariantProps } from 'class-variance-authority';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
@@ -34,10 +34,12 @@ const textVariant = cva(['m-0'], {
       inherit: 'text-inherit',
       primary: 'text-primary',
       'primary-foreground': 'text-primary-foreground',
+      'gray/400': 'text-gray-400',
       'gray/500': 'text-gray-500',
       'gray/600': 'text-gray-600',
       white: 'text-white',
       black: 'text-black',
+      'slate/500': 'text-slate-500',
     },
   },
   defaultVariants: {

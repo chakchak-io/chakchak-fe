@@ -1,3 +1,4 @@
+import { NextPage } from 'next';
 import Image from 'next/image';
 import React from 'react';
 
@@ -5,12 +6,9 @@ import { AppLayout } from '@/components/layout';
 import { Container } from '@/components/ui/container';
 import { Flex } from '@/components/ui/flex';
 import { Text } from '@/components/ui/text';
+import { CommonNextPageProps } from '@/lib/nextjs/type';
 
-const CheckMailPage = ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
+const CheckMailPage: NextPage<CommonNextPageProps> = ({ searchParams }) => {
   const email = searchParams.email as string;
 
   return (

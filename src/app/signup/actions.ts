@@ -6,7 +6,6 @@ import { redirect } from 'next/navigation';
 
 import { toast } from '@/components/ui/use-toast';
 import { createClient } from '@/service/supabase/actions';
-
 import { SignupForm } from './page';
 
 export async function signup(formData: SignupForm) {

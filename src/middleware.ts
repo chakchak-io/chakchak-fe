@@ -52,8 +52,6 @@ export async function middleware(request: NextRequest) {
     },
   });
 
-  console.log('supabase', supabase);
-
   await supabase.auth.getUser();
 
   return response;

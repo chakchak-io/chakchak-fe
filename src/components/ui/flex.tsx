@@ -1,5 +1,5 @@
 import { Slot } from '@radix-ui/react-slot';
-import { VariantProps, cva } from 'class-variance-authority';
+import { cva, VariantProps } from 'class-variance-authority';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
@@ -37,12 +37,32 @@ const flexVariant = cva(['box-border'], {
       'wrap-reverse': 'flex-wrap-reverse',
     },
     gap: {
+      // rem: tailwind spacing scale
+      // rem base: 16px
       '0.5': 'gap-2',
+      '0.75': 'gap-3',
       '1': 'gap-4',
       '1.5': 'gap-6',
       '2': 'gap-8',
       '2.25': 'gap-9',
       '3.5': 'gap-14',
+      '4': 'gap-16',
+    },
+    // @TODO: make it common with Box, Flex, Grid, Container, Section
+    position: {
+      static: 'static',
+      fixed: 'fixed',
+      absolute: 'absolute',
+      relative: 'relative',
+      sticky: 'sticky',
+    },
+    shrink: {
+      0: 'flex-grow-0',
+      1: 'flex-grow-1',
+    },
+    grow: {
+      0: 'flex-shrink-0',
+      1: 'flex-shrink-1',
     },
   },
   defaultVariants: {
@@ -71,6 +91,9 @@ const Flex = forwardRef<FlexElement, FlexProps>((props, forwardedRef) => {
     justify,
     wrap,
     gap,
+    shrink,
+    grow,
+    position,
     // flexProps
     className,
     asChild,
@@ -92,6 +115,9 @@ const Flex = forwardRef<FlexElement, FlexProps>((props, forwardedRef) => {
           justify,
           wrap,
           gap,
+          position,
+          shrink,
+          grow,
         }),
         className,
       )}

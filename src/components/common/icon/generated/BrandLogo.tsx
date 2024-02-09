@@ -1,7 +1,6 @@
-import { Ref, forwardRef, memo } from 'react';
+import { forwardRef, memo, Ref } from 'react';
 
 import { PropsFrom } from '@/lib/react-typescript';
-
 import BrandLogo from '../svg/brand-logo.svg';
 
 type Props = PropsFrom<typeof BrandLogo>;
