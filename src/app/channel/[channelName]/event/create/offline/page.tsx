@@ -38,7 +38,7 @@ const firstStepSchema = z.object({
   }),
   eventCaution: z.string().optional(),
   parkingAvailable: z.enum(['true', 'false']),
-  parkingIsFree: z.enum(['true', 'false']),
+  isFree: z.enum(['true', 'false']),
 });
 
 type FirstStepForm = z.infer<typeof firstStepSchema>;
@@ -56,7 +56,8 @@ const secondStepSchema = z.object({
 
 type SecondStepForm = z.infer<typeof secondStepSchema>;
 
-const mergedSchema = z.union([firstStepSchema, secondStepSchema]);
+// merge all schema for validation before submit
+const mergedSchema = firstStepSchema.and(secondStepSchema);
 type FormValues = FirstStepForm & SecondStepForm;
 
 // components
@@ -172,7 +173,7 @@ const FirstStep: FC<{
       />
       <FormField
         control={form.control}
-        name="parkingIsFree"
+        name="isFree"
         render={({ field }) => (
           <FormItem>
             <FormLabel required>
@@ -291,7 +292,7 @@ const CreateOfflineEventPage = () => {
     eventDescription: '',
     eventCaution: '',
     parkingAvailable: 'true',
-    parkingIsFree: 'true',
+    isFree: 'true',
   };
 
   const secondStepDefaultValues: SecondStepForm = {
@@ -353,10 +354,6 @@ const CreateOfflineEventPage = () => {
     // @WARN: data only contains the values of the currently assigned zod schema((https://github.com/orgs/react-hook-form/discussions/4028#discussioncomment-5906326)
     // So, we need to access the form values directly
     const formValues = form.getValues();
-    toast({
-      title: JSON.stringify(formValues, null, 2),
-    });
-
     const isValid = mergedSchema.safeParse(formValues);
     if (isValid.success) {
       // @TODO: API call(api call must contains intermediate save point removal)
