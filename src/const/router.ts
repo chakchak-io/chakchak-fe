@@ -13,6 +13,9 @@ type AccessibleRoute =
   | '/channel/create'
   | `/channel/${ChannelName}`
   | `/channel/${ChannelName}/event`
+  | `/channel/${ChannelName}/event/create`
+  | `/channel/${ChannelName}/event/create/online`
+  | `/channel/${ChannelName}/event/create/offline`
   | `/channel/${ChannelName}/ticket`
   | `/channel/${ChannelName}/setting`;
 

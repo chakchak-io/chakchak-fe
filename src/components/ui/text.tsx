@@ -17,6 +17,8 @@ const textVariant = cva(['m-0'], {
       '32': 'text-[2rem] leading-[38px]',
       // title/title01
       '24': 'text-[1.5rem] leading-[30px]',
+      // title/title02
+      '22': 'text-[1.375rem] leading-[26px]',
       // body/body01
       '20': 'text-[1.25rem] leading-[24px]',
       // body/body02
@@ -40,6 +42,7 @@ const textVariant = cva(['m-0'], {
       'gray/500': 'text-gray-500',
       // @TODO: check gray/600 color code
       'gray/600': 'text-gray-600',
+      'gray/800': 'text-gray-800',
       'gray/900': 'text-gray-900',
       white: 'text-white',
       black: 'text-black',

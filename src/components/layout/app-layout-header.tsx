@@ -16,8 +16,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Flex } from '@/components/ui/flex';
 import { Text } from '@/components/ui/text';
-import { PropsFrom } from '@/lib/react-typescript';
+import { PropsFromWithoutRef } from '@/lib/react-typescript';
 import { cn } from '@/lib/utils';
+
 import { TypedLink } from '../common/router';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
@@ -150,7 +151,10 @@ const ChannelButtons: FC<{
   );
 };
 
-const MakeAuthedHeaderTemporailyMade: FC<PropsFrom<typeof Skeleton>> = ({ children, ...props }) => {
+const MakeAuthedHeaderTemporailyMade: FC<PropsFromWithoutRef<typeof Skeleton>> = ({
+  children,
+  ...props
+}) => {
   return (
     <Skeleton {...props}>
       {children}
@@ -163,7 +167,7 @@ const MakeAuthedHeaderTemporailyMade: FC<PropsFrom<typeof Skeleton>> = ({ childr
 const DEFAULT_TAB = 'event';
 
 const ActiveIconButton: FC<
-  PropsFrom<typeof Button> & {
+  PropsFromWithoutRef<typeof Button> & {
     active: boolean;
   }
 > = ({ active, children, className, ...props }) => {

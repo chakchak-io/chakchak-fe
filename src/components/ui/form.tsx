@@ -11,7 +11,10 @@ import {
 } from 'react-hook-form';
 
 import { Label } from '@/components/ui/label';
+import { InferRefFromExoticRefComponent, PropsFromWithoutRef } from '@/lib/react-typescript';
 import { cn } from '@/lib/utils';
+
+import { Flex } from './flex';
 
 const Form = FormProvider;
 
@@ -66,20 +69,23 @@ type FormItemContextValue = {
 
 const FormItemContext = React.createContext<FormItemContextValue>({} as FormItemContextValue);
 
-const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
+// modified by developers
+// change normal div tag to Flex tag
+// Reason: to use gap token(restrict to use only decided space token)
+type FlexProps = PropsFromWithoutRef<typeof Flex>;
+type FlexRef = InferRefFromExoticRefComponent<typeof Flex>;
+const FormItem = React.forwardRef<FlexRef, Omit<FlexProps, 'asChild'>>(
+  ({ className, direction = 'column', as = 'div', gap = '0.375', ...props }, ref) => {
     const id = React.useId();
 
     return (
       <FormItemContext.Provider value={{ id }}>
-        <div
+        <Flex
           ref={ref}
-          className={cn(
-            // 'space-y-2',
-            // modified by delopvers
-            'space-y-1.5',
-            className,
-          )}
+          direction={direction}
+          as={as}
+          gap={gap}
+          className={cn(className)}
           {...props}
         />
       </FormItemContext.Provider>

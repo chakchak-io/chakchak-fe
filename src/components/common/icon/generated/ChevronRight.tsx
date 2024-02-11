@@ -1,9 +1,10 @@
 import { forwardRef, memo, Ref } from 'react';
 
-import { PropsFrom } from '@/lib/react-typescript';
+import { PropsFromWithoutRef } from '@/lib/react-typescript';
+
 import ChevronRight from '../svg/chevron-right.svg';
 
-type Props = PropsFrom<typeof ChevronRight>;
+type Props = PropsFromWithoutRef<typeof ChevronRight>;
 type PropRef = SVGSVGElement;
 
 // @TODO: apply default setting for icon

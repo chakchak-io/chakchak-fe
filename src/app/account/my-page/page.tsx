@@ -5,6 +5,7 @@ import { G } from '@mobily/ts-belt';
 import { NextPage } from 'next';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+
 import { ChevronRight } from '@/components/common/icon';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';

@@ -36,3 +36,13 @@ for vscode. add the following
 
 1. Do not declare type: "module" in package.json. It will break the build process.
    1.1. Because some of the packages still need dynamic import.
+
+## Job List
+
+### High Priority
+
+1. create active button using comopoundVariants of cva
+
+### Propose
+
+1. Remove required field in FromLabel. and detect required field from useFormContext(need to check possibility)

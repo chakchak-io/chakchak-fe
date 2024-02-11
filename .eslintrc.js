@@ -48,7 +48,7 @@ module.exports = {
     ],
     // for sorting imports
     'import/order': [
-      1,
+      'error',
       {
         groups: ['external', 'builtin', 'internal', 'sibling', 'parent', 'index'],
         pathGroups: [
@@ -70,6 +70,7 @@ module.exports = {
             position: 'after',
           },
         ],
+        'newlines-between': 'always',
         pathGroupsExcludedImportTypes: ['internal'],
         alphabetize: {
           order: 'asc',

@@ -1,9 +1,10 @@
 import { forwardRef, memo, Ref } from 'react';
 
-import { PropsFrom } from '@/lib/react-typescript';
+import { PropsFromWithoutRef } from '@/lib/react-typescript';
+
 import BrandLogo from '../svg/brand-logo.svg';
 
-type Props = PropsFrom<typeof BrandLogo>;
+type Props = PropsFromWithoutRef<typeof BrandLogo>;
 type PropRef = SVGSVGElement;
 
 // @TODO: apply default setting for icon

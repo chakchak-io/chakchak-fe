@@ -35,14 +35,14 @@ const config = {
       },
       colors: {
         gray: {
-          50: '#FAFAFA',
-          100: '#F4F4F5',
-          400: '#A1A1AA',
-          300: '#D4D4D8',
-          500: '#71717A',
-          600: '#52525B',
-          800: '#27272A',
-          900: '#18181B',
+          50: 'hsl(var(--gray-50))',
+          100: 'hsl(var(--gray-100))',
+          300: 'hsl(var(--gray-300))',
+          400: 'hsl(var(--gray-400))',
+          500: 'hsl(var(--gray-500))',
+          600: 'hsl(var(--gray-600))',
+          800: 'hsl(var(--gray-800))',
+          900: 'hsl(var(--gray-900))',
         },
         danger: '#F64582',
         border: 'hsl(var(--border))',
@@ -53,6 +53,8 @@ const config = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
+          50: 'hsla(249, 64%, 98%, 1)',
+          100: 'hsla(252, 89%, 71%, 1)',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',

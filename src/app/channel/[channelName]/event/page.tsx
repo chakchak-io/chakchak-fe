@@ -5,6 +5,7 @@ import { RedirectType } from 'next/navigation';
 import React from 'react';
 
 import { Plus } from '@/components/common/icon';
+import { TypedLink } from '@/components/common/router';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -29,7 +30,6 @@ import { CommonNextPageProps } from '@/lib/nextjs/type';
 const DemoTable = () => {
   return (
     <Table>
-      {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">No</TableHead>
@@ -129,11 +129,13 @@ const ChannelEventPage: NextPage<
               이벤트
             </Text>
             <Flex gap="0.5" asChild>
-              <Button>
-                <Plus width={16} height={16} />
-                <Text size="16" weight="medium">
-                  새 이벤트 생성하기
-                </Text>
+              <Button asChild>
+                <TypedLink href={`/channel/${params.channelName}/event/create`}>
+                  <Plus width={16} height={16} />
+                  <Text size="16" weight="medium">
+                    새 이벤트 생성하기
+                  </Text>
+                </TypedLink>
               </Button>
             </Flex>
           </Flex>
