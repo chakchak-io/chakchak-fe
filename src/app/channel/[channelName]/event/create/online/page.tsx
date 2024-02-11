@@ -9,7 +9,7 @@ const CreateOnlineEventPage = () => {
   return (
     <main>
       <AppLayout.Header.MakeAuthedHeaderTemporailyMade />
-      <Container size="sm" className="mt-14">
+      <Container size="sm" className="my-14">
         <Flex direction="column" gap="2.25">
           <Flex justify="center">
             <Text weight="bold" size="24" color="gray/900">

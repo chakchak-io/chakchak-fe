@@ -1,10 +1,10 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { match } from 'ts-pattern';
-import { useStep } from 'usehooks-ts';
+import { useIsomorphicLayoutEffect, useStep } from 'usehooks-ts';
 import { z } from 'zod';
 
 import { CaretLeft } from '@/components/common/icon';
@@ -281,7 +281,9 @@ const SecondStep: FC<{
 
 const CreateOfflineEventPage = () => {
   const { toast } = useToast();
+
   const [currentStep, helpers] = useStep(2);
+  const [forceValidation, setForceValidation] = useState(false);
 
   // @TODO: replace to api value
   const firstStepDefaultValues: FirstStepForm = {
@@ -311,9 +313,8 @@ const CreateOfflineEventPage = () => {
       throw new Error('Invalid step');
     });
   const form = useForm<FormValues>({
-    // prevent unmount form when switching steps
     shouldUnregister: false,
-    mode: 'onChange',
+    mode: 'onBlur',
     resolver: zodResolver(currentFormSchema),
     defaultValues: defaultValues,
   });
@@ -328,20 +329,37 @@ const CreateOfflineEventPage = () => {
 
   const handlePrev = async () => {
     helpers.goToPrevStep();
+    setForceValidation(true);
   };
 
+  // @WARN: when step changes(especially go to prev step), form validation didn't trigger for the previous step
+  // so, we need to trigger form validation for changed step manually
+  useIsomorphicLayoutEffect(() => {
+    (async () => {
+      if (forceValidation) {
+        await form.trigger();
+        setForceValidation(false);
+      }
+    })();
+
+    return () => {
+      form.clearErrors();
+    };
+  }, [forceValidation]);
+
   const onSubmit = async () => {
-    // @WARN: data는 현재 할당된 zod schema의 값만 내려옴(https://github.com/orgs/react-hook-form/discussions/4028#discussioncomment-5906326)
-    // 따라서 form.values를 사용해야함
+    // @WARN: data only contains the values of the currently assigned zod schema((https://github.com/orgs/react-hook-form/discussions/4028#discussioncomment-5906326)
+    // So, we need to access the form values directly
     const formValues = form.getValues();
     toast({
       title: JSON.stringify(formValues, null, 2),
     });
 
-    const isValid = await mergedSchema.safeParse(formValues);
+    const isValid = mergedSchema.safeParse(formValues);
     if (isValid.success) {
       toast({
         title: 'valid',
+        description: JSON.stringify(isValid.data, null, 2),
       });
     } else {
       toast({
@@ -355,7 +373,7 @@ const CreateOfflineEventPage = () => {
   return (
     <main>
       <AppLayout.Header.MakeAuthedHeaderTemporailyMade />
-      <Container size="sm" className="mt-14">
+      <Container size="sm" className="my-14">
         <Flex direction="column">
           <Form {...form}>
             <Flex direction="column" gap="2.25" asChild>

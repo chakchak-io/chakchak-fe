@@ -430,7 +430,7 @@ const AccountMyPage: NextPage<CommonNextPageProps> = ({ searchParams }) => {
   return (
     <main>
       <AppLayout.Header.MakeAuthedHeaderTemporailyMade />
-      <Container size="md" className="mt-9">
+      <Container size="md" className="my-9">
         <Flex direction="column" gap="0.75">
           <Flex direction="column" gap="1.5" asChild>
             <Card className="p-6">

@@ -83,7 +83,7 @@ const ChannelSettingPage: NextPage<
         channelName={params.channelName}
         selectedTab="setting"
       />
-      <Container size="md" className="mt-9">
+      <Container size="md" className="my-9">
         <Flex direction="column" gap="0.75">
           <Card className="p-6">
             <Form {...form}>

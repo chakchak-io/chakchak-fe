@@ -14,7 +14,7 @@ const CheckMailPage: NextPage<CommonNextPageProps> = ({ searchParams }) => {
   return (
     <main>
       <AppLayout.Header.Make />
-      <Container size="xs" className="mt-20">
+      <Container size="xs" className="my-20">
         <Flex className="mt-40 w-full text-center" direction="column" align="center" gap="2">
           <Image src="/checkmail_main.jpg" alt="메일함 확인" width={151} height={107} />
 

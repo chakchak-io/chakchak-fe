@@ -15,7 +15,7 @@ const ChannelTicketPage: NextPage<
         channelName={params.channelName}
         selectedTab="ticket"
       />
-      <Container size="md" className="mt-9">
+      <Container size="md" className="my-9">
         Get Your Ticket
       </Container>
     </main>

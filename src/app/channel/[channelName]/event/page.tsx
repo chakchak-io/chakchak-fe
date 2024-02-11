@@ -122,7 +122,7 @@ const ChannelEventPage: NextPage<
         channelName={params.channelName}
         selectedTab="event"
       />
-      <Container size="md" className="mt-9">
+      <Container size="md" className="my-9">
         <Card className="py-6">
           <Flex className="px-6" justify="between">
             <Text weight="bold" size="32">
