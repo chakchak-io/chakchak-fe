@@ -319,19 +319,6 @@ const CreateOfflineEventPage = () => {
     defaultValues: defaultValues,
   });
 
-  const handleNext = async () => {
-    // trigger form validation
-    const isStepValid = await form.trigger();
-    if (isStepValid) {
-      helpers.goToNextStep();
-    }
-  };
-
-  const handlePrev = async () => {
-    helpers.goToPrevStep();
-    setForceValidation(true);
-  };
-
   // @WARN: when step changes(especially go to prev step), form validation didn't trigger for the previous step
   // so, we need to trigger form validation for changed step manually
   useIsomorphicLayoutEffect(() => {
@@ -347,6 +334,21 @@ const CreateOfflineEventPage = () => {
     };
   }, [forceValidation]);
 
+  // event handlers
+  const handleNext = async () => {
+    // trigger form validation
+    const isStepValid = await form.trigger();
+    // @TODO: Intermediate save api call point
+    if (isStepValid) {
+      helpers.goToNextStep();
+    }
+  };
+
+  const handlePrev = async () => {
+    helpers.goToPrevStep();
+    setForceValidation(true);
+  };
+
   const onSubmit = async () => {
     // @WARN: data only contains the values of the currently assigned zod schema((https://github.com/orgs/react-hook-form/discussions/4028#discussioncomment-5906326)
     // So, we need to access the form values directly
@@ -357,6 +359,7 @@ const CreateOfflineEventPage = () => {
 
     const isValid = mergedSchema.safeParse(formValues);
     if (isValid.success) {
+      // @TODO: API call(api call must contains intermediate save point removal)
       toast({
         title: 'valid',
         description: JSON.stringify(isValid.data, null, 2),
