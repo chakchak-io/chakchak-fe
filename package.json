@@ -14,7 +14,8 @@
     "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx}\"",
     "prettier:fix": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx}\"",
     "test": "vitest run",
-    "test:watch": "vitest run --watch"
+    "test:watch": "vitest run --watch",
+    "commit": "pre-commit install "
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
