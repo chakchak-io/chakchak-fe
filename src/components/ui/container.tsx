@@ -1,5 +1,5 @@
 import { Slot } from '@radix-ui/react-slot';
-import { VariantProps, cva } from 'class-variance-authority';
+import { cva, VariantProps } from 'class-variance-authority';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';

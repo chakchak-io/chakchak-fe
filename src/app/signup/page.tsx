@@ -64,7 +64,7 @@ const SignupPage = () => {
   return (
     <main>
       <AppLayout.Header.Make />
-      <Container size="xs" className="mt-20">
+      <Container size="xs" className="my-20">
         <Flex direction="column" align="center" gap="2.25">
           <Text weight="bold" size="32">
             회원가입

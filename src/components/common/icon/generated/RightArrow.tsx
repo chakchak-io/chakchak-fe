@@ -1,10 +1,10 @@
-import { Ref, forwardRef, memo } from 'react';
+import { forwardRef, memo, Ref } from 'react';
 
-import { PropsFrom } from '@/lib/react-typescript';
+import { PropsFromWithoutRef } from '@/lib/react-typescript';
 
 import RightArrow from '../svg/right-arrow.svg';
 
-type Props = PropsFrom<typeof RightArrow>;
+type Props = PropsFromWithoutRef<typeof RightArrow>;
 type PropRef = SVGSVGElement;
 
 // @TODO: apply default setting for icon
