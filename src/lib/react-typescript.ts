@@ -15,6 +15,11 @@ type PropsFromWithoutRef<TComponent> =
       : never;
 
 type PropsWithoutRef<T extends ElementType> = React.ComponentPropsWithoutRef<T>;
-type ExtractRefFromProps<T> = T extends { ref: infer R } ? R : never;
+type InferRefFromExoticRefComponent<T> =
+  T extends React.ForwardRefExoticComponent<infer Ref>
+    ? Ref extends React.RefAttributes<infer RefElement>
+      ? RefElement
+      : never
+    : never;
 
-export type { PropsFrom, PropsFromWithoutRef, PropsWithoutRef, ExtractRefFromProps };
+export type { PropsFrom, PropsFromWithoutRef, PropsWithoutRef, InferRefFromExoticRefComponent };

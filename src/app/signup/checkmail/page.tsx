@@ -1,3 +1,4 @@
+import { NextPage } from 'next';
 import Image from 'next/image';
 import React from 'react';
 
@@ -5,18 +6,15 @@ import { AppLayout } from '@/components/layout';
 import { Container } from '@/components/ui/container';
 import { Flex } from '@/components/ui/flex';
 import { Text } from '@/components/ui/text';
+import { CommonNextPageProps } from '@/lib/nextjs/type';
 
-const CheckMailPage = ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
+const CheckMailPage: NextPage<CommonNextPageProps> = ({ searchParams }) => {
   const email = searchParams.email as string;
 
   return (
     <main>
       <AppLayout.Header.Make />
-      <Container size="xs" className="mt-20">
+      <Container size="xs" className="my-20">
         <Flex className="mt-40 w-full text-center" direction="column" align="center" gap="2">
           <Image src="/checkmail_main.jpg" alt="메일함 확인" width={151} height={107} />
 

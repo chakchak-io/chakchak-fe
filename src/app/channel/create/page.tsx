@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { ChannelCategorySelect } from '@/components/common/input';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
@@ -16,25 +17,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Text } from '@/components/ui/text';
 import { useClientTypedRouter } from '@/hooks';
-
-const generatePurposeOption = [
-  '컨퍼런스, 세미나',
-  '축제',
-  '커뮤니티, 모임',
-  '팝업스토어',
-  '공연, 엔터테이먼트',
-  '쇼핑몰, 마켓',
-  '기타',
-] as const;
 
 const formSchema = z.object({
   channelName: z
@@ -45,7 +29,7 @@ const formSchema = z.object({
     .max(20, {
       message: '채널 이름은 최대 20자 이하여야 합니다.',
     }),
-  category: z.enum(generatePurposeOption),
+  category: z.enum(ChannelCategorySelect.data),
   userEmail: z
     .string()
     .min(1, {
@@ -77,8 +61,8 @@ const ChannelCreatePage = () => {
 
   return (
     <main className="size-full">
-      <AppLayout.Header.Make />
-      <Container size="xs" className="mt-20">
+      <AppLayout.Header.MakeAuthedHeaderTemporailyMade />
+      <Container size="xs" className="my-20">
         <Flex direction="column" align="center" gap="2.25">
           <Text weight="bold" size="32">
             채널 생성하기
@@ -105,24 +89,17 @@ const ChannelCreatePage = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel required>채널 카테고리를 선택해주세요.</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <ChannelCategorySelect.Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="팝업스토어" />
-                          </SelectTrigger>
+                          <ChannelCategorySelect.SelectTrigger>
+                            <ChannelCategorySelect.SelectValue placeholder="팝업스토어" />
+                          </ChannelCategorySelect.SelectTrigger>
                         </FormControl>
-                        <SelectContent>
-                          {/* @TODO: global css의 accent color 수정 필요.
-                            단, accent-color foreground의 쓰임세를 몰라 당장 수정하지 않음.
-                          */}
-                          {generatePurposeOption.map((option) => (
-                            <SelectItem key={option} value={option}>
-                              {option}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-
+                        <ChannelCategorySelect.SelectContent />
+                      </ChannelCategorySelect.Select>
                       <FormMessage />
                     </FormItem>
                   )}

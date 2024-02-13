@@ -50,7 +50,7 @@ const ChannelPage = () => {
   const [channels] = useState([]);
   return (
     <main>
-      <AppLayout.Header.Make />
+      <AppLayout.Header.MakeAuthedHeaderTemporailyMade />
       <Container className="h-[calc(100vh-4rem)]">
         {match(channels)
           .with([], () => <NoCreatedChannels />)
