@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Flex } from '@/components/ui/flex';
 import { Text } from '@/components/ui/text';
+import { ChannelName } from '@/const/router';
 import { PropsFromWithoutRef } from '@/lib/react-typescript';
 import { cn } from '@/lib/utils';
 
@@ -126,7 +127,7 @@ const UserAvatar = () => {
 };
 
 const ChannelButtons: FC<{
-  channelName?: string;
+  channelName?: ChannelName;
   selectedTab?: (typeof tabList)[number]['name'];
 }> = ({ channelName, selectedTab }) => {
   return (

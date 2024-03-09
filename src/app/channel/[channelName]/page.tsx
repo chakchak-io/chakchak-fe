@@ -1,11 +1,12 @@
 import { NextPage } from 'next';
 import { RedirectType } from 'next/navigation';
 
+import { ChannelName } from '@/const/router';
 import { typedRedirect } from '@/lib/nextjs/server-navigation';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
 
 type ChannelByNamePageProps = CommonNextPageProps<{
-  channelName: string;
+  channelName: ChannelName;
 }>;
 
 function redirectToEventPage(channelName?: string) {

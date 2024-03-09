@@ -7,12 +7,13 @@ import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { Flex } from '@/components/ui/flex';
 import { Text } from '@/components/ui/text';
+import { ChannelName } from '@/const/router';
 import { typedRedirect } from '@/lib/nextjs/server-navigation';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
 
 const EventCreatePage: NextPage<
   CommonNextPageProps<{
-    channelName: string;
+    channelName: ChannelName;
   }>
 > = ({ params: { channelName } }) => {
   // Redirect to channel page if channelName is not provided
