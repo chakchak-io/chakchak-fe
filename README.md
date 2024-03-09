@@ -30,6 +30,8 @@ pnpm run dev
 ## test command list
 pnpm run test
 pnpm run test:watch
+## icon auto generate
+pnpm run build:ts-icons
 ```
 
 ### ENV

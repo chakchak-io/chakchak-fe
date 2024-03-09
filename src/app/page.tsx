@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import { RightArrow } from '@/components/common/icon';
-import { AppLayout } from '@/components/layout';
-import { Button } from '@/components/ui/button';
-import { Flex } from '@/components/ui/flex';
-import { Literal } from '@/components/ui/literal';
-import { Text } from '@/components/ui/text';
+import { RightArrow } from "@/components/common/icon";
+import { AppLayout } from "@/components/layout";
+import { Button } from "@/components/ui/button";
+import { Flex } from "@/components/ui/flex";
+import { Literal } from "@/components/ui/literal";
+import { Text } from "@/components/ui/text";
 
 const SectionOne = () => {
   return (
@@ -20,21 +20,31 @@ const SectionOne = () => {
           </h2>
           <Flex direction="column" align="center" gap="2">
             <p className="text-center text-xl text-gray-500">
-              <span className="text-primary">팝업스토어, 이벤트, 매장 예약</span>
+              <span className="text-primary">
+                팝업스토어, 이벤트, 매장 예약
+              </span>
               <Literal.Space />
-              등 각종 온, 오프라인 행사를 <br /> 내 웹사이트에서 직접 관리하세요.
+              등 각종 온, 오프라인 행사를 <br /> 내 웹사이트에서 직접
+              관리하세요.
             </p>
 
             <Button className="h-auto" asChild>
               <Link href="https://tally.so/r/3lrqD5">
-                <Text weight="bold" size="24">
-                  사전 예약 신청
-                </Text>
-                <RightArrow width={24} height={24} />
+                <Flex align="center" asChild>
+                  <Text weight="bold" size="24">
+                    사전 예약 신청
+                    <RightArrow width={24} height={24} />
+                  </Text>
+                </Flex>
               </Link>
             </Button>
             <div>
-              <Image src="/home/section1Image1.png" width={1200} height={584} alt="Example Image" />
+              <Image
+                src="/home/section1Image1.png"
+                width={1200}
+                height={584}
+                alt="Example Image"
+              />
             </div>
           </Flex>
         </Flex>
@@ -143,7 +153,9 @@ const SectionThree = () => {
 
             <p className="text-center text-xl font-medium text-gray-500">
               착착에서 <Literal.Space />
-              <span className="text-primary">브랜드 로고, 이미지, 프라이머리 컬러</span>
+              <span className="text-primary">
+                브랜드 로고, 이미지, 프라이머리 컬러
+              </span>
               를 <br /> 활용해 예약 페이지 및 티켓 UI를 <br />
               쉽게 커스텀 할 수 있습니다.
             </p>

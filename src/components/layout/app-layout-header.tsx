@@ -1,10 +1,15 @@
-import { cva, VariantProps } from 'class-variance-authority';
-import { User } from 'lucide-react';
-import Link from 'next/link';
-import { FC, PropsWithChildren } from 'react';
+import { cva, VariantProps } from "class-variance-authority";
+import { User } from "lucide-react";
+import Link from "next/link";
+import { FC, PropsWithChildren } from "react";
 
-import { BrandLogo, Setting, Star, Ticket } from '@/components/common/icon';
-import { Button } from '@/components/ui/button';
+import {
+  BrandLogo,
+  NaviEvent,
+  NaviSetting,
+  NaviTicket,
+} from "@/components/common/icon";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,25 +18,25 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Flex } from '@/components/ui/flex';
-import { Text } from '@/components/ui/text';
-import { ChannelName } from '@/const/router';
-import { PropsFromWithoutRef } from '@/lib/react-typescript';
-import { cn } from '@/lib/utils';
+} from "@/components/ui/dropdown-menu";
+import { Flex } from "@/components/ui/flex";
+import { Text } from "@/components/ui/text";
+import { ChannelName } from "@/const/router";
+import { PropsFromWithoutRef } from "@/lib/react-typescript";
+import { cn } from "@/lib/utils";
 
-import { TypedLink } from '../common/router';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { TypedLink } from "../common/router";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-const header = cva('border-b-gray-100 border-b bg-white px-8 py-[6px]', {
+const header = cva("border-b-gray-100 border-b bg-white px-8 py-[6px]", {
   variants: {
     height: {
-      '4': 'h-16',
-      '6': 'h-24',
+      "4": "h-16",
+      "6": "h-24",
     },
   },
   defaultVariants: {
-    height: '4',
+    height: "4",
   },
 });
 
@@ -59,7 +64,7 @@ const Skeleton: FC<
         <Flex justify="between" className="w-full">
           <Flex align="center" gap="0.5" asChild>
             <Link href="/">
-              <BrandLogo />
+              <BrandLogo size="32" color="none" />
               <Text size="20" weight="bold" color="gray/600">
                 EventFairy
               </Text>
@@ -128,14 +133,20 @@ const UserAvatar = () => {
 
 const ChannelButtons: FC<{
   channelName?: ChannelName;
-  selectedTab?: (typeof tabList)[number]['name'];
+  selectedTab?: (typeof tabList)[number]["name"];
 }> = ({ channelName, selectedTab }) => {
   return (
     <>
       {channelName && (
-        <Flex gap="4" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <Flex
+          gap="4"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
           {tabList.map((item) => (
-            <TypedLink key={item.name} href={`/channel/${channelName}/${item.name}`}>
+            <TypedLink
+              key={item.name}
+              href={`/channel/${channelName}/${item.name}`}
+            >
               <Flex direction="column" justify="center" gap="0.5" asChild>
                 <ActiveIconButton active={item.name === selectedTab}>
                   {item.icon}
@@ -152,10 +163,9 @@ const ChannelButtons: FC<{
   );
 };
 
-const MakeAuthedHeaderTemporailyMade: FC<PropsFromWithoutRef<typeof Skeleton>> = ({
-  children,
-  ...props
-}) => {
+const MakeAuthedHeaderTemporailyMade: FC<
+  PropsFromWithoutRef<typeof Skeleton>
+> = ({ children, ...props }) => {
   return (
     <Skeleton {...props}>
       {children}
@@ -165,7 +175,7 @@ const MakeAuthedHeaderTemporailyMade: FC<PropsFromWithoutRef<typeof Skeleton>> =
 };
 
 // @TODO: 해당 컴포넌트는 login logic이 완성되면 Make 컴포넌트와 합쳐야합니다
-const DEFAULT_TAB = 'event';
+const DEFAULT_TAB = "event";
 
 const ActiveIconButton: FC<
   PropsFromWithoutRef<typeof Button> & {
@@ -179,8 +189,8 @@ const ActiveIconButton: FC<
       className={cn(
         className,
         active
-          ? 'bg-primary-foreground text-primary hover:bg-primary-foreground hover:text-primary'
-          : '',
+          ? "bg-primary-foreground text-primary hover:bg-primary-foreground hover:text-primary"
+          : "",
       )}
       {...props}
     >
@@ -191,25 +201,25 @@ const ActiveIconButton: FC<
 
 const tabList = [
   {
-    name: 'event',
-    label: '이벤트',
-    icon: <Star width={32} height={32} />,
+    name: "event",
+    label: "이벤트",
+    icon: <NaviEvent size="32" />,
   },
   {
-    name: 'ticket',
-    label: '내 티켓',
-    icon: <Ticket width={32} height={32} />,
+    name: "ticket",
+    label: "내 티켓",
+    icon: <NaviTicket size="32" />,
   },
   {
-    name: 'setting',
-    label: '채널 설정',
-    icon: <Setting width={32} height={32} />,
+    name: "setting",
+    label: "채널 설정",
+    icon: <NaviSetting size="32" />,
   },
 ] as const;
 
 const MakeAuthedHeaderWithChannelTemporailyMade: FC<{
   channelName?: string;
-  selectedTab?: (typeof tabList)[number]['name'];
+  selectedTab?: (typeof tabList)[number]["name"];
 }> = ({ channelName, selectedTab = DEFAULT_TAB }) => {
   return (
     <MakeAuthedHeaderTemporailyMade height="6" className="relative">

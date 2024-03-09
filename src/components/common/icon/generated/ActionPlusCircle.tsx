@@ -4,7 +4,7 @@ import { colorMap } from "@/components/design-token/color";
 
 import type { IconProps } from "../types";
 import { convertSizeToPx } from "../utils";
-const SvgPlus = (
+const SvgActionPlusCircle = (
   { size = "24", sizePx, color = "currentColor", ...props }: IconProps,
   ref: Ref<SVGSVGElement>,
 ) => {
@@ -16,20 +16,20 @@ const SvgPlus = (
       width={finalSize}
       height={finalSize}
       fill={fill}
-      viewBox="0 0 16 16"
+      viewBox="0 0 24 24"
       ref={ref}
       {...props}
     >
       <path
-        stroke="#fff"
+        stroke="#71717A"
         strokeLinecap="round"
         strokeLinejoin="round"
-        strokeWidth={2}
-        d="M8.5 3.333v9.334M3.834 8h9.333"
+        strokeWidth={1.5}
+        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0"
       />
     </svg>
   );
 };
-const ForwardRef = forwardRef(SvgPlus);
+const ForwardRef = forwardRef(SvgActionPlusCircle);
 const Memo = memo(ForwardRef);
 export default Memo;

@@ -1,17 +1,17 @@
-import react from '@vitejs/plugin-react';
-import { configDefaults, defineConfig } from 'vitest/config';
+import react from "@vitejs/plugin-react";
+import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [react()],
   test: {
-    reporters: ['verbose'],
+    reporters: ["verbose"],
     globals: true,
-    environment: 'jsdom',
+    environment: "jsdom",
     coverage: {
-      reporter: ['text', 'text-summary'],
+      reporter: ["text", "text-summary"],
       enabled: true,
-      provider: 'v8',
-      extension: ['.ts', '.tsx'],
+      provider: "v8",
+      extension: [".ts", ".tsx"],
       thresholds: {
         // Thresholds for all files
         // @TODO: make coverage higher

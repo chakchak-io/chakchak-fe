@@ -1,20 +1,22 @@
-module.exports = {
+const config = {
   plugins: ['prettier-plugin-tailwindcss'],
   printWidth: 100,
-  trailingComma: 'all',
+  trailingComma: "all",
   tabWidth: 2,
   singleQuote: true,
   bracketSpacing: true,
   semi: true,
   useTabs: false,
-  arrowParens: 'always',
-  endOfLine: 'lf',
+  arrowParens: "always",
+  endOfLine: "lf",
   overrides: [
     {
-      files: '*.json',
+      files: "*.json",
       options: {
         printWidth: 200,
       },
     },
   ],
 };
+
+export default config;

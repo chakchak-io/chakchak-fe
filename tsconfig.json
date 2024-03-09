@@ -39,6 +39,6 @@
       "~/*": ["./*"],
     },
   },
-  "include": ["globald.d.ts", "next-env.d.ts", "**/*.mjs", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["globald.d.ts", "next-env.d.ts", "**/*.mjs", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/common/icon/templates/export-generator.cjs"],
   "exclude": ["node_modules"],
 }
