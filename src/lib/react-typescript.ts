@@ -1,5 +1,3 @@
-import { ElementType } from 'react';
-
 type PropsFrom<TComponent> =
   TComponent extends React.FC<infer Props>
     ? Props
@@ -14,7 +12,6 @@ type PropsFromWithoutRef<TComponent> =
       ? Omit<Props, 'ref'>
       : never;
 
-type PropsWithoutRef<T extends ElementType> = React.ComponentPropsWithoutRef<T>;
 type InferRefFromExoticRefComponent<T> =
   T extends React.ForwardRefExoticComponent<infer Ref>
     ? Ref extends React.RefAttributes<infer RefElement>
@@ -22,4 +19,4 @@ type InferRefFromExoticRefComponent<T> =
       : never
     : never;
 
-export type { PropsFrom, PropsFromWithoutRef, PropsWithoutRef, InferRefFromExoticRefComponent };
+export type { PropsFrom, PropsFromWithoutRef, InferRefFromExoticRefComponent };

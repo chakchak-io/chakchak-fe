@@ -4,8 +4,14 @@ import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
+import { color } from '../design-tokens/color';
+
 const textVariant = cva(['m-0'], {
   variants: {
+    font: {
+      pretendard: 'font-pretendard',
+      // @TODO: add font sf-pro
+    },
     weight: {
       light: 'font-light',
       normal: 'font-normal',
@@ -19,6 +25,8 @@ const textVariant = cva(['m-0'], {
       '24': 'text-[1.5rem] leading-[30px]',
       // title/title02
       '22': 'text-[1.375rem] leading-[26px]',
+      // title/title04
+      '18': 'text-[1.125rem] leading-[22px]',
       // body/body01
       '20': 'text-[1.25rem] leading-[24px]',
       // body/body02
@@ -34,24 +42,11 @@ const textVariant = cva(['m-0'], {
     color: {
       // @TODO: dynamic color?
       inherit: 'text-inherit',
-      primary: 'text-primary',
-      'primary-foreground': 'text-primary-foreground',
-      destructive: 'text-destructive',
-      'destructive-foreground': 'text-destructive-foreground',
-      'gray/400': 'text-gray-400',
-      'gray/500': 'text-gray-500',
-      // @TODO: check gray/600 color code
-      'gray/600': 'text-gray-600',
-      'gray/800': 'text-gray-800',
-      'gray/900': 'text-gray-900',
-      white: 'text-white',
-      black: 'text-black',
-      'slate/500': 'text-slate-500',
-      'slate/700': 'text-slate-700',
-      'slate/900': 'text-slate-900',
+      ...color,
     },
   },
   defaultVariants: {
+    font: 'pretendard',
     weight: 'normal',
     size: '16',
     color: 'inherit',
@@ -79,6 +74,7 @@ const Text = forwardRef<TextElement, TextProps>((props, forwardedRef) => {
     as: Tag = 'span',
     // cva
     // @TODO: make util to extract cva props from props
+    font,
     weight,
     size,
     align,
@@ -93,6 +89,7 @@ const Text = forwardRef<TextElement, TextProps>((props, forwardedRef) => {
       ref={forwardedRef}
       className={cn(
         textVariant({
+          font,
           weight,
           size,
           align,

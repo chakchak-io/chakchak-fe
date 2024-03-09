@@ -2,6 +2,7 @@
 
 export { default as BrandLogo } from './generated/BrandLogo';
 export { default as CaretLeft } from './generated/CaretLeft';
+export { default as CaretRight } from './generated/CaretRight';
 export { default as ChevronRight } from './generated/ChevronRight';
 export { default as Plus } from './generated/Plus';
 export { default as RightArrow } from './generated/RightArrow';
