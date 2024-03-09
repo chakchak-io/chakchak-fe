@@ -6,6 +6,32 @@ for easy reservation
 
 ## Setting
 
+### Before you start
+
+```bash
+# node setup
+nvm install
+nvm use
+
+# package install
+pnpm install
+
+# install [pre-commit](https://pre-commit.com/) to restrict commit
+# rule is defined in [.pre-commit-config.yaml](.pre-commit-config.yaml)
+pnpm pre-commit:install
+
+# setup .env
+cp .env.example .env
+
+# start
+pnpm run dev
+
+# ETC
+## test command list
+pnpm run test
+pnpm run test:watch
+```
+
 ### ENV
 
 We are using [@t3-oss/env-nextjs](https://env.t3.gg/docs/recipes) and zod for env management.
@@ -25,7 +51,8 @@ for vscode. add the following
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-  ]
+  ],
+  "tailwindCSS.classAttributes": ["class", "className", ".*Variants"],
 ```
 
 ## Design System(Enchant)
@@ -47,6 +74,7 @@ for vscode. add the following
 ### High Priority
 
 1. create active button using comopoundVariants of cva
+2. re design button component
 
 ### Propose
 
