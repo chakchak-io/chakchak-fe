@@ -35,6 +35,7 @@ const textVariant = cva(['m-0'], {
       // @TODO: dynamic color?
       inherit: 'text-inherit',
       primary: 'text-primary',
+      'primary/300': 'text-primary-300',
       'primary-foreground': 'text-primary-foreground',
       destructive: 'text-destructive',
       'destructive-foreground': 'text-destructive-foreground',
