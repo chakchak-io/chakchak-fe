@@ -27,7 +27,13 @@ import { Text } from '@/components/ui/text';
 import { typedRedirect } from '@/lib/nextjs/server-navigation';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
 
-const DemoTable = () => {
+// 여기는 생성된 모든 이벤트가 보이는 페이지.
+
+interface Props {
+  channelName: string;
+}
+
+const DemoTable = ({ channelName }: Props) => {
   return (
     <Table>
       <TableHeader>
@@ -65,7 +71,7 @@ const DemoTable = () => {
           </TableCell>
           <TableCell>
             <Button fullWidth variant="outline">
-              진행 중
+              <TypedLink href={`/channel/${channelName}/event/dummy-event`}>진행중</TypedLink>
             </Button>
           </TableCell>
         </TableRow>
@@ -145,10 +151,10 @@ const ChannelEventPage: NextPage<
               <TabsTrigger value="end">종료된 이벤트 3</TabsTrigger>
             </TabsList>
             <TabsContent value="active">
-              <DemoTable />
+              <DemoTable channelName={params.channelName} />
             </TabsContent>
             <TabsContent value="env">
-              <DemoTable />
+              <DemoTable channelName={params.channelName} />
             </TabsContent>
           </Tabs>
         </Card>
