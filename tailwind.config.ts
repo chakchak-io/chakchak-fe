@@ -55,6 +55,7 @@ const config = {
           foreground: 'hsl(var(--primary-foreground))',
           50: 'hsla(249, 64%, 98%, 1)',
           100: 'hsla(252, 89%, 71%, 1)',
+          300: 'hsla(252, 89%, 51%, 1)',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
