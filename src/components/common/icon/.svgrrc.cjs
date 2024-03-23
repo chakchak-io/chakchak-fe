@@ -24,5 +24,6 @@ module.exports = {
     "#000000": "{fill}",
     "#000": "{fill}",
     "#FFF0E5": "{fill}",
+    "#A1A1AA": "{fill}",
   },
 };

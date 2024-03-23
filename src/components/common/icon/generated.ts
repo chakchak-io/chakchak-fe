@@ -1,3 +1,4 @@
+export { default as ActionCopy } from "./generated/ActionCopy";
 export { default as ActionPlusCircle } from "./generated/ActionPlusCircle";
 export { default as BrandLogo } from "./generated/BrandLogo";
 export { default as CaretLeft } from "./generated/CaretLeft";

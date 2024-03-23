@@ -42,11 +42,13 @@ const textVariant = cva(["m-0"], {
       inherit: "text-inherit",
       // @TODO: dynamic color?
       primary: "text-primary",
+      "primary/300": "text-primary-300",
       "primary-foreground": "text-primary-foreground",
       destructive: "text-destructive",
       "destructive-foreground": "text-destructive-foreground",
       "gray/400": "text-gray-400",
       "gray/500": "text-gray-500",
+      // @TODO: check gray/600 color code
       // @TODO: check gray/600 color code
       "gray/600": "text-gray-600",
       "gray/800": "text-gray-800",

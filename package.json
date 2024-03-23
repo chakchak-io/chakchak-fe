@@ -7,7 +7,7 @@
     "prepare": "husky .husky",
     "dev": "cross-env FORCE_COLOR=1 next dev",
     "build": "next build",
-    "build:ts-icons": "cd src/components/common/icon && pnpm dlx @svgr/cli svg/** --no-index && node ./templates/export-generator.cjs",
+    "build:ts-icons": "cd src/components/common/icon && rm -rf ./generated && pnpm dlx @svgr/cli svg/** --no-index && node ./templates/export-generator.cjs",
     "start": "next start",
     "analyze": "cross-env ANALYZE=true pnpm build",
     "lint": "next lint",
