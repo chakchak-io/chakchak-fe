@@ -64,7 +64,7 @@ const Skeleton: FC<
         <Flex justify="between" className="w-full">
           <Flex align="center" gap="0.5" asChild>
             <Link href="/">
-              <BrandLogo size="32" color="none" />
+              <BrandLogo size="32" />
               <Text size="20" weight="bold" color="gray/600">
                 EventFairy
               </Text>

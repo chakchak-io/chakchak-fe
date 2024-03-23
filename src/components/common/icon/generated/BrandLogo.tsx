@@ -15,7 +15,7 @@ const SvgBrandLogo = (
       xmlns="http://www.w3.org/2000/svg"
       width={finalSize}
       height={finalSize}
-      fill={fill}
+      fill="none"
       viewBox="0 0 32 32"
       ref={ref}
       {...props}
@@ -33,7 +33,7 @@ const SvgBrandLogo = (
       </g>
       <defs>
         <clipPath id="brand-logo_svg__a">
-          <path fill="#fff" d="M0 0h32v32H0z" />
+          <path fill={fill} d="M0 0h32v32H0z" />
         </clipPath>
       </defs>
     </svg>

@@ -15,13 +15,13 @@ const SvgActionPlusCircle = (
       xmlns="http://www.w3.org/2000/svg"
       width={finalSize}
       height={finalSize}
-      fill={fill}
+      fill="none"
       viewBox="0 0 24 24"
       ref={ref}
       {...props}
     >
       <path
-        stroke="#71717A"
+        stroke={fill}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={1.5}

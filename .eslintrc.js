@@ -3,14 +3,7 @@ const fs = require('fs');
 
 module.exports = {
   plugins: ['unused-imports'],
-  extends: [
-    'next',
-    'prettier',
-    'react-app',
-    'plugin:tailwindcss/recommended',
-    'plugin:import/recommended',
-    'plugin:import/typescript',
-  ],
+  extends: ['next', 'prettier', 'react-app', 'plugin:tailwindcss/recommended', 'plugin:import/recommended', 'plugin:import/typescript', 'plugin:storybook/recommended'],
   parserOptions: {
     babelOptions: {
       presets: [require.resolve('next/babel')],

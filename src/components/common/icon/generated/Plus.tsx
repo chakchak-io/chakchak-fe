@@ -21,7 +21,7 @@ const SvgPlus = (
       {...props}
     >
       <path
-        stroke="#fff"
+        stroke={fill}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}

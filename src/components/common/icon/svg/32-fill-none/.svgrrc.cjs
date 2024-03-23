@@ -4,7 +4,7 @@ module.exports = {
   svgProps: {
     width: "{finalSize}",
     height: "{finalSize}",
-    fill: "{fill}",
-    viewBox: "0 0 20 20",
+    fill: "none",
+    viewBox: "0 0 32 32",
   },
 };

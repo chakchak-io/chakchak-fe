@@ -118,12 +118,7 @@ const Make = () => {
         align="center"
         gap="0.5"
       >
-        <NaviEvent
-          width={20}
-          height={20}
-          className="shrink-0"
-          fill="hsl(var(--gray-600))"
-        />
+        <NaviEvent size="20" color="gray/600" className="shrink-0" />
         <Text>여기에 이벤트 이름이 들어간다.</Text>
         <ChevronRight className="shrink-0" height={24} />
       </Flex>

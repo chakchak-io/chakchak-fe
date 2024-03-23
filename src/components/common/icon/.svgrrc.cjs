@@ -20,10 +20,11 @@ module.exports = {
   },
   replaceAttrValues: {
     "#52525B": "{fill}",
-    black: "{fill}",
     "#000000": "{fill}",
     "#000": "{fill}",
+    "#fff": "{fill}",
     "#FFF0E5": "{fill}",
     "#A1A1AA": "{fill}",
+    "#71717A": "{fill}",
   },
 };
