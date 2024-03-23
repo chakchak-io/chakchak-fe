@@ -1,12 +1,7 @@
-import { cva, VariantProps } from "class-variance-authority";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
-import {
-  FC,
-  ForwardRefExoticComponent,
-  MemoExoticComponent,
-  PropsWithChildren,
-} from "react";
+import { cva, VariantProps } from 'class-variance-authority';
+import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+import { FC, ForwardRefExoticComponent, MemoExoticComponent, PropsWithChildren } from 'react';
 
 import {
   NaviEvent,
@@ -17,61 +12,61 @@ import {
   SideNaviSurvet,
   SideNaviTicket,
   SideNaviTime,
-} from "../../components/common/icon";
-import { IconProps } from "../common/icon/types";
-import { Container } from "../ui/container";
-import { Flex } from "../ui/flex";
-import { Text } from "../ui/text";
+} from '../../components/common/icon';
+import { IconProps } from '../common/icon/types';
+import { Container } from '../ui/container';
+import { Flex } from '../ui/flex';
+import { Text } from '../ui/text';
 
-const menubar = cva("");
+const menubar = cva('');
 
 type menubarVariant = VariantProps<typeof menubar>;
 
 const menuItems = [
   {
-    id: "manage",
-    label: "이벤트 관리",
+    id: 'manage',
+    label: '이벤트 관리',
     subMenus: [
       {
         icon: SideNaviPeople,
-        label: "예약자 관리",
-        link: "/reservation",
+        label: '예약자 관리',
+        link: '/reservation',
       },
       {
         icon: SideNaviDashboard02,
-        label: "대시보드",
-        link: "/dashboard",
+        label: '대시보드',
+        link: '/dashboard',
       },
       {
         icon: SideNaviTicket,
-        label: "예약 티켓 관리",
-        link: "/ticket-setting",
+        label: '예약 티켓 관리',
+        link: '/ticket-setting',
       },
       {
         icon: SideNaviEventPage,
-        label: "이벤트 페이지 관리",
-        link: "/event-page-setting", // change name -- because it's confusing
+        label: '이벤트 페이지 관리',
+        link: '/event-page-setting', // change name -- because it's confusing
       },
     ],
   },
   {
-    id: "setting",
-    label: "이벤트 설정",
+    id: 'setting',
+    label: '이벤트 설정',
     subMenus: [
       {
         icon: SideNaviEventEdit,
-        label: "이벤트 기본정보",
-        link: "/", //TODO: should change
+        label: '이벤트 기본정보',
+        link: '/', //TODO: should change
       },
       {
         icon: SideNaviSurvet,
-        label: "예약자 수집정보",
-        link: "/", //TODO: should change
+        label: '예약자 수집정보',
+        link: '/', //TODO: should change
       },
       {
         icon: SideNaviTime,
-        label: "이벤트 날짜/인원 설정",
-        link: "/", //TODO: should change
+        label: '이벤트 날짜/인원 설정',
+        link: '/', //TODO: should change
       },
     ],
   },
@@ -92,7 +87,7 @@ const Skeleton: FC<
 };
 
 const MakeMenuButton: FC<{
-  icon: MemoExoticComponent<ForwardRefExoticComponent<Omit<IconProps, "ref">>>;
+  icon: MemoExoticComponent<ForwardRefExoticComponent<Omit<IconProps, 'ref'>>>;
   label: string;
   link: string;
 }> = ({ icon, label, link }) => {
@@ -113,7 +108,7 @@ const Make = () => {
   return (
     <Skeleton>
       <Flex
-        className={"cursor-pointer rounded-[6px] bg-slate-100 p-2"}
+        className={'cursor-pointer rounded-[6px] bg-slate-100 p-2'}
         as="div"
         align="center"
         gap="0.5"

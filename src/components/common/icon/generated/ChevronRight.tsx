@@ -1,11 +1,11 @@
-import { forwardRef, memo, Ref } from "react";
+import { forwardRef, memo, Ref } from 'react';
 
-import { colorMap } from "@/components/design-token/color";
+import { colorMap } from '@/components/design-token/color';
 
-import type { IconProps } from "../types";
-import { convertSizeToPx } from "../utils";
+import type { IconProps } from '../types';
+import { convertSizeToPx } from '../utils';
 const SvgChevronRight = (
-  { size = "24", sizePx, color = "currentColor", ...props }: IconProps,
+  { size = '24', sizePx, color = 'currentColor', ...props }: IconProps,
   ref: Ref<SVGSVGElement>,
 ) => {
   const finalSize = sizePx ? sizePx : convertSizeToPx(size);

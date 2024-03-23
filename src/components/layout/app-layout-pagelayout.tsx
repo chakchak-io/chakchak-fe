@@ -1,12 +1,12 @@
-import { cva, VariantProps } from "class-variance-authority";
-import { FC, PropsWithChildren } from "react";
+import { cva, VariantProps } from 'class-variance-authority';
+import { FC, PropsWithChildren } from 'react';
 
-import { AppLayout } from "@/components/layout";
+import { AppLayout } from '@/components/layout';
 
-import { Container } from "../ui/container";
-import { Flex } from "../ui/flex";
+import { Container } from '../ui/container';
+import { Flex } from '../ui/flex';
 
-const pageLayout = cva("flex flex-col");
+const pageLayout = cva('flex flex-col');
 
 type pageLayoutVariant = VariantProps<typeof pageLayout>;
 
@@ -24,9 +24,7 @@ const Make: FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <Skeleton>
       <AppLayout.SideMenu.Make />
-      <Container className="min-h-screen bg-gray-100 pt-14">
-        {children}
-      </Container>
+      <Container className="min-h-screen bg-gray-100 pt-14">{children}</Container>
     </Skeleton>
   );
 };

@@ -4,7 +4,6 @@
 
 @layer base {
   /* @WARN: do not put comma on hsl value */
-  /* @WARN: do not put comma on hsl value */
   :root {
     /* custom color */
     --gray-50: 0 0% 98%;
@@ -39,11 +38,9 @@
     --border: 20 5.9% 90%;
     --input: 20 5.9% 90%;
     --ring: 252 89% 61%;
-    --ring: 252 89% 61%;
     --radius: 0.5rem;
   }
 
-  /* @TODO: modify value when dark mode supported */
   /* @TODO: modify value when dark mode supported */
   .dark {
     --background: 20 14.3% 4.1%;

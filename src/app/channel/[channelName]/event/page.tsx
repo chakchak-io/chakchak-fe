@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import { NextPage } from "next";
-import { RedirectType } from "next/navigation";
-import React, { FC } from "react";
-import { v4 as uuid } from "uuid";
+import { NextPage } from 'next';
+import { RedirectType } from 'next/navigation';
+import React, { FC } from 'react';
+import { v4 as uuid } from 'uuid';
 
-import { Plus } from "@/components/common/icon";
-import { TypedLink } from "@/components/common/router";
-import { AppLayout } from "@/components/layout";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Container } from "@/components/ui/container";
-import { Flex } from "@/components/ui/flex";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Text } from "@/components/ui/text";
-import { ChannelName } from "@/const/router";
-import { useClientTypedRouter } from "@/hooks";
-import { typedRedirect } from "@/lib/nextjs/server-navigation";
-import { CommonNextPageProps } from "@/lib/nextjs/type";
+import { Plus } from '@/components/common/icon';
+import { TypedLink } from '@/components/common/router';
+import { AppLayout } from '@/components/layout';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Container } from '@/components/ui/container';
+import { Flex } from '@/components/ui/flex';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Text } from '@/components/ui/text';
+import { ChannelName } from '@/const/router';
+import { useClientTypedRouter } from '@/hooks';
+import { typedRedirect } from '@/lib/nextjs/server-navigation';
+import { CommonNextPageProps } from '@/lib/nextjs/type';
 
-import { Event, eventColumns } from "./columns";
-import { EventDataTable } from "./data-table";
+import { Event, eventColumns } from './columns';
+import { EventDataTable } from './data-table';
 
 const DemoTable: FC<{
   channelName: ChannelName;
@@ -31,24 +31,24 @@ const DemoTable: FC<{
     {
       id: uuid(),
       no: 1,
-      title: "이벤트페어리 팝업스토어",
-      startDate: "2024-02-12 19:16:00",
+      title: '이벤트페어리 팝업스토어',
+      startDate: '2024-02-12 19:16:00',
       appointment: {
         current: 200,
         max: 300,
       },
-      status: "in-progress",
+      status: 'in-progress',
     },
     {
       id: uuid(),
       no: 2,
-      title: "010-2313-1234",
-      startDate: "2024-02-12 19:16:00",
+      title: '010-2313-1234',
+      startDate: '2024-02-12 19:16:00',
       appointment: {
         current: 200,
         max: 300,
       },
-      status: "pending",
+      status: 'pending',
     },
   ];
   return (
@@ -71,7 +71,7 @@ const ChannelEventPage: NextPage<
   // 채널 이름이 없으면 채널 페이지로 이동
   // 또는 api로 채널 정보를 가져와서 없으면 채널 페이지로 이동
   if (!channelName) {
-    typedRedirect("/channel", RedirectType.replace);
+    typedRedirect('/channel', RedirectType.replace);
     return null;
   }
 

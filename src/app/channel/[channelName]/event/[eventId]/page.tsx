@@ -1,22 +1,22 @@
-import { NextPage } from "next";
-import { FC } from "react";
+import { NextPage } from 'next';
+import { FC } from 'react';
 
-import { ActionCopy, IconlySharpBoldCalendar } from "@/components/common/icon";
-import { AppLayout } from "@/components/layout";
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-import { Flex } from "@/components/ui/flex";
-import { Text } from "@/components/ui/text";
+import { ActionCopy, IconlySharpBoldCalendar } from '@/components/common/icon';
+import { AppLayout } from '@/components/layout';
+import { Button } from '@/components/ui/button';
+import { Container } from '@/components/ui/container';
+import { Flex } from '@/components/ui/flex';
+import { Text } from '@/components/ui/text';
 
 const mockEventData = {
-  id: "1",
-  name: "이벤트페어리 강남주식회사 이벤트시작하자",
-  description: "이벤트 설명",
-  eventType: "online",
+  id: '1',
+  name: '이벤트페어리 강남주식회사 이벤트시작하자',
+  description: '이벤트 설명',
+  eventType: 'online',
   startAt: undefined,
   endAt: undefined,
   location: undefined,
-  eventUrl: "https://eventfairy.com/event/event-id-in-hash",
+  eventUrl: 'https://eventfairy.com/event/event-id-in-hash',
 };
 
 const EventByNamePageHeader: FC<{
@@ -36,7 +36,7 @@ const EventByNamePageHeader: FC<{
             color="primary/300"
             className="rounded-lg border border-gray-100 bg-[#F0ECFF] px-4 py-2"
           >
-            {eventType === "online" ? "온라인" : "오프라인"}
+            {eventType === 'online' ? '온라인' : '오프라인'}
           </Text>
         </Flex>
         <Flex align="center" gap="0.5">
