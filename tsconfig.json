@@ -31,14 +31,14 @@
     // plugins
     "plugins": [
       {
-        "name": "next",
-      },
+        "name": "next"
+      }
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "~/*": ["./*"],
-    },
+      "~/*": ["./*"]
+    }
   },
   "include": ["globald.d.ts", "next-env.d.ts", "**/*.mjs", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/common/icon/templates/export-generator.cjs"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }
