@@ -4,9 +4,11 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
+import { radiusVariants } from './helper/radius';
+
 const buttonVariants = cva(
   [
-    'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+    'inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   ],
   {
     variants: {
@@ -25,14 +27,16 @@ const buttonVariants = cva(
         // default: 'h-10 px-6 py-4',
         // developers modified
         default: 'h-10 px-4 py-3',
-        sm: 'h-9 rounded-md px-3',
-        lg: 'h-11 rounded-md px-8',
+        sm: 'h-9 px-3',
+        lg: 'h-11 px-8',
         icon: 'size-20',
       },
+      radius: radiusVariants,
     },
     defaultVariants: {
       variant: 'default',
       size: 'default',
+      radius: 'default',
     },
   },
 );
@@ -49,17 +53,33 @@ const Button = React.forwardRef<
   ButtonProps & {
     fullWidth?: boolean;
   }
->(({ className, type = 'button', variant, size, asChild = false, fullWidth, ...props }, ref) => {
-  const Comp = asChild ? Slot : 'button';
-  return (
-    <Comp
-      className={cn(buttonVariants({ variant, size, className }), fullWidth && 'w-full')}
-      ref={ref}
-      type={type}
-      {...props}
-    />
-  );
-});
+>(
+  (
+    {
+      // cva
+      variant,
+      size,
+      radius,
+      // tag props
+      className,
+      type = 'button',
+      asChild = false,
+      fullWidth,
+      ...props
+    },
+    ref,
+  ) => {
+    const Comp = asChild ? Slot : 'button';
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, radius, className }), fullWidth && 'w-full')}
+        ref={ref}
+        type={type}
+        {...props}
+      />
+    );
+  },
+);
 Button.displayName = 'Button';
 
 export { Button, buttonVariants };

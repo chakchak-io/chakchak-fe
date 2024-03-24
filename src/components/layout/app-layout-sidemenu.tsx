@@ -1,24 +1,19 @@
 import { cva, VariantProps } from 'class-variance-authority';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import {
-  FC,
-  ForwardRefExoticComponent,
-  MemoExoticComponent,
-  PropsWithChildren,
-  SVGProps,
-} from 'react';
+import { FC, ForwardRefExoticComponent, MemoExoticComponent, PropsWithChildren } from 'react';
 
 import {
-  Dashboard,
-  EventEdit,
-  EventPageIcon,
-  People,
-  Star,
-  Survet,
-  TicketManage,
-  Time,
+  NaviEvent,
+  SideNaviDashboard02,
+  SideNaviEventEdit,
+  SideNaviEventPage,
+  SideNaviPeople,
+  SideNaviSurvet,
+  SideNaviTicket,
+  SideNaviTime,
 } from '../../components/common/icon';
+import { IconProps } from '../common/icon/types';
 import { Container } from '../ui/container';
 import { Flex } from '../ui/flex';
 import { Text } from '../ui/text';
@@ -33,22 +28,22 @@ const menuItems = [
     label: '이벤트 관리',
     subMenus: [
       {
-        icon: People,
+        icon: SideNaviPeople,
         label: '예약자 관리',
         link: '/reservation',
       },
       {
-        icon: Dashboard,
+        icon: SideNaviDashboard02,
         label: '대시보드',
         link: '/dashboard',
       },
       {
-        icon: TicketManage,
+        icon: SideNaviTicket,
         label: '예약 티켓 관리',
         link: '/ticket-setting',
       },
       {
-        icon: EventPageIcon,
+        icon: SideNaviEventPage,
         label: '이벤트 페이지 관리',
         link: '/event-page-setting', // change name -- because it's confusing
       },
@@ -59,17 +54,17 @@ const menuItems = [
     label: '이벤트 설정',
     subMenus: [
       {
-        icon: EventEdit,
+        icon: SideNaviEventEdit,
         label: '이벤트 기본정보',
         link: '/', //TODO: should change
       },
       {
-        icon: Survet,
+        icon: SideNaviSurvet,
         label: '예약자 수집정보',
         link: '/', //TODO: should change
       },
       {
-        icon: Time,
+        icon: SideNaviTime,
         label: '이벤트 날짜/인원 설정',
         link: '/', //TODO: should change
       },
@@ -92,7 +87,7 @@ const Skeleton: FC<
 };
 
 const MakeMenuButton: FC<{
-  icon: MemoExoticComponent<ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'>>>;
+  icon: MemoExoticComponent<ForwardRefExoticComponent<Omit<IconProps, 'ref'>>>;
   label: string;
   link: string;
 }> = ({ icon, label, link }) => {
@@ -118,11 +113,11 @@ const Make = () => {
         align="center"
         gap="0.5"
       >
-        <Star width={20} height={20} className="shrink-0" fill="hsl(var(--gray-600))" />
+        <NaviEvent size="20" color="gray/600" className="shrink-0" />
         <Text>여기에 이벤트 이름이 들어간다.</Text>
         <ChevronRight className="shrink-0" height={24} />
       </Flex>
-      <div className="mb-2 mt-5 h-[1px] w-full bg-[#E2E2FF]"></div>
+      <div className="mb-2 mt-5 h-px w-full bg-[#E2E2FF]"></div>
       <Flex as="div" direction="column">
         {menuItems.map((item) => (
           <Container key={`${item.id}-${item.label}`}>

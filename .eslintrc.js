@@ -10,6 +10,7 @@ module.exports = {
     'plugin:tailwindcss/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:storybook/recommended',
   ],
   parserOptions: {
     babelOptions: {
