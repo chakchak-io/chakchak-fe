@@ -3,7 +3,7 @@ import { User } from 'lucide-react';
 import Link from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
-import { BrandLogo, Setting, Star, Ticket } from '@/components/common/icon';
+import { BrandLogo, NaviEvent, NaviSetting, NaviTicket } from '@/components/common/icon';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Flex } from '@/components/ui/flex';
 import { Text } from '@/components/ui/text';
+import { ChannelName } from '@/const/router';
 import { PropsFromWithoutRef } from '@/lib/react-typescript';
 import { cn } from '@/lib/utils';
 
@@ -58,7 +59,7 @@ const Skeleton: FC<
         <Flex justify="between" className="w-full">
           <Flex align="center" gap="0.5" asChild>
             <Link href="/">
-              <BrandLogo />
+              <BrandLogo size="32" />
               <Text size="20" weight="bold" color="gray/600">
                 EventFairy
               </Text>
@@ -126,7 +127,7 @@ const UserAvatar = () => {
 };
 
 const ChannelButtons: FC<{
-  channelName?: string;
+  channelName?: ChannelName;
   selectedTab?: (typeof tabList)[number]['name'];
 }> = ({ channelName, selectedTab }) => {
   return (
@@ -192,17 +193,17 @@ const tabList = [
   {
     name: 'event',
     label: '이벤트',
-    icon: <Star width={32} height={32} />,
+    icon: <NaviEvent size="32" />,
   },
   {
     name: 'ticket',
     label: '내 티켓',
-    icon: <Ticket width={32} height={32} />,
+    icon: <NaviTicket size="32" />,
   },
   {
     name: 'setting',
     label: '채널 설정',
-    icon: <Setting width={32} height={32} />,
+    icon: <NaviSetting size="32" />,
   },
 ] as const;
 

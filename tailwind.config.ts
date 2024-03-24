@@ -82,6 +82,7 @@ const config = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      // @TODO: radius key 추가
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

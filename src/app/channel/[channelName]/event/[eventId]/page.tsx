@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { FC } from 'react';
 
-import { Calendar, Copy } from '@/components/common/icon';
+import { ActionCopy, IconlySharpBoldCalendar } from '@/components/common/icon';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
@@ -40,7 +40,7 @@ const EventByNamePageHeader: FC<{
           </Text>
         </Flex>
         <Flex align="center" gap="0.5">
-          <Calendar fill="#71717A" />
+          <IconlySharpBoldCalendar size="24" color="gray/500" />
           {startAt && endAt ? (
             <Text>언제부터 언제까지</Text>
           ) : (
@@ -63,7 +63,7 @@ const EventByNamePageHeader: FC<{
             <Text className="ml-[21px]">{eventUrl}</Text>
           </Flex>
           <Button className="border bg-transparent p-[6px]">
-            <Copy width={20} height={20} />
+            <ActionCopy size="20" color="#A1A1AA" />
           </Button>
         </Flex>
       </Container>

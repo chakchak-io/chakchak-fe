@@ -2,11 +2,12 @@ import { NextPage } from 'next';
 
 import { AppLayout } from '@/components/layout';
 import { Container } from '@/components/ui/container';
+import { ChannelName } from '@/const/router';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
 
 const ChannelTicketPage: NextPage<
   CommonNextPageProps<{
-    channelName: string;
+    channelName: ChannelName;
   }>
 > = ({ params }) => {
   return (

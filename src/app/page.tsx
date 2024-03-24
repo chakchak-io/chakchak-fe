@@ -27,10 +27,12 @@ const SectionOne = () => {
 
             <Button className="h-auto" asChild>
               <Link href="https://tally.so/r/3lrqD5">
-                <Text weight="bold" size="24">
-                  사전 예약 신청
-                </Text>
-                <RightArrow width={24} height={24} />
+                <Flex align="center" asChild>
+                  <Text weight="bold" size="24">
+                    사전 예약 신청
+                    <RightArrow width={24} height={24} />
+                  </Text>
+                </Flex>
               </Link>
             </Button>
             <div>

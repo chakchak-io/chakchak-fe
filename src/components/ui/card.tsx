@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
+import { Flex } from './flex';
+
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
@@ -46,11 +48,12 @@ const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDi
 );
 CardContent.displayName = 'CardContent';
 
-const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('flex items-center p-6 pt-0', className)} {...props} />
-  ),
-);
+const CardFooter = React.forwardRef<
+  React.ElementRef<typeof Flex>,
+  React.ComponentPropsWithoutRef<typeof Flex>
+>(({ className, align = 'center', ...props }, ref) => (
+  <Flex ref={ref} align={align} className={cn('p-6 pt-0', className)} {...props} />
+));
 CardFooter.displayName = 'CardFooter';
 
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };

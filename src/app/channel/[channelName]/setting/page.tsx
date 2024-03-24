@@ -23,6 +23,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
 import { useToast } from '@/components/ui/use-toast';
+import { ChannelName } from '@/const/router';
 import { useClientTypedRouter } from '@/hooks';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
 
@@ -45,7 +46,7 @@ type ChannelSettingForm = z.infer<typeof formSchema>;
 
 const ChannelSettingPage: NextPage<
   CommonNextPageProps<{
-    channelName: string;
+    channelName: ChannelName;
   }>
 > = ({ params }) => {
   const { toast } = useToast();
@@ -129,7 +130,7 @@ const ChannelSettingPage: NextPage<
                     <FormField
                       control={form.control}
                       name="email"
-                      render={({ field, fieldState }) => (
+                      render={({ field }) => (
                         <FormItem className="w-full">
                           <FormLabel required>채널 대표 메일</FormLabel>
                           <FormControl>

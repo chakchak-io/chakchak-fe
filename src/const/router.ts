@@ -1,6 +1,7 @@
 // @TODO: 계층구조 만든 후 string -> 타입 좁히기
 
 type ChannelName = string;
+type EventId = string;
 type AccessibleRoute =
   | '/'
   | '/signin'
@@ -16,7 +17,8 @@ type AccessibleRoute =
   | `/channel/${ChannelName}/event/create`
   | `/channel/${ChannelName}/event/create/online`
   | `/channel/${ChannelName}/event/create/offline`
+  | `/channel/${ChannelName}/event/${EventId}`
   | `/channel/${ChannelName}/ticket`
   | `/channel/${ChannelName}/setting`;
 
-export type { AccessibleRoute };
+export type { ChannelName, EventId, AccessibleRoute };
