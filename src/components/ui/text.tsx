@@ -31,6 +31,8 @@ const textVariant = cva(['m-0'], {
       '16': 'text-[1rem] leading-[20px]',
       // body/body03
       '14': 'text-[0.875rem] leading-[18px]',
+      // body/body04
+      '13': 'text-[0.8125rem] leading-[16px]',
     },
     align: {
       left: 'text-left',

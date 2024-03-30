@@ -1,5 +1,3 @@
-// @TODO: 계층구조 만든 후 string -> 타입 좁히기
-
 type ChannelName = string;
 type EventId = string;
 type AccessibleRoute =

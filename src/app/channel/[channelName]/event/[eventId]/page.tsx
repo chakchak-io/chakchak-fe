@@ -2,7 +2,6 @@ import { NextPage } from 'next';
 import { FC } from 'react';
 
 import { ActionCopy, IconlySharpBoldCalendar } from '@/components/common/icon';
-import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { Flex } from '@/components/ui/flex';
@@ -88,14 +87,7 @@ const EventByNamePageHeader: FC<{
 };
 
 const EventByNamePage: NextPage = () => {
-  return (
-    <main>
-      <AppLayout.Header.MakeAuthedHeaderWithChannelTemporailyMade selectedTab="event" />
-      <AppLayout.PageLayout.Make>
-        <EventByNamePageHeader event={mockEventData} />
-      </AppLayout.PageLayout.Make>
-    </main>
-  );
+  return <EventByNamePageHeader event={mockEventData} />;
 };
 
 export default EventByNamePage;

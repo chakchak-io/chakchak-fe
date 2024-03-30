@@ -4,6 +4,7 @@ export { default as BrandLogo } from './generated/BrandLogo';
 export { default as CaretLeft } from './generated/CaretLeft';
 export { default as CaretRight } from './generated/CaretRight';
 export { default as ChevronRight } from './generated/ChevronRight';
+export { default as ContentsCheck } from './generated/ContentsCheck';
 export { default as IconlySharpBoldCalendar } from './generated/IconlySharpBoldCalendar';
 export { default as IconlySharpBoldCloseSquare } from './generated/IconlySharpBoldCloseSquare';
 export { default as IconlySharpBoldNotification } from './generated/IconlySharpBoldNotification';

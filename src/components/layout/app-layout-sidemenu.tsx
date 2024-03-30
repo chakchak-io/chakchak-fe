@@ -1,144 +1,154 @@
-import { cva, VariantProps } from 'class-variance-authority';
+import { cx } from 'class-variance-authority';
 import { ChevronRight } from 'lucide-react';
-import Link from 'next/link';
-import { FC, ForwardRefExoticComponent, MemoExoticComponent, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
+import { v4 as uuid } from 'uuid';
 
 import {
+  ActionCopy,
   NaviEvent,
   SideNaviDashboard02,
   SideNaviEventEdit,
-  SideNaviEventPage,
   SideNaviPeople,
   SideNaviSurvet,
   SideNaviTicket,
   SideNaviTime,
-} from '../../components/common/icon';
-import { IconProps } from '../common/icon/types';
-import { Container } from '../ui/container';
-import { Flex } from '../ui/flex';
-import { Text } from '../ui/text';
+} from '@/components/common/icon';
+import { TypedLink } from '@/components/common/router';
+import { Flex } from '@/components/ui/flex';
+import { Separator } from '@/components/ui/separator';
+import { Text } from '@/components/ui/text';
+import { AccessibleRoute, ChannelName, EventId } from '@/const/router';
+import { PropsFrom } from '@/lib/react-typescript';
 
-const menubar = cva('');
+import { SideMenuButton } from './side-menu-button';
 
-type menubarVariant = VariantProps<typeof menubar>;
+// @TODO: replace to fp-ts-route
+const getDashboardLink = (
+  channelName: ChannelName,
+  eventId: EventId,
+  to:
+    | 'dashboard'
+    | 'reservation'
+    | 'ticket-setting'
+    | 'event-setting'
+    | 'survey-setting'
+    | 'time-setting',
+): AccessibleRoute => {
+  return `/channel/${channelName}/event/${eventId}/${to}`;
+};
 
 const menuItems = [
   {
-    id: 'manage',
+    id: uuid(),
     label: '이벤트 관리',
     subMenus: [
       {
         icon: SideNaviPeople,
         label: '예약자 관리',
-        link: '/reservation',
+        link: 'reservation',
       },
       {
         icon: SideNaviDashboard02,
         label: '대시보드',
-        link: '/dashboard',
+        link: 'dashboard',
       },
       {
         icon: SideNaviTicket,
         label: '예약 티켓 관리',
-        link: '/ticket-setting',
-      },
-      {
-        icon: SideNaviEventPage,
-        label: '이벤트 페이지 관리',
-        link: '/event-page-setting', // change name -- because it's confusing
+        link: 'ticket-setting',
       },
     ],
   },
   {
-    id: 'setting',
+    id: uuid(),
     label: '이벤트 설정',
     subMenus: [
       {
         icon: SideNaviEventEdit,
         label: '이벤트 기본정보',
-        link: '/', //TODO: should change
+        link: 'event-setting',
       },
       {
         icon: SideNaviSurvet,
         label: '예약자 수집정보',
-        link: '/', //TODO: should change
+        link: 'survey-setting',
       },
       {
         icon: SideNaviTime,
         label: '이벤트 날짜/인원 설정',
-        link: '/', //TODO: should change
+        link: 'time-setting',
       },
     ],
   },
-];
+] as const satisfies {
+  id: string;
+  label: string;
+  subMenus: {
+    icon: FC<PropsFrom<typeof ActionCopy>>;
+    label: string;
+    link: string;
+  }[];
+}[];
 
 const Skeleton: FC<
-  PropsWithChildren<
-    {
-      className?: string;
-    } & menubarVariant
-  >
-> = ({ children }) => {
+  PropsWithChildren<{
+    className?: string;
+  }>
+> = ({ children, className }) => {
   return (
-    <Flex direction="column" className="w-[266px] bg-white px-3 pt-4">
+    <Flex direction="column" className={cx('w-[266px] bg-white px-3', className)}>
       {children}
     </Flex>
   );
 };
 
-const MakeMenuButton: FC<{
-  icon: MemoExoticComponent<ForwardRefExoticComponent<Omit<IconProps, 'ref'>>>;
-  label: string;
-  link: string;
-}> = ({ icon, label, link }) => {
-  const Icon = icon;
-  return (
-    <Link href={link}>
-      <Flex className={`gap-2 px-2 py-[10px]`}>
-        <Icon width={20} height={20} />
-        <Text color="slate/900" weight="medium" className={`bg-transparent`}>
-          {label}
-        </Text>
-      </Flex>
-    </Link>
-  );
-};
-
-const Make = () => {
+const Make: FC<{
+  channelName: ChannelName;
+  eventId: EventId;
+}> = ({ channelName, eventId }) => {
   return (
     <Skeleton>
-      <Flex
-        className={'cursor-pointer rounded-[6px] bg-slate-100 p-2'}
-        as="div"
-        align="center"
-        gap="0.5"
-      >
-        <NaviEvent size="20" color="gray/600" className="shrink-0" />
-        <Text>여기에 이벤트 이름이 들어간다.</Text>
-        <ChevronRight className="shrink-0" height={24} />
+      <Flex className="py-4">
+        <SideMenuButton>
+          <NaviEvent size="20" color="gray/600" className="shrink-0" />
+          <Text weight="medium" size="16" color="black">
+            여기에 이벤트 이름이 들어간다.
+          </Text>
+          <ChevronRight className="shrink-0" height={24} />
+        </SideMenuButton>
       </Flex>
-      <div className="mb-2 mt-5 h-px w-full bg-[#E2E2FF]"></div>
-      <Flex as="div" direction="column">
+      <Separator color="#E2E2FF" />
+      {/* <div className="bg-[#E2E2FF]"></div> */}
+      <Flex direction="column">
         {menuItems.map((item) => (
-          <Container key={`${item.id}-${item.label}`}>
-            <Container className="my-[5px] py-[6px]">
-              <Text key={`${item.id}-${item.label}`}>{item.label}</Text>
-            </Container>
-            <Flex gap="0.5" direction="column">
-              {item.subMenus.map((subMenu) => (
-                <MakeMenuButton
-                  key={`${subMenu.label}-${subMenu.link}`}
-                  icon={subMenu.icon}
-                  label={subMenu.label}
-                  link={subMenu.link}
-                />
+          <Flex key={item.id} direction="column" className="py-2">
+            {/* Title */}
+            <Flex className="px-2 py-1.5">
+              <Text size="13" weight="semibold" color="slate/900">
+                {item.label}
+              </Text>
+            </Flex>
+            {/* Sub Menu */}
+            <Flex gap="0.25" direction="column">
+              {item.subMenus.map((subMenu, index) => (
+                <TypedLink
+                  key={`sub-menu-${item.id}-${index}`}
+                  href={getDashboardLink(channelName, eventId, subMenu.link)}
+                >
+                  <SideMenuButton className="py-2.5">
+                    <subMenu.icon size="20" />
+                    <Text color="slate/900" weight="medium">
+                      {subMenu.label}
+                    </Text>
+                  </SideMenuButton>
+                </TypedLink>
               ))}
             </Flex>
-          </Container>
+          </Flex>
         ))}
       </Flex>
     </Skeleton>
   );
 };
 
-export { Make, MakeMenuButton, Skeleton };
+export { Make, Skeleton };
