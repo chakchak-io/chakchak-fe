@@ -121,7 +121,6 @@ const Make: FC<{
         </TypedLink>
       </Flex>
       <Separator color="#E2E2FF" />
-      {/* <div className="bg-[#E2E2FF]"></div> */}
       <Flex direction="column">
         {menuItems.map((item) => (
           <Flex key={item.id} direction="column" className="py-2">

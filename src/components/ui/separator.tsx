@@ -11,6 +11,7 @@ const separatorVariant = cva('', {
     color: {
       default: 'bg-border',
       '#E2E2FF': 'bg-[#E2E2FF]',
+      '#E4E4E7': 'bg-[#E4E4E7]',
     },
   },
   defaultVariants: {
