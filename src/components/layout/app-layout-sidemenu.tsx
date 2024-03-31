@@ -26,7 +26,7 @@ import { SideMenuButton } from './side-menu-button';
 const getDashboardLink = (
   channelName: ChannelName,
   eventId: EventId,
-  to:
+  to?:
     | 'dashboard'
     | 'reservation'
     | 'ticket-setting'
@@ -34,6 +34,7 @@ const getDashboardLink = (
     | 'survey-setting'
     | 'time-setting',
 ): AccessibleRoute => {
+  if (!to) return `/channel/${channelName}/event/${eventId}`;
   return `/channel/${channelName}/event/${eventId}/${to}`;
 };
 
@@ -109,13 +110,15 @@ const Make: FC<{
   return (
     <Skeleton>
       <Flex className="py-4">
-        <SideMenuButton>
-          <NaviEvent size="20" color="gray/600" className="shrink-0" />
-          <Text weight="medium" size="16" color="black">
-            여기에 이벤트 이름이 들어간다.
-          </Text>
-          <ChevronRight className="shrink-0" height={24} />
-        </SideMenuButton>
+        <TypedLink href={getDashboardLink(channelName, eventId)}>
+          <SideMenuButton>
+            <NaviEvent size="20" color="gray/600" className="shrink-0" />
+            <Text weight="medium" size="16" color="black">
+              여기에 이벤트 이름이 들어간다.
+            </Text>
+            <ChevronRight className="shrink-0" height={24} />
+          </SideMenuButton>
+        </TypedLink>
       </Flex>
       <Separator color="#E2E2FF" />
       {/* <div className="bg-[#E2E2FF]"></div> */}
