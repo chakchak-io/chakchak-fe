@@ -18,7 +18,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
-import { useClientTypedRouter } from '@/hooks';
+import { useClientTypedRouter, useSupabaseBrowser } from '@/hooks';
+import { useChannelCategoriesQuery } from '@/hooks/channel';
+import useChannelMutation from '@/hooks/channel/useChannelMutation';
 
 const formSchema = z.object({
   channelName: z
@@ -29,8 +31,8 @@ const formSchema = z.object({
     .max(20, {
       message: '채널 이름은 최대 20자 이하여야 합니다.',
     }),
-  category: z.enum(ChannelCategorySelect.data),
-  userEmail: z
+  category: z.string().min(2, { message: '카테고리를 선택해주세요.' }),
+  contactEmail: z
     .string()
     .min(1, {
       message: '이메일을 입력해주세요.',
@@ -49,14 +51,44 @@ const ChannelCreatePage = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       channelName: '',
-      category: '팝업스토어',
-      userEmail: '',
+      category: 'popup',
+      contactEmail: '',
     },
   });
+  const supabase = useSupabaseBrowser();
+  const channelMutation = useChannelMutation(supabase);
+  const { data, error: channelCategoryLoadError } = useChannelCategoriesQuery(supabase);
 
-  const onSubmit = (values: ChannelCreateForm) => {
+  //FIXME: 여기서 toast로 에러 메시지 띄우기
+  if (channelCategoryLoadError) window.alert('채널 카테고리 목록을 불러오지 못했습니다.');
+
+  const onSubmit = async (values: ChannelCreateForm) => {
+    // router.push(`/channel/${values.channelName}`);
     console.log(values);
-    router.push(`/channel/${values.channelName}`);
+    const createChannelDataAdapter = async (formData: ChannelCreateForm) => {
+      const userResponse = await supabase.auth.getUser();
+      if (userResponse.error) {
+        throw new Error('로그인이 필요합니다.');
+      }
+      return {
+        name: formData.channelName,
+        category: formData.category,
+        contact_email: formData.contactEmail,
+        owner: userResponse.data.user.id,
+      };
+    };
+    // we trigger a mutation here
+    const createChannelData = await createChannelDataAdapter(values);
+    channelMutation.mutate(createChannelData, {
+      onSuccess: () => {
+        //FIXME: 여기서 toast로 성공 메시지 띄우기
+        router.push('/channel');
+      },
+      onError: (error) => {
+        console.log(error);
+        //FIXME:
+      },
+    });
   };
 
   return (
@@ -98,7 +130,7 @@ const ChannelCreatePage = () => {
                             <ChannelCategorySelect.SelectValue placeholder="팝업스토어" />
                           </ChannelCategorySelect.SelectTrigger>
                         </FormControl>
-                        <ChannelCategorySelect.SelectContent />
+                        <ChannelCategorySelect.SelectContent channelCategory={data.data ?? []} />
                       </ChannelCategorySelect.Select>
                       <FormMessage />
                     </FormItem>
@@ -106,7 +138,7 @@ const ChannelCreatePage = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="userEmail"
+                  name="contactEmail"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel required>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
 import localFont from 'next/font/local';
 
+import { ReactQueryClientProvider } from '@/components/react-query/ReactQueryClientProvider';
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import { cn } from '@/lib/utils';
 
@@ -44,20 +45,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head />
-      <body className={cn(pretendard.className, sourceSansPro.className)}>
-        <ThemeProvider
-        // @TODO: enable when support dark mode
-        // attribute="class"
-        // defaultTheme="system"
-        // enableSystem
-        // disableTransitionOnChange
-        >
-          {children}
-          <Toaster />
-        </ThemeProvider>
-      </body>
-    </html>
+    <ReactQueryClientProvider>
+      <html lang="en">
+        <head />
+        <body className={cn(pretendard.className, sourceSansPro.className)}>
+          <ThemeProvider
+          // @TODO: enable when support dark mode
+          // attribute="class"
+          // defaultTheme="system"
+          // enableSystem
+          // disableTransitionOnChange
+          >
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </body>
+      </html>
+    </ReactQueryClientProvider>
   );
 }
