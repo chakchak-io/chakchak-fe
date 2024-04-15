@@ -1,9 +1,10 @@
 'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { ChannelCategorySelect } from '@/components/common/input';
+import ChannelCategorySelectContent from '@/components/common/input/ChannelCategorySelectContent';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
@@ -19,7 +20,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
 import { useClientTypedRouter, useSupabaseBrowser } from '@/hooks';
-import { useChannelCategoriesQuery } from '@/hooks/channel';
 import useChannelMutation from '@/hooks/channel/useChannelMutation';
 
 const formSchema = z.object({
@@ -57,14 +57,9 @@ const ChannelCreatePage = () => {
   });
   const supabase = useSupabaseBrowser();
   const channelMutation = useChannelMutation(supabase);
-  const { data, error: channelCategoryLoadError } = useChannelCategoriesQuery(supabase);
-
-  //FIXME: 여기서 toast로 에러 메시지 띄우기
-  if (channelCategoryLoadError) window.alert('채널 카테고리 목록을 불러오지 못했습니다.');
 
   const onSubmit = async (values: ChannelCreateForm) => {
     // router.push(`/channel/${values.channelName}`);
-    console.log(values);
     const createChannelDataAdapter = async (formData: ChannelCreateForm) => {
       const userResponse = await supabase.auth.getUser();
       if (userResponse.error) {
@@ -115,7 +110,7 @@ const ChannelCreatePage = () => {
                     </FormItem>
                   )}
                 />
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="category"
                   render={({ field }) => (
@@ -130,12 +125,15 @@ const ChannelCreatePage = () => {
                             <ChannelCategorySelect.SelectValue placeholder="팝업스토어" />
                           </ChannelCategorySelect.SelectTrigger>
                         </FormControl>
-                        <ChannelCategorySelect.SelectContent channelCategory={data.data ?? []} />
+                        <SSRSafeSuspense fallback={<div>Loading...</div>}>
+                          <ChannelCategorySelect.SelectContent channelCategory={data.data ?? []} />
+                        </SSRSafeSuspense>
                       </ChannelCategorySelect.Select>
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
+                <ChannelCategorySelectContent form={form} />
                 <FormField
                   control={form.control}
                   name="contactEmail"

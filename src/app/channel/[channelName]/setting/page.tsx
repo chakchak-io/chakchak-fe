@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { ChannelCategorySelect } from '@/components/common/input';
+import SSRSafeSuspense from '@/components/common/SSRSafeSuspense';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -122,9 +123,11 @@ const ChannelSettingPage: NextPage<
                                 <ChannelCategorySelect.SelectValue placeholder="팝업스토어" />
                               </ChannelCategorySelect.SelectTrigger>
                             </FormControl>
-                            <ChannelCategorySelect.SelectContent
-                              channelCategory={channelCategories.data ?? []}
-                            />
+                            <SSRSafeSuspense fallback={<>Loading...</>}>
+                              <ChannelCategorySelect.SelectContent
+                                channelCategory={channelCategories.data ?? []}
+                              />
+                            </SSRSafeSuspense>
                           </ChannelCategorySelect.Select>
                           <FormMessage />
                         </FormItem>

@@ -7,4 +7,6 @@ export const useChannelCategoriesQuery = (supabase: TypedSupabaseClient) =>
   useSuspenseQuery({
     queryKey: ['channelCategories', supabase],
     queryFn: () => getChannelCategories(supabase),
+    retry: false,
+    staleTime: 1000 * 60 * 60,
   });
