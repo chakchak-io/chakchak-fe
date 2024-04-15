@@ -111,12 +111,13 @@ const Make: FC<{
   eventId: EventId;
 }> = ({ channelName, eventId }) => {
   const pathname = usePathname();
+  const rootLink = getDashboardLink(channelName, eventId);
 
   return (
     <Skeleton>
       <Flex className="py-4">
-        <TypedLink href={getDashboardLink(channelName, eventId)}>
-          <SideMenuButton>
+        <TypedLink href={rootLink}>
+          <SideMenuButton selected={pathname === rootLink}>
             <NaviEvent size="20" className="shrink-0" />
             <Text weight="medium" size="16" color="black">
               여기에 이벤트 이름이 들어간다.

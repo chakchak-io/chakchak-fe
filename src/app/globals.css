@@ -15,6 +15,10 @@
     --gray-600: 240 5% 34%;
     --gray-800: 240 4% 16%;
     --gray-900: 240 6% 10%;
+    --primary-50: 252 100% 96%;
+    --primary-100: 252 89% 71%;
+    --primary-200: 252 89% 61%;
+    --primary-300: 252 89% 51%;
     /* shadcn ui */
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
@@ -22,16 +26,13 @@
     --card-foreground: 20 14.3% 4.1%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 14.3% 4.1%;
-    /* primary/200 */
-    --primary: 252 89% 61%;
-    /* primary/50 */
-    --primary-foreground: 252 100% 96%;
-    --primary-300: 252, 89%, 51%;
+    --primary: var(--primary-200);
+    --primary-foreground: var(--primary-50);
     --secondary: 60 4.8% 95.9%;
     --secondary-foreground: 24 9.8% 10%;
     --muted: 60 4.8% 95.9%;
     /* gray-300 */
-    --muted-foreground: var(--gray-300);
+    --muted-foreground: var(--gray-500);
     --accent: var(--slate-100);
     --accent-foreground: 24 9.8% 10%;
     --destructive: 0 84.2% 60.2%;

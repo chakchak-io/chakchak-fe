@@ -35,6 +35,10 @@ const buttonVariants = cva(
         true: '',
         false: '',
       },
+      activated: {
+        true: '',
+        false: '',
+      },
       radius: radiusVariants,
     },
     compoundVariants: [
@@ -69,6 +73,15 @@ const buttonVariants = cva(
         selected: true,
         className: 'text-accent underline-offset-4',
       },
+      // set activated style
+      {
+        activated: true,
+        variant: 'default',
+        className:
+          'bg-primary-foreground text-primary hover:bg-primary/90 hover:text-primary-foreground',
+      },
+      //@TODO: should define more activated style
+      //
     ],
     defaultVariants: {
       variant: 'default',
@@ -98,6 +111,7 @@ const Button = React.forwardRef<
       size,
       radius,
       selected,
+      activated,
       // tag props
       className,
       type = 'button',
@@ -111,7 +125,7 @@ const Button = React.forwardRef<
     return (
       <Comp
         className={cn(
-          buttonVariants({ variant, size, radius, selected }),
+          buttonVariants({ variant, size, radius, selected, activated }),
           fullWidth && 'w-full',
           className,
         )}
