@@ -1,5 +1,8 @@
+'use client';
+
 import { cx } from 'class-variance-authority';
 import { ChevronRight } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { FC, PropsWithChildren } from 'react';
 import { v4 as uuid } from 'uuid';
 
@@ -87,7 +90,7 @@ const menuItems = [
   subMenus: {
     icon: FC<PropsFrom<typeof ActionCopy>>;
     label: string;
-    link: string;
+    link: Parameters<typeof getDashboardLink>[2];
   }[];
 }[];
 
@@ -107,12 +110,14 @@ const Make: FC<{
   channelName: ChannelName;
   eventId: EventId;
 }> = ({ channelName, eventId }) => {
+  const pathname = usePathname();
+
   return (
     <Skeleton>
       <Flex className="py-4">
         <TypedLink href={getDashboardLink(channelName, eventId)}>
           <SideMenuButton>
-            <NaviEvent size="20" color="gray/600" className="shrink-0" />
+            <NaviEvent size="20" className="shrink-0" />
             <Text weight="medium" size="16" color="black">
               여기에 이벤트 이름이 들어간다.
             </Text>
@@ -132,19 +137,19 @@ const Make: FC<{
             </Flex>
             {/* Sub Menu */}
             <Flex gap="0.25" direction="column">
-              {item.subMenus.map((subMenu, index) => (
-                <TypedLink
-                  key={`sub-menu-${item.id}-${index}`}
-                  href={getDashboardLink(channelName, eventId, subMenu.link)}
-                >
-                  <SideMenuButton className="py-2.5">
-                    <subMenu.icon size="20" />
-                    <Text color="slate/900" weight="medium">
-                      {subMenu.label}
-                    </Text>
-                  </SideMenuButton>
-                </TypedLink>
-              ))}
+              {item.subMenus.map((subMenu, index) => {
+                const ref = getDashboardLink(channelName, eventId, subMenu.link);
+                return (
+                  <TypedLink key={`sub-menu-${item.id}-${index}`} href={ref}>
+                    <SideMenuButton className="py-2.5" selected={pathname === ref}>
+                      <subMenu.icon size="20" />
+                      <Text color="slate/900" weight="medium">
+                        {subMenu.label}
+                      </Text>
+                    </SideMenuButton>
+                  </TypedLink>
+                );
+              })}
             </Flex>
           </Flex>
         ))}

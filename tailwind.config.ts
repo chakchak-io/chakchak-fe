@@ -34,6 +34,9 @@ const config = {
         sourceSansPro: ['var(--font-source-sans-pro)'],
       },
       colors: {
+        slate: {
+          100: 'hsl(var(--slate-100))',
+        },
         gray: {
           50: 'hsl(var(--gray-50))',
           100: 'hsl(var(--gray-100))',

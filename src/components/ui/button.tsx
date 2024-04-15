@@ -31,8 +31,45 @@ const buttonVariants = cva(
         lg: 'h-11 px-8',
         icon: 'size-20',
       },
+      selected: {
+        true: '',
+        false: '',
+      },
       radius: radiusVariants,
     },
+    compoundVariants: [
+      // set selected style
+      {
+        selected: true,
+        variant: 'default',
+        className: 'bg-primary/90 text-primary-foreground',
+      },
+      {
+        selected: true,
+        variant: 'destructive',
+        className: 'bg-destructive/90 text-destructive-foreground',
+      },
+      {
+        selected: true,
+        variant: 'outline',
+        className: 'bg-accent text-accent-foreground',
+      },
+      {
+        selected: true,
+        variant: 'secondary',
+        className: 'bg-secondary/80 text-secondary-foreground',
+      },
+      {
+        variant: 'ghost',
+        selected: true,
+        className: 'bg-accent text-accent-foreground',
+      },
+      {
+        variant: 'link',
+        selected: true,
+        className: 'text-accent underline-offset-4',
+      },
+    ],
     defaultVariants: {
       variant: 'default',
       size: 'default',
@@ -60,6 +97,7 @@ const Button = React.forwardRef<
       variant,
       size,
       radius,
+      selected,
       // tag props
       className,
       type = 'button',
@@ -72,7 +110,11 @@ const Button = React.forwardRef<
     const Comp = asChild ? Slot : 'button';
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, radius, className }), fullWidth && 'w-full')}
+        className={cn(
+          buttonVariants({ variant, size, radius, selected }),
+          fullWidth && 'w-full',
+          className,
+        )}
         ref={ref}
         type={type}
         {...props}

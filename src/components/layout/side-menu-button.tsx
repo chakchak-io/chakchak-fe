@@ -8,8 +8,9 @@ import { Flex } from '../ui/flex';
 export const SideMenuButton: FC<
   PropsWithChildren<{
     className?: string;
+    selected?: boolean;
   }>
-> = ({ className, children }) => {
+> = ({ className, children, selected }) => {
   // It is button, but shape is like children, so delegate button prop to child using asChild
 
   return (
@@ -17,6 +18,7 @@ export const SideMenuButton: FC<
       <Button
         variant="ghost"
         className={cx('h-auto cursor-pointer whitespace-normal p-2 text-left', className)}
+        selected={selected}
       >
         {children}
       </Button>

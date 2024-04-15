@@ -6,6 +6,7 @@
   /* @WARN: do not put comma on hsl value */
   :root {
     /* custom color */
+    --slate-100: 210 40% 96%;
     --gray-50: 0 0% 98%;
     --gray-100: 240 5% 96%;
     --gray-300: 240 5% 84%;
@@ -31,7 +32,7 @@
     --muted: 60 4.8% 95.9%;
     /* gray-300 */
     --muted-foreground: var(--gray-300);
-    --accent: 60 4.8% 95.9%;
+    --accent: var(--slate-100);
     --accent-foreground: 24 9.8% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 249 64% 98%;
