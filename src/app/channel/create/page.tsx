@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
+import { useToast } from '@/components/ui/use-toast';
 import { useClientTypedRouter, useSupabaseBrowser } from '@/hooks';
 import useChannelMutation from '@/hooks/channel/useChannelMutation';
 
@@ -57,9 +58,9 @@ const ChannelCreatePage = () => {
   });
   const supabase = useSupabaseBrowser();
   const channelMutation = useChannelMutation(supabase);
+  const { toast } = useToast();
 
   const onSubmit = async (values: ChannelCreateForm) => {
-    // router.push(`/channel/${values.channelName}`);
     const createChannelDataAdapter = async (formData: ChannelCreateForm) => {
       const userResponse = await supabase.auth.getUser();
       if (userResponse.error) {
@@ -77,11 +78,25 @@ const ChannelCreatePage = () => {
     channelMutation.mutate(createChannelData, {
       onSuccess: () => {
         //FIXME: 여기서 toast로 성공 메시지 띄우기
+        toast({
+          title: '채널이 생성되었습니다.',
+        });
+
         router.push('/channel');
       },
       onError: (error) => {
-        console.log(error);
-        //FIXME:
+        // if the message contains "duplicate key value violates unique constraint" then we know it's a duplicate error
+        const duplicateRegex = /duplicate key value violates unique constraint/;
+        if (duplicateRegex.test(error.message)) {
+          toast({
+            title: '이미 존재하는 채널 이름입니다.',
+          });
+          return;
+        }
+
+        toast({
+          title: '채널 생성에 실패했습니다. 다시 시도해주세요.',
+        });
       },
     });
   };
@@ -110,29 +125,6 @@ const ChannelCreatePage = () => {
                     </FormItem>
                   )}
                 />
-                {/* <FormField
-                  control={form.control}
-                  name="category"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel required>채널 카테고리를 선택해주세요.</FormLabel>
-                      <ChannelCategorySelect.Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <ChannelCategorySelect.SelectTrigger>
-                            <ChannelCategorySelect.SelectValue placeholder="팝업스토어" />
-                          </ChannelCategorySelect.SelectTrigger>
-                        </FormControl>
-                        <SSRSafeSuspense fallback={<div>Loading...</div>}>
-                          <ChannelCategorySelect.SelectContent channelCategory={data.data ?? []} />
-                        </SSRSafeSuspense>
-                      </ChannelCategorySelect.Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                /> */}
                 <ChannelCategorySelectContent form={form} />
                 <FormField
                   control={form.control}

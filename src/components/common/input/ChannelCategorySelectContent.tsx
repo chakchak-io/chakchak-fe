@@ -1,12 +1,10 @@
 'use client';
-import { useSearchParams } from 'next/navigation';
 import { UseFormReturn } from 'react-hook-form';
 
+import { ChannelCategorySelect } from '@/components/common/input';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useSupabaseBrowser } from '@/hooks';
 import { useChannelCategoriesQuery } from '@/hooks/channel';
-
-import { ChannelCategorySelect } from './ChannelCategorySelect';
 
 import SSRSafeSuspense from '../SSRSafeSuspense';
 
@@ -24,11 +22,9 @@ const ChannelCategorySelectContent = ({
   >;
 }) => {
   const supabase = useSupabaseBrowser();
-  const something = useSearchParams(); //FIXME: This can be statically optimized.
-  console.log(something);
   const { data, error, isLoading } = useChannelCategoriesQuery(supabase);
 
-  if (error) return <div>failed to load data</div>;
+  if (error) return null;
   if (isLoading) return <div>Loading...</div>;
 
   return (
