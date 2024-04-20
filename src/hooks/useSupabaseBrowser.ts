@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
 
-import { createClient } from '@/service/supabase/client';
+import { createClient } from '@/utils/supabase/client';
 
 export const useSupabaseBrowser = () => useMemo(() => createClient(), []);

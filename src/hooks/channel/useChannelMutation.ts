@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { TypedSupabaseClient } from '@/lib/types';
-import { createChannel } from '@/service/channel/queries';
+import { createChannel } from '@/utils/channel/queries';
 import { ChannelCreateData } from '~/types/ChannelCreateData';
 
 const useChannelMutation = (supabase: TypedSupabaseClient) => {
