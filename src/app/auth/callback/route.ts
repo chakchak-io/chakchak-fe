@@ -2,7 +2,7 @@ import { type EmailOtpType } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
 
-import { createClient } from '@/service/supabase/actions';
+import { createClient } from '@/utils/supabase/actions';
 
 export async function GET(request: NextRequest) {
   const cookieStore = cookies();

@@ -5,4 +5,4 @@ export const getChannelCategories = async (client: TypedSupabaseClient) =>
   await client.from('channel-category').select();
 
 export const createChannel = async (client: TypedSupabaseClient, data: ChannelCreateData) =>
-  await client.from('channel').insert(data);
+  await client.from('channel').insert(data).throwOnError();

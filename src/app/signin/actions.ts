@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import { toast } from '@/components/ui/use-toast';
-import { createClient } from '@/service/supabase/actions';
+import { createClient } from '@/utils/supabase/actions';
 
 import { SigninForm } from './page';
 
