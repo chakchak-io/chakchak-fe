@@ -1,9 +1,10 @@
 'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { ChannelCategorySelect } from '@/components/common/input';
+import ChannelCategorySelectContent from '@/components/common/input/ChannelCategorySelectContent';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
@@ -18,7 +19,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
-import { useClientTypedRouter } from '@/hooks';
+import { useClientTypedRouter, useSupabaseBrowser } from '@/hooks';
+import useChannelMutation from '@/hooks/channel/useChannelMutation';
 
 const formSchema = z.object({
   channelName: z
@@ -29,8 +31,8 @@ const formSchema = z.object({
     .max(20, {
       message: '채널 이름은 최대 20자 이하여야 합니다.',
     }),
-  category: z.enum(ChannelCategorySelect.data),
-  userEmail: z
+  category: z.string().min(2, { message: '카테고리를 선택해주세요.' }),
+  contactEmail: z
     .string()
     .min(1, {
       message: '이메일을 입력해주세요.',
@@ -49,14 +51,39 @@ const ChannelCreatePage = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       channelName: '',
-      category: '팝업스토어',
-      userEmail: '',
+      category: 'popup',
+      contactEmail: '',
     },
   });
+  const supabase = useSupabaseBrowser();
+  const channelMutation = useChannelMutation(supabase);
 
-  const onSubmit = (values: ChannelCreateForm) => {
-    console.log(values);
-    router.push(`/channel/${values.channelName}`);
+  const onSubmit = async (values: ChannelCreateForm) => {
+    // router.push(`/channel/${values.channelName}`);
+    const createChannelDataAdapter = async (formData: ChannelCreateForm) => {
+      const userResponse = await supabase.auth.getUser();
+      if (userResponse.error) {
+        throw new Error('로그인이 필요합니다.');
+      }
+      return {
+        name: formData.channelName,
+        category: formData.category,
+        contact_email: formData.contactEmail,
+        owner: userResponse.data.user.id,
+      };
+    };
+    // we trigger a mutation here
+    const createChannelData = await createChannelDataAdapter(values);
+    channelMutation.mutate(createChannelData, {
+      onSuccess: () => {
+        //FIXME: 여기서 toast로 성공 메시지 띄우기
+        router.push('/channel');
+      },
+      onError: (error) => {
+        console.log(error);
+        //FIXME:
+      },
+    });
   };
 
   return (
@@ -83,7 +110,7 @@ const ChannelCreatePage = () => {
                     </FormItem>
                   )}
                 />
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="category"
                   render={({ field }) => (
@@ -98,15 +125,18 @@ const ChannelCreatePage = () => {
                             <ChannelCategorySelect.SelectValue placeholder="팝업스토어" />
                           </ChannelCategorySelect.SelectTrigger>
                         </FormControl>
-                        <ChannelCategorySelect.SelectContent />
+                        <SSRSafeSuspense fallback={<div>Loading...</div>}>
+                          <ChannelCategorySelect.SelectContent channelCategory={data.data ?? []} />
+                        </SSRSafeSuspense>
                       </ChannelCategorySelect.Select>
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
+                <ChannelCategorySelectContent form={form} />
                 <FormField
                   control={form.control}
-                  name="userEmail"
+                  name="contactEmail"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel required>
