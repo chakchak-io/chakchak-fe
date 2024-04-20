@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { ChannelCategorySelect } from '@/components/common/input';
+import SSRSafeSuspense from '@/components/common/SSRSafeSuspense';
 import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -24,7 +25,8 @@ import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
 import { useToast } from '@/components/ui/use-toast';
 import { ChannelName } from '@/const/router';
-import { useClientTypedRouter } from '@/hooks';
+import { useClientTypedRouter, useSupabaseBrowser } from '@/hooks';
+import { useChannelCategoriesQuery } from '@/hooks/channel';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
 
 const formSchema = z.object({
@@ -51,6 +53,8 @@ const ChannelSettingPage: NextPage<
 > = ({ params }) => {
   const { toast } = useToast();
   const router = useClientTypedRouter();
+  const supabase = useSupabaseBrowser();
+  const { data: channelCategories } = useChannelCategoriesQuery(supabase);
   const form = useForm<ChannelSettingForm>({
     mode: 'all',
     resolver: zodResolver(formSchema),
@@ -119,7 +123,11 @@ const ChannelSettingPage: NextPage<
                                 <ChannelCategorySelect.SelectValue placeholder="팝업스토어" />
                               </ChannelCategorySelect.SelectTrigger>
                             </FormControl>
-                            <ChannelCategorySelect.SelectContent />
+                            <SSRSafeSuspense fallback={<>Loading...</>}>
+                              <ChannelCategorySelect.SelectContent
+                                channelCategory={channelCategories.data ?? []}
+                              />
+                            </SSRSafeSuspense>
                           </ChannelCategorySelect.Select>
                           <FormMessage />
                         </FormItem>
