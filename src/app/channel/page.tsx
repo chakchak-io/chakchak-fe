@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
 import { match } from 'ts-pattern';
 
 import { Center } from '@/components/common/display';
@@ -11,6 +11,9 @@ import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { Flex } from '@/components/ui/flex';
 import { Text } from '@/components/ui/text';
+import { useSupabaseBrowser } from '@/hooks';
+import { useUser } from '@/hooks/auth/useUser';
+import { useChannelQuery } from '@/hooks/channel';
 
 const NoCreatedChannels = () => {
   return (
@@ -32,6 +35,7 @@ const NoCreatedChannels = () => {
           </Flex>
           <Flex justify="center">
             {/* @TODO: padding 관련 논의 필요 */}
+
             <Button asChild>
               <TypedLink href="/channel/create">
                 <Flex align="center" gap="2">
@@ -47,7 +51,12 @@ const NoCreatedChannels = () => {
 };
 
 const ChannelPage = () => {
-  const [channels] = useState([]);
+  const { user } = useUser();
+  const supabase = useSupabaseBrowser();
+  const ownerId = user?.id;
+  const { data } = useChannelQuery(supabase, ownerId || ''); //FIXME: ownerId가 없을 때 에러 처리.
+  const channels = data.data;
+
   return (
     <main>
       <AppLayout.Header.MakeAuthedHeaderTemporailyMade />
@@ -55,7 +64,18 @@ const ChannelPage = () => {
         {match(channels)
           .with([], () => <NoCreatedChannels />)
           .otherwise(() => (
-            <div>Channels</div>
+            <Flex direction="column" gap="4">
+              <Text weight="bold" size="32">
+                내 채널
+              </Text>
+              <Flex direction="column" gap="4">
+                {channels?.map((channel) => (
+                  <Link key={channel.id} href={`/channel/${channel.name}`}>
+                    <Text>{channel.name}</Text>
+                  </Link>
+                ))}
+              </Flex>
+            </Flex>
           ))}
       </Container>
     </main>
