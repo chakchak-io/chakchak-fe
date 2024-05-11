@@ -14,14 +14,6 @@ const globalAxios = axios.create({
   },
 });
 
-// @TODO: replace to real API
-
-interface AppAccount {
-  id: string;
-  name: string;
-  email: string;
-}
-
 export class BaseAPI {
   protected configuration: Configuration | undefined;
 
@@ -37,7 +29,8 @@ export class BaseAPI {
     this.axios = axios;
   }
 
-  public getAppAccount = async () => {
+  public getUserAccount = async (userId: string) => {
+    console.log('getAppAccount', userId);
     // const response = await this.axios.get<{
     //   id: string;
     //   name: string;
@@ -46,9 +39,41 @@ export class BaseAPI {
     // return response.data;
 
     return {
-      id: uuid(),
-      name: 'Tinkerbell',
-      email: 'tinerbell@eventfairy.com',
-    } as AppAccount;
+      data: {
+        id: uuid(),
+        name: 'Tinkerbell',
+        email: 'tinerbell@eventfairy.com',
+      },
+    };
+  };
+
+  public updateUserAccount = async (userId: string) => {
+    console.log('updateUser', userId);
+
+    return {
+      data: {
+        id: uuid(),
+        name: 'Tinkerbell modified',
+        email: 'tinerbell@eventfairy.com',
+      },
+    };
+  };
+
+  public deleteUserAccount = async (userId: string): Promise<void> => {
+    console.log('deleteUser', userId);
+
+    return;
+  };
+
+  public getEventEnrollmentInfo = async () => {
+    return {
+      data: [
+        {
+          id: uuid(),
+          name: 'Tinkerbell',
+          email: 'tinerbell@eventfairy.com',
+        },
+      ],
+    };
   };
 }
