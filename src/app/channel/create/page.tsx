@@ -21,7 +21,7 @@ import { Input } from '@/components/ui/input';
 import { Text } from '@/components/ui/text';
 import { useToast } from '@/components/ui/use-toast';
 import { useClientTypedRouter, useSupabaseBrowser } from '@/hooks';
-import useChannelMutation from '@/hooks/channel/useChannelMutation';
+import { useChannelMutation } from '@/hooks/channel';
 
 const formSchema = z.object({
   channelName: z
