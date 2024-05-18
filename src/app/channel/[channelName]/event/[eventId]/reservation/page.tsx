@@ -2,6 +2,7 @@
 
 import { G } from '@mobily/ts-belt';
 import { NextPage } from 'next';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { FC, useMemo } from 'react';
 
 import { IconlySharpBoldNotification } from '@/components/common/icon';
@@ -13,8 +14,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
 import { createRandomReservation } from '@/const/mock';
 import { ChannelName, EventId } from '@/const/router';
-import { useClientTypedRouter } from '@/hooks';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
+import { createQueryString } from '@/lib/string';
 
 import { AttendanceStatus } from './attendance-status';
 import { Reservation, reservationColumns } from './columns';
@@ -39,7 +40,9 @@ const EventTicketSettingPage: NextPage<
   }>
 > = ({ params: { channelName, eventId }, searchParams }) => {
   const tab = tabGuard(searchParams.tab) ? searchParams.tab : tabList[0];
-  const router = useClientTypedRouter();
+  const searchParamsByHook = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
   // @TODO: do api call here)
   // @TODO: after real api is implemented, do not prop dril data from root of page
@@ -79,8 +82,8 @@ const EventTicketSettingPage: NextPage<
                   key={`tab-trigger-${tab}`}
                   value={tab}
                   onClick={() => {
-                    router.replace(
-                      `/channel/${channelName}/event/${eventId}/reservation?tab=${tab}`,
+                    replace(
+                      pathname + '?' + createQueryString(searchParamsByHook, 'tab', tab),
                       // to prevent scroll to top
                       {
                         scroll: false,
