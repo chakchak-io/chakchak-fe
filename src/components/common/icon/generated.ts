@@ -1,5 +1,7 @@
 export { default as ActionCopy } from './generated/ActionCopy';
+export { default as ActionEmail } from './generated/ActionEmail';
 export { default as ActionPlusCircle } from './generated/ActionPlusCircle';
+export { default as ActionTrash } from './generated/ActionTrash';
 export { default as BrandLogo } from './generated/BrandLogo';
 export { default as CaretLeft } from './generated/CaretLeft';
 export { default as CaretRight } from './generated/CaretRight';
