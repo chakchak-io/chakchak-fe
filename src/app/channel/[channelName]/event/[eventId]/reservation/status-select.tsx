@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { match } from 'ts-pattern';
 
 import {
@@ -32,16 +32,20 @@ const StatusSelectItem: FC<{
 export const StatusSelect: FC<{
   status: Status;
 }> = ({ status }) => {
+  // @TODO: remove state when api is ready, using cache invalidation
+  const [currentStatus, setCurrentStatus] = useState<Status>(status);
+
   const handleChange = (value: string) => {
     // @TODO: do api call here(mutation)
     console.log(value);
+    setCurrentStatus(value as Status);
   };
   return (
-    <Select defaultValue={status} onValueChange={handleChange}>
+    <Select value={currentStatus} onValueChange={handleChange}>
       {/* @TODO: make it to selectTrigger cva variable */}
       <SelectTrigger
         className={cn(
-          match(status)
+          match(currentStatus)
             .with('attended', () => 'border-positive focus:ring-positive')
             .with('pending', () => 'border-amber-200 focus:ring-amber-200')
             .with('not-attended', () => 'border-danger focus:ring-danger')
@@ -52,9 +56,9 @@ export const StatusSelect: FC<{
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
+          <StatusSelectItem status="pending" />
           <StatusSelectItem status="attended" />
           <StatusSelectItem status="not-attended" />
-          <StatusSelectItem status="pending" />
         </SelectGroup>
       </SelectContent>
     </Select>
