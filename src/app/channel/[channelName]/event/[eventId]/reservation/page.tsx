@@ -18,7 +18,7 @@ import { CommonNextPageProps } from '@/lib/nextjs/type';
 import { AttendanceStatus } from './attendance-status';
 import { Reservation, reservationColumns } from './columns';
 import { SendReservationTicketButton } from './send-reservation-ticket-button';
-import { tabList } from './tab-list';
+import { tabGuard, tabList } from './tab-list';
 
 const RenderTabContent: FC<{
   // @TODO: remove it and replace to api
@@ -34,7 +34,7 @@ const EventTicketSettingPage: NextPage<
     eventId: EventId;
   }>
 > = ({ params: { channelName, eventId }, searchParams }) => {
-  const tab = typeof searchParams.tab === 'string' ? searchParams.tab : tabList[0];
+  const tab = tabGuard(searchParams.tab) ? searchParams.tab : tabList[0];
   const router = useClientTypedRouter();
 
   // @TODO: do api call here)
