@@ -2,10 +2,10 @@
 
 import { NextPage } from 'next';
 
-import { Text } from '@/components/ui/text';
+import { Flex } from '@/components/ui/flex';
 
 const EventDashboardPage: NextPage = () => {
-  return <Text>Dashboard Page</Text>;
+  return <Flex></Flex>;
 };
 
 export default EventDashboardPage;

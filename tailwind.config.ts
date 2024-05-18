@@ -34,6 +34,11 @@ const config = {
         sourceSansPro: ['var(--font-source-sans-pro)'],
       },
       colors: {
+        positive: `hsl(var(--positive))`,
+        danger: '#F64582',
+        amber: {
+          200: '#FDE68A',
+        },
         slate: {
           100: 'hsl(var(--slate-100))',
         },
@@ -47,7 +52,6 @@ const config = {
           800: 'hsl(var(--gray-800))',
           900: 'hsl(var(--gray-900))',
         },
-        danger: '#F64582',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

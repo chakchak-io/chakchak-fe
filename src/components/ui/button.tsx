@@ -29,7 +29,8 @@ const buttonVariants = cva(
         default: 'h-10 px-4 py-3',
         sm: 'h-9 px-3',
         lg: 'h-11 px-8',
-        icon: 'size-20',
+        'big-icon': 'size-20',
+        icon: 'size-6',
       },
       selected: {
         true: '',

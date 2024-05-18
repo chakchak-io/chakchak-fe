@@ -11,6 +11,7 @@ import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Container } from '@/components/ui/container';
+import { DataTable } from '@/components/ui/data-table/data-table';
 import { Flex } from '@/components/ui/flex';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
@@ -20,7 +21,6 @@ import { typedRedirect } from '@/lib/nextjs/server-navigation';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
 
 import { Event, eventColumns } from './columns';
-import { EventDataTable } from './data-table';
 
 const DemoTable: FC<{
   channelName: ChannelName;
@@ -52,7 +52,7 @@ const DemoTable: FC<{
     },
   ];
   return (
-    <EventDataTable
+    <DataTable
       columns={eventColumns}
       data={data}
       onRowClick={(row) => {

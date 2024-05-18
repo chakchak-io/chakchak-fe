@@ -6,6 +6,7 @@
   /* @WARN: do not put comma on hsl value */
   :root {
     /* custom color */
+    --positive: 146 100% 27%;
     --slate-100: 210 40% 96%;
     --gray-50: 0 0% 98%;
     --gray-100: 240 5% 96%;

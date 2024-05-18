@@ -174,7 +174,7 @@ const ActiveIconButton: FC<
 > = ({ active, children, className, ...props }) => {
   return (
     <Button
-      size="icon"
+      size="big-icon"
       variant="ghost"
       className={cn(
         className,
