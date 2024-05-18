@@ -1,5 +1,6 @@
 'use client';
 
+import { G } from '@mobily/ts-belt';
 import { NextPage } from 'next';
 import { FC, useMemo } from 'react';
 
@@ -17,14 +18,17 @@ import { CommonNextPageProps } from '@/lib/nextjs/type';
 
 import { AttendanceStatus } from './attendance-status';
 import { Reservation, reservationColumns } from './columns';
+import { DateSelect } from './date-select';
 import { SendReservationTicketButton } from './send-reservation-ticket-button';
 import { tabGuard, tabList } from './tab-list';
 
 const RenderTabContent: FC<{
+  tab: (typeof tabList)[number];
   // @TODO: remove it and replace to api
   reservations: Reservation[];
-}> = ({ reservations }) => {
-  // @TODO: do api call here
+}> = ({ tab, reservations }) => {
+  // @TODO: do api call here using tab
+  console.log(tab);
   return <DataTable columns={reservationColumns} data={reservations} />;
 };
 
@@ -90,13 +94,21 @@ const EventTicketSettingPage: NextPage<
                 </TabsTrigger>
               ))}
             </TabsList>
-            <Flex direction="column" gap="1">
-              <AttendanceStatus reservations={data} />
-              {tabList.map((tab) => (
-                <TabsContent key={`tab-content-${tab}`} value={tab}>
-                  <RenderTabContent reservations={data} />
-                </TabsContent>
-              ))}
+            <Flex direction="column" gap="1.5" className="mt-6">
+              {tab === 'by-time' && (
+                <>
+                  <DateSelect date={G.isString(searchParams.date) ? searchParams.date : ''} />
+                  <Flex>시간 설정 스크롤 섹션</Flex>
+                </>
+              )}
+              <Flex direction="column" gap="1">
+                <AttendanceStatus reservations={data} />
+                {tabList.map((tab) => (
+                  <TabsContent key={`tab-content-${tab}`} value={tab}>
+                    <RenderTabContent tab={tab} reservations={data} />
+                  </TabsContent>
+                ))}
+              </Flex>
             </Flex>
           </Tabs>
         </CardContent>

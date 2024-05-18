@@ -60,6 +60,7 @@ const textVariant = cva(['m-0'], {
       'slate/900': 'text-slate-900',
       // unnamed color
       '#ff6a00': 'text-[#ff6a00]',
+      '#0f172a': 'text-[#0f172a]',
     },
   },
   defaultVariants: {
