@@ -1,7 +1,8 @@
 'use client';
 
+import { O } from '@mobily/ts-belt';
 import { ColumnDef, createColumnHelper } from '@tanstack/react-table';
-import { match } from 'ts-pattern';
+import { match, P } from 'ts-pattern';
 
 import { ReservedPersonnelDeleteAlertButton } from './reserved-personnel-delete-alert-button';
 import { StatusSelect } from './status-select';
@@ -10,9 +11,9 @@ export type Reservation = {
   id: string;
   name: string;
   phoneNumber: string;
-  email?: string;
-  gender: 'male' | 'female';
-  status: 'in-progress' | 'pending' | 'end';
+  email: O.Option<string>;
+  gender: O.Option<'male' | 'female'>;
+  status: 'attended' | 'pending' | 'not-attended';
 };
 
 const columnHelper = createColumnHelper<Reservation>();
@@ -37,6 +38,7 @@ export const reservationColumns: ColumnDef<Reservation, any>[] = [
     header: '성별',
     cell: ({ row }) =>
       match(row.original.gender)
+        .with(P.nullish, () => '-')
         .with('male', () => '남자')
         .with('female', () => '여자')
         .exhaustive(),

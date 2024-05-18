@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import { O } from '@mobily/ts-belt';
 
 import { Reservation } from '@/app/channel/[channelName]/event/[eventId]/reservation/columns';
 
@@ -11,11 +12,11 @@ export const createRandomReservation = (): Reservation => {
     email: faker.helpers.maybe(faker.internet.email, {
       probability: 0.5,
     }),
-    gender: faker.helpers.arrayElement<'male' | 'female'>(['male', 'female']),
-    status: faker.helpers.arrayElement<'in-progress' | 'pending' | 'end'>([
-      'in-progress',
+    gender: faker.helpers.arrayElement<O.Option<'male' | 'female'>>(['male', 'female', O.None]),
+    status: faker.helpers.arrayElement<'attended' | 'not-attended' | 'pending'>([
+      'attended',
+      'not-attended',
       'pending',
-      'end',
     ]),
   };
 };

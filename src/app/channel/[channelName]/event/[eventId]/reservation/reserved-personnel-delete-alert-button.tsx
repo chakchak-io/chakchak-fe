@@ -20,6 +20,7 @@ import { Reservation } from './columns';
 export const ReservedPersonnelDeleteAlertButton: FC<{
   row: Row<Reservation>;
 }> = ({ row }) => {
+  console.log(row);
   // @TODO: do user delete mutation here
 
   return (
@@ -31,11 +32,9 @@ export const ReservedPersonnelDeleteAlertButton: FC<{
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>
-            {row.original.name}님을 예약자 명단에서 삭제하시겠습니까?
-          </AlertDialogTitle>
+          <AlertDialogTitle>예약자를 삭제할까요?</AlertDialogTitle>
           <AlertDialogDescription>
-            예약자 정보는 복구할 수 없습니다. 삭제하시겠습니까?
+            예약자 관리 리스트에서 삭제되고, 다시 복구할 수 없습니다
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

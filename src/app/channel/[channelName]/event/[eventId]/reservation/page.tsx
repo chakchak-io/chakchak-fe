@@ -15,19 +15,17 @@ import { ChannelName, EventId } from '@/const/router';
 import { useClientTypedRouter } from '@/hooks';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
 
-import { AttendanceBadge } from './attendance-badge';
-import { reservationColumns } from './columns';
+import { AttendanceStatus } from './attendance-status';
+import { Reservation, reservationColumns } from './columns';
 import { SendReservationTicketButton } from './send-reservation-ticket-button';
 import { tabList } from './tab-list';
 
 const RenderTabContent: FC<{
-  tab: string;
-}> = ({ tab }) => {
+  // @TODO: remove it and replace to api
+  reservations: Reservation[];
+}> = ({ reservations }) => {
   // @TODO: do api call here
-
-  const data = useMemo(() => Array.from({ length: 40 }, () => createRandomReservation()), []);
-
-  return <DataTable columns={reservationColumns} data={data} />;
+  return <DataTable columns={reservationColumns} data={reservations} />;
 };
 
 const EventTicketSettingPage: NextPage<
@@ -38,6 +36,10 @@ const EventTicketSettingPage: NextPage<
 > = ({ params: { channelName, eventId }, searchParams }) => {
   const tab = typeof searchParams.tab === 'string' ? searchParams.tab : tabList[0];
   const router = useClientTypedRouter();
+
+  // @TODO: do api call here)
+  // @TODO: after real api is implemented, do not prop dril data from root of page
+  const data = useMemo(() => Array.from({ length: 40 }, () => createRandomReservation()), []);
 
   // Redirect to channel page if channelName is not provided
   if (!channelName || !eventId) {
@@ -89,15 +91,10 @@ const EventTicketSettingPage: NextPage<
               ))}
             </TabsList>
             <Flex direction="column" gap="1">
-              <Flex gap="1.5" className="mt-1.5">
-                <AttendanceBadge text="전체" count={36} />
-                <AttendanceBadge text="참여대기" count={12} badge="pending" />
-                <AttendanceBadge text="참여완료" count={12} badge="attended" />
-                <AttendanceBadge text="미참석" count={12} badge="not-attended" />
-              </Flex>
+              <AttendanceStatus reservations={data} />
               {tabList.map((tab) => (
                 <TabsContent key={`tab-content-${tab}`} value={tab}>
-                  <RenderTabContent tab={tab} />
+                  <RenderTabContent reservations={data} />
                 </TabsContent>
               ))}
             </Flex>
