@@ -39,6 +39,12 @@ const textVariant = cva(['m-0'], {
       center: 'text-center',
       right: 'text-right',
     },
+    wrap: {
+      wrap: 'whitespace-normal',
+      nowrap: 'whitespace-nowrap',
+      pretty: 'whitespace-normal text-pretty',
+      balance: 'whitespace-normal text-balance',
+    },
     color: {
       // @TODO: dynamic color?
       inherit: 'text-inherit',
@@ -108,6 +114,7 @@ const Text = forwardRef<TextElement, TextProps>((props, forwardedRef) => {
     weight,
     size,
     align,
+    wrap,
     color,
     //
     ...textProps
@@ -123,6 +130,7 @@ const Text = forwardRef<TextElement, TextProps>((props, forwardedRef) => {
           weight,
           size,
           align,
+          wrap,
           color,
         }),
         className,

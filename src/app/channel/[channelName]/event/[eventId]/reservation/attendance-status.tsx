@@ -5,7 +5,7 @@ import { Flex } from '@/components/ui/flex';
 import { Text } from '@/components/ui/text';
 import { cn } from '@/lib/utils';
 
-import { Reservation } from './columns';
+import { Reservation } from './reservation-columns';
 
 type BadgeType = 'attended' | 'pending' | 'not-attended';
 

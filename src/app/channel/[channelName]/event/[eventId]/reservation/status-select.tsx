@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 
-import { Reservation } from './columns';
+import { Reservation } from './reservation-columns';
 
 type Status = Reservation['status'];
 

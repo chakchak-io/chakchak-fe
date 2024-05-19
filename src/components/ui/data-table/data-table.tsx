@@ -49,11 +49,6 @@ export const DataTable = <TData, TValue>({
   const table = useReactTable({
     data,
     columns,
-    defaultColumn: {
-      size: 200, //starting column size
-      minSize: 50,
-      maxSize: 500,
-    },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -71,14 +66,14 @@ export const DataTable = <TData, TValue>({
   });
 
   return (
-    <Flex direction="column" gap="2">
-      <Table className="relative overflow-y-auto">
-        <TableHeader className="sticky top-0">
+    <Flex direction="column" gap="2" className="w-full">
+      <Table>
+        <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(header.column.columnDef.header, header.getContext())}

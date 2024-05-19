@@ -4,6 +4,7 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { cva, VariantProps } from 'class-variance-authority';
 import { Check } from 'lucide-react';
 import * as React from 'react';
+import { match, P } from 'ts-pattern';
 
 import { cn } from '@/lib/utils';
 
@@ -14,7 +15,8 @@ const checkboxVariant = cva(
   {
     variants: {
       size: {
-        '6': 'size-6',
+        '1': 'size-4',
+        '1.5': 'size-6',
       },
       rounded: {
         sm: 'rounded-sm',
@@ -22,7 +24,7 @@ const checkboxVariant = cva(
       },
     },
     defaultVariants: {
-      size: '6',
+      size: '1.5',
       rounded: 'full',
     },
   },
@@ -49,11 +51,15 @@ const Checkbox = React.forwardRef<
       className={cn(checkboxVariant({ size, rounded }), className)}
       {...props}
     >
-      <CheckboxPrimitive.Indicator
-        className={cn('relative flex items-center justify-center text-current')}
-      >
+      <CheckboxPrimitive.Indicator className={cn('flex items-center justify-center text-current')}>
         <Check
-          className="absolute left-1/2 top-1/2 size-4 -translate-x-1/2 translate-y-[calc(-50%+1px)]"
+          className={cn(
+            match(size)
+              .with('1', () => 'size-[14px]')
+              .with('1.5', () => 'size-5')
+              .with(P.nullish, () => 'size-5')
+              .exhaustive(),
+          )}
           strokeWidth="4"
         />
       </CheckboxPrimitive.Indicator>

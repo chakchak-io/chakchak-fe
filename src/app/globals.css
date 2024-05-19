@@ -75,5 +75,11 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* remove default scrollbar style */
+    /* use scrollbar component instead */
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

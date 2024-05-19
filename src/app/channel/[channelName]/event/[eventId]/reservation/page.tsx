@@ -12,14 +12,13 @@ import { Flex } from '@/components/ui/flex';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
-import { createRandomReservation } from '@/const/mock';
 import { ChannelName, EventId } from '@/const/router';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
 import { createQueryString } from '@/lib/string';
 
 import { AttendanceStatus } from './attendance-status';
-import { Reservation, reservationColumns } from './columns';
-import { DateSelectSection } from './date-select-section';
+import { DateSelect } from './date-select';
+import { createRandomReservation, Reservation, reservationColumns } from './reservation-columns';
 import { SendReservationTicketButton } from './send-reservation-ticket-button';
 import { tabGuard, tabList } from './tab-list';
 import { TimeSelectSection } from './time-select-section';
@@ -64,7 +63,7 @@ const EventTicketSettingPage: NextPage<
               <Text size="32" weight="bold" color="gray/900">
                 예약자 관리
               </Text>
-              <SendReservationTicketButton />
+              <SendReservationTicketButton date={date} />
             </Flex>
             <Flex justify="start" align="center" gap="0.5" asChild>
               <Label className="border-none bg-primary-50 p-6">
@@ -102,7 +101,12 @@ const EventTicketSettingPage: NextPage<
             <Flex direction="column" gap="1.5" className="mt-6">
               {tab === 'by-time' && (
                 <>
-                  <DateSelectSection date={date} />
+                  <Flex direction="column" gap="0.375">
+                    <Text size="14" weight="medium" color="#0f172a">
+                      날짜 설정
+                    </Text>
+                    <DateSelect date={date} />
+                  </Flex>
                   <TimeSelectSection date={date} />
                 </>
               )}

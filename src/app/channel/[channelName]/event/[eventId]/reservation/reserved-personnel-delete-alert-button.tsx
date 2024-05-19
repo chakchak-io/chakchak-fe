@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 
-import { Reservation } from './columns';
+import { Reservation } from './reservation-columns';
 
 export const ReservedPersonnelDeleteAlertButton: FC<{
   row: Row<Reservation>;
