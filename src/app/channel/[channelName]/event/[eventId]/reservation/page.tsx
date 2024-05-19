@@ -1,6 +1,6 @@
 'use client';
 
-import { G } from '@mobily/ts-belt';
+import { G, O } from '@mobily/ts-belt';
 import { NextPage } from 'next';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { FC, useMemo } from 'react';
@@ -19,9 +19,10 @@ import { createQueryString } from '@/lib/string';
 
 import { AttendanceStatus } from './attendance-status';
 import { Reservation, reservationColumns } from './columns';
-import { DateSelect } from './date-select';
+import { DateSelectSection } from './date-select-section';
 import { SendReservationTicketButton } from './send-reservation-ticket-button';
 import { tabGuard, tabList } from './tab-list';
+import { TimeSelectSection } from './time-select-section';
 
 const RenderTabContent: FC<{
   tab: (typeof tabList)[number];
@@ -39,6 +40,7 @@ const EventTicketSettingPage: NextPage<
     eventId: EventId;
   }>
 > = ({ params: { channelName, eventId }, searchParams }) => {
+  const date: O.Option<string> = G.isString(searchParams.date) ? searchParams.date : O.None;
   const tab = tabGuard(searchParams.tab) ? searchParams.tab : tabList[0];
   const searchParamsByHook = useSearchParams();
   const pathname = usePathname();
@@ -100,8 +102,8 @@ const EventTicketSettingPage: NextPage<
             <Flex direction="column" gap="1.5" className="mt-6">
               {tab === 'by-time' && (
                 <>
-                  <DateSelect date={G.isString(searchParams.date) ? searchParams.date : ''} />
-                  <Flex>시간 설정 스크롤 섹션</Flex>
+                  <DateSelectSection date={date} />
+                  <TimeSelectSection date={date} />
                 </>
               )}
               <Flex direction="column" gap="1">
