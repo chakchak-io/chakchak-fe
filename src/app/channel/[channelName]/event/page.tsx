@@ -11,12 +11,11 @@ import { AppLayout } from '@/components/layout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Container } from '@/components/ui/container';
-import { DataTable } from '@/components/ui/data-table/data-table';
+import { DataTable } from '@/components/ui/data-table';
 import { Flex } from '@/components/ui/flex';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
 import { ChannelName } from '@/const/router';
-import { useClientTypedRouter } from '@/hooks';
 import { typedRedirect } from '@/lib/nextjs/server-navigation';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
 
@@ -24,9 +23,7 @@ import { Event, eventColumns } from './columns';
 
 const DemoTable: FC<{
   channelName: ChannelName;
-}> = ({ channelName }) => {
-  const router = useClientTypedRouter();
-
+}> = () => {
   const data: Event[] = [
     {
       id: uuid(),
@@ -52,13 +49,17 @@ const DemoTable: FC<{
     },
   ];
   return (
-    <DataTable
-      columns={eventColumns}
-      data={data}
-      onRowClick={(row) => {
-        router.push(`/channel/${channelName}/event/${row.original.id}`);
-      }}
-    />
+    <DataTable.Provider columns={eventColumns} data={data}>
+      {({ table, columns }) => (
+        <Flex className="w-full" direction="column" gap="2">
+          <DataTable.Root>
+            <DataTable.Header table={table} />
+            <DataTable.Body table={table} columns={columns} />
+          </DataTable.Root>
+          <DataTable.Pagination table={table} />
+        </Flex>
+      )}
+    </DataTable.Provider>
   );
 };
 

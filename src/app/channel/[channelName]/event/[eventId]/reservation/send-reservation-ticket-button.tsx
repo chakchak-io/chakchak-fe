@@ -3,7 +3,7 @@ import { FC, useMemo } from 'react';
 
 import { ActionEmail, IconlySharpBoldNotification } from '@/components/common/icon';
 import { Button } from '@/components/ui/button';
-import { DataTable } from '@/components/ui/data-table/data-table';
+import { DataTable } from '@/components/ui/data-table';
 import {
   Dialog,
   DialogClose,
@@ -92,7 +92,17 @@ export const SendReservationTicketButton: FC<{
                       </Flex>
                     </Flex>
                     <Flex className="w-[726px]">
-                      <DataTable columns={sendReservationColumns} data={sendReservations} />
+                      <DataTable.Provider columns={sendReservationColumns} data={sendReservations}>
+                        {({ table, columns }) => (
+                          <Flex className="w-full" direction="column" gap="2">
+                            <DataTable.Root>
+                              <DataTable.Header table={table} />
+                              <DataTable.Body table={table} columns={columns} />
+                            </DataTable.Root>
+                            <DataTable.Pagination table={table} />
+                          </Flex>
+                        )}
+                      </DataTable.Provider>
                     </Flex>
                   </Flex>
                 </Flex>

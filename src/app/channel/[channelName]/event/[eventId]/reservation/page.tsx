@@ -7,7 +7,7 @@ import { FC, useMemo } from 'react';
 
 import { IconlySharpBoldNotification } from '@/components/common/icon';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { DataTable } from '@/components/ui/data-table/data-table';
+import { DataTable } from '@/components/ui/data-table';
 import { Flex } from '@/components/ui/flex';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -30,7 +30,19 @@ const RenderTabContent: FC<{
 }> = ({ tab, reservations }) => {
   // @TODO: do api call here using tab
   console.log(tab);
-  return <DataTable columns={reservationColumns} data={reservations} />;
+  return (
+    <DataTable.Provider columns={reservationColumns} data={reservations}>
+      {({ table, columns }) => (
+        <Flex className="w-full" direction="column" gap="2">
+          <DataTable.Root>
+            <DataTable.Header table={table} />
+            <DataTable.Body table={table} columns={columns} />
+          </DataTable.Root>
+          <DataTable.Pagination table={table} />
+        </Flex>
+      )}
+    </DataTable.Provider>
+  );
 };
 
 const EventTicketSettingPage: NextPage<
