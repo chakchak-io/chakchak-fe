@@ -4,6 +4,7 @@ import { G, O } from '@mobily/ts-belt';
 import { NextPage } from 'next';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { FC, useMemo } from 'react';
+import { match } from 'ts-pattern';
 
 import { IconlySharpBoldNotification } from '@/components/common/icon';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -105,7 +106,10 @@ const EventTicketSettingPage: NextPage<
                   }}
                 >
                   <Text weight="semibold" size="16">
-                    {tab === 'all' ? '전체 예약자' : '시간별 예약자'}
+                    {match(tab)
+                      .with('all', () => '전체 예약자')
+                      .with('by-time', () => '시간별 예약자')
+                      .exhaustive()}
                   </Text>
                 </TabsTrigger>
               ))}
