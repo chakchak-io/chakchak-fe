@@ -20,7 +20,7 @@ import { Reservation } from './reservation-columns';
 export const ReservedPersonnelDeleteAlertButton: FC<{
   row: Row<Reservation>;
 }> = ({ row }) => {
-  console.log(row);
+  console.log(row.original.id);
   // @TODO: do user delete mutation here
 
   return (

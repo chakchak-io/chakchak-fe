@@ -38,6 +38,7 @@ export const StatusSelect: FC<{
   const handleChange = (value: string) => {
     // @TODO: do api call here(mutation)
     console.log(value);
+    // @TODO: show confirmation toast
     setCurrentStatus(value as Status);
   };
   return (
