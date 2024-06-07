@@ -3,7 +3,7 @@
 import { Globe } from 'lucide-react';
 import { NextPage } from 'next';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { match } from 'ts-pattern';
 
 import { TypedLink } from '@/components/common/router';
@@ -28,9 +28,21 @@ import { CommonNextPageProps } from '@/lib/nextjs/type';
 import { createQueryString } from '@/lib/string';
 
 import { DefaultSettingTabOfflineContent } from './default-setting-tab-offline-content';
+import { DefaultSettingTabOnlineContent } from './default-setting-tab-online-content';
 import { EventPageContext } from './event-page-context';
 import { ImageButtonSettingTabContent } from './image-button-setting-tab-content';
 import { tabGuard, tabList, TabList } from './tab-list';
+
+const RenderDefaultTab: FC = () => {
+  // @TODO: do api call here
+  const type: 'online' | 'offline' = 'online';
+
+  // @TODO: remove generic
+  return match<'online' | 'offline'>(type)
+    .with('online', () => <DefaultSettingTabOnlineContent />)
+    .with('offline', () => <DefaultSettingTabOfflineContent />)
+    .exhaustive();
+};
 
 const EventSettingPage: NextPage<
   CommonNextPageProps<{
@@ -108,77 +120,75 @@ const EventSettingPage: NextPage<
   }
 
   return (
-    <>
-      <Flex direction="column" asChild>
-        <Card>
-          <CardHeader>
-            <Flex direction="column" gap="1">
-              <Flex justify="between" gap="0.5">
-                <Text size="32" weight="bold" color="gray/900">
-                  이벤트 페이지 설정
-                </Text>
-                <TypedLink href="/preview">
-                  <Flex gap="0.5" asChild>
-                    {/* @TODO: add query string about info */}
-                    <Button>
-                      <Globe size="16" />
-                      <Text size="16" weight="medium">
-                        이벤트 페이지 미리보기
-                      </Text>
-                    </Button>
-                  </Flex>
-                </TypedLink>
-              </Flex>
-              <Flex>
-                <Text size="16" weight="medium" color="gray/500">
-                  이벤트 정보와 장소를 입력해주세요.
-                </Text>
-              </Flex>
+    <Flex direction="column" asChild>
+      <Card>
+        <CardHeader>
+          <Flex direction="column" gap="1">
+            <Flex justify="between" gap="0.5">
+              <Text size="32" weight="bold" color="gray/900">
+                이벤트 페이지 설정
+              </Text>
+              <TypedLink href="/preview">
+                <Flex gap="0.5" asChild>
+                  {/* @TODO: add query string about info */}
+                  <Button>
+                    <Globe size="16" />
+                    <Text size="16" weight="medium">
+                      이벤트 페이지 미리보기
+                    </Text>
+                  </Button>
+                </Flex>
+              </TypedLink>
             </Flex>
-          </CardHeader>
-          <CardContent>
-            <EventPageContext
-              currentTabDirty={currentTabDirty}
-              onCurrentTabDirtyChange={setCurrentTabDirty}
-            >
-              <AlertDialog>
-                <Tabs
-                  value={tab}
-                  onValueChange={(value) => {
-                    onTabChange(value);
-                  }}
-                >
-                  <TabsList>
+            <Flex>
+              <Text size="16" weight="medium" color="gray/500">
+                이벤트 정보와 장소를 입력해주세요.
+              </Text>
+            </Flex>
+          </Flex>
+        </CardHeader>
+        <CardContent>
+          <EventPageContext
+            currentTabDirty={currentTabDirty}
+            onCurrentTabDirtyChange={setCurrentTabDirty}
+          >
+            <AlertDialog>
+              <Tabs
+                value={tab}
+                onValueChange={(value) => {
+                  onTabChange(value);
+                }}
+              >
+                <TabsList>
+                  {tabList.map((tab) => (
+                    <TabsTrigger key={`tab-trigger-${tab}`} value={tab}>
+                      <Text weight="semibold" size="16">
+                        {match(tab)
+                          .with('default', () => '이벤트 기본정보')
+                          .with('image-button', () => '이미지 및 버튼 설정')
+                          .exhaustive()}
+                      </Text>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+                <Flex direction="column" gap="1.5" className="mt-6">
+                  <Flex direction="column" gap="1">
                     {tabList.map((tab) => (
-                      <TabsTrigger key={`tab-trigger-${tab}`} value={tab}>
-                        <Text weight="semibold" size="16">
-                          {match(tab)
-                            .with('default', () => '이벤트 기본정보')
-                            .with('image-button', () => '이미지 및 버튼 설정')
-                            .exhaustive()}
-                        </Text>
-                      </TabsTrigger>
+                      <TabsContent key={`tab-content-${tab}`} value={tab}>
+                        {match(tab)
+                          .with('default', () => <RenderDefaultTab />)
+                          .with('image-button', () => <ImageButtonSettingTabContent />)
+                          .exhaustive()}
+                      </TabsContent>
                     ))}
-                  </TabsList>
-                  <Flex direction="column" gap="1.5" className="mt-6">
-                    <Flex direction="column" gap="1">
-                      {tabList.map((tab) => (
-                        <TabsContent key={`tab-content-${tab}`} value={tab}>
-                          {match(tab)
-                            .with('default', () => <DefaultSettingTabOfflineContent />)
-                            .with('image-button', () => <ImageButtonSettingTabContent />)
-                            .exhaustive()}
-                        </TabsContent>
-                      ))}
-                    </Flex>
                   </Flex>
-                </Tabs>
-              </AlertDialog>
-            </EventPageContext>
-          </CardContent>
-        </Card>
-      </Flex>
-    </>
+                </Flex>
+              </Tabs>
+            </AlertDialog>
+          </EventPageContext>
+        </CardContent>
+      </Card>
+    </Flex>
   );
 };
 
