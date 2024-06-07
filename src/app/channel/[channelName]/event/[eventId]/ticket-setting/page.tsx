@@ -3,11 +3,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NextPage } from 'next';
 import { RedirectType } from 'next/navigation';
-import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { ActionPlusCircle, IconlySharpBoldNotification } from '@/components/common/icon';
+import { TicketImageUploadFormItem } from '@/components/common/form/ticket-image-upload';
+import { IconlySharpBoldNotification } from '@/components/common/icon';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Flex } from '@/components/ui/flex';
@@ -22,12 +22,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Text } from '@/components/ui/text';
+import { Ticket } from '@/components/ui/ticket';
 import { useToast } from '@/components/ui/use-toast';
 import { ChannelName, EventId } from '@/const/router';
+import { createImageURL } from '@/lib/file';
 import { typedRedirect } from '@/lib/nextjs/server-navigation';
 import { CommonNextPageProps } from '@/lib/nextjs/type';
-
-import { Ticket } from '../../../../../../components/ui/ticket';
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -45,19 +45,6 @@ const formSchema = z.object({
 
 type TicketManagementForm = z.infer<typeof formSchema>;
 
-function getImageData(event: ChangeEvent<HTMLInputElement>) {
-  // FileList is immutable, so we need to create a new one
-  const dataTransfer = new DataTransfer();
-
-  // Add newly uploaded images
-  Array.from(event.target.files!).forEach((image) => dataTransfer.items.add(image));
-
-  const files = dataTransfer.files;
-  const displayUrl = URL.createObjectURL(event.target.files![0] as Blob);
-
-  return { files, displayUrl };
-}
-
 const EventTicketSettingPage: NextPage<
   CommonNextPageProps<{
     channelName: ChannelName;
@@ -65,7 +52,6 @@ const EventTicketSettingPage: NextPage<
   }>
 > = ({ params: { channelName, eventId } }) => {
   const { toast } = useToast();
-  const [preview, setPreview] = useState<string>();
   const form = useForm<TicketManagementForm>({
     mode: 'all',
     resolver: zodResolver(formSchema),
@@ -75,6 +61,7 @@ const EventTicketSettingPage: NextPage<
   });
 
   const ticketName = form.watch('name');
+  const fileImage = form.watch('ticketImageFile');
 
   // Redirect to channel page if channelName is not provided
   if (!channelName) {
@@ -124,7 +111,10 @@ const EventTicketSettingPage: NextPage<
             </CardHeader>
             <CardContent>
               <Flex className="px-2" gap="2">
-                <Ticket ticketName={ticketName} preview={preview} />
+                <Ticket
+                  ticketName={ticketName}
+                  preview={fileImage && fileImage[0] && createImageURL(fileImage[0])}
+                />
                 <Flex className="w-full" direction="column" gap="2">
                   <FormField
                     control={form.control}
@@ -142,45 +132,14 @@ const EventTicketSettingPage: NextPage<
                   <FormField
                     control={form.control}
                     name="ticketImageFile"
-                    render={({ field: { onChange, name, value: _value, ...rest } }) => (
-                      <FormItem>
-                        <FormLabel required>티켓 이미지 선택</FormLabel>
-                        <FormLabel className="inline-flex max-w-[300px] cursor-pointer">
-                          <Button
-                            variant="outline"
-                            className="pointer-events-none size-auto border border-gray-200 bg-gray-50 px-14 py-9"
-                          >
-                            <Flex align="center" direction="column" gap="0.5">
-                              <Flex>
-                                <ActionPlusCircle size="32" />
-                              </Flex>
-                              <Flex direction="column" gap="0.25">
-                                <Text size="18" weight="semibold" color="black">
-                                  티켓 이미지 업로드
-                                </Text>
-                                <Text size="16" weight="medium" color="gray/500">
-                                  권장 사이즈 : 342 x 469 px
-                                </Text>
-                              </Flex>
-                            </Flex>
-                          </Button>
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            className="hidden"
-                            type="file"
-                            name={name}
-                            placeholder="예약 티켓 이름을 입력해주세요."
-                            {...rest}
-                            onChange={(e) => {
-                              const { files, displayUrl } = getImageData(e);
-                              setPreview(displayUrl);
-                              onChange(files);
-                            }}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
+                    render={({ field }) => (
+                      <TicketImageUploadFormItem
+                        field={field}
+                        formLabel={{
+                          required: true,
+                          children: '티켓 이미지 선택',
+                        }}
+                      />
                     )}
                   />
                 </Flex>
