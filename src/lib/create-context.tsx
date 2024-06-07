@@ -5,7 +5,7 @@ import {
   useMemo,
 } from 'react';
 
-export const createContext = <ContextValueType extends Record<string, unknown>>(
+export const createContext = <ContextValueType extends object | null>(
   rootComponentName: string,
   defaultContext?: ContextValueType,
 ) => {

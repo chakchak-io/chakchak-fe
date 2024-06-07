@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 
 import { ReactQueryClientProvider } from '@/components/react-query/ReactQueryClientProvider';
 import { ThemeProvider } from '@/components/theme/theme-provider';
+import { OverlayProvider } from '@/hooks/use-overlay';
 import { cn } from '@/lib/utils';
 
 import { Toaster } from '../components/ui/toaster';
@@ -56,8 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           // enableSystem
           // disableTransitionOnChange
           >
-            {children}
-            <Toaster />
+            <OverlayProvider>
+              {children}
+              <Toaster />
+            </OverlayProvider>
           </ThemeProvider>
         </body>
       </html>

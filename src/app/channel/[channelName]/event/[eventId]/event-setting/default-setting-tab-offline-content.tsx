@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -18,6 +19,8 @@ import { Separator } from '@/components/ui/separator';
 import { Text } from '@/components/ui/text';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
+
+import { useEventPageContext } from './event-page-context';
 
 // form validations
 const defaultSettingSchema = z.object({
@@ -42,8 +45,9 @@ const defaultSettingSchema = z.object({
 
 type DefaultSettingForm = z.infer<typeof defaultSettingSchema>;
 
-export const DefaultSettingTabContent = () => {
+export const DefaultSettingTabOfflineContent = () => {
   const { toast } = useToast();
+  const { onCurrentTabDirtyChange } = useEventPageContext('default-setting-tab-content');
 
   // @TODO: do api call here for getting default setting value
   const defaultValues: DefaultSettingForm = {
@@ -71,6 +75,11 @@ export const DefaultSettingTabContent = () => {
       description: JSON.stringify(values),
     });
   };
+
+  useEffect(() => {
+    // update dirty state to show unsaved changes alert
+    onCurrentTabDirtyChange(form.formState.isDirty);
+  }, [form.formState.isDirty, onCurrentTabDirtyChange]);
 
   return (
     <Form {...form}>
