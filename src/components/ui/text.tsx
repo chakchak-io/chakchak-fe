@@ -31,11 +31,19 @@ const textVariant = cva(['m-0'], {
       '16': 'text-[1rem] leading-[20px]',
       // body/body03
       '14': 'text-[0.875rem] leading-[18px]',
+      // body/body04
+      '13': 'text-[0.8125rem] leading-[16px]',
     },
     align: {
       left: 'text-left',
       center: 'text-center',
       right: 'text-right',
+    },
+    wrap: {
+      wrap: 'whitespace-normal',
+      nowrap: 'whitespace-nowrap',
+      pretty: 'whitespace-normal text-pretty',
+      balance: 'whitespace-normal text-balance',
     },
     color: {
       // @TODO: dynamic color?
@@ -56,6 +64,9 @@ const textVariant = cva(['m-0'], {
       'slate/500': 'text-slate-500',
       'slate/700': 'text-slate-700',
       'slate/900': 'text-slate-900',
+      // unnamed color
+      '#ff6a00': 'text-[#ff6a00]',
+      '#0f172a': 'text-[#0f172a]',
     },
   },
   defaultVariants: {
@@ -103,6 +114,7 @@ const Text = forwardRef<TextElement, TextProps>((props, forwardedRef) => {
     weight,
     size,
     align,
+    wrap,
     color,
     //
     ...textProps
@@ -118,6 +130,7 @@ const Text = forwardRef<TextElement, TextProps>((props, forwardedRef) => {
           weight,
           size,
           align,
+          wrap,
           color,
         }),
         className,

@@ -1,5 +1,3 @@
-// @TODO: 계층구조 만든 후 string -> 타입 좁히기
-
 type ChannelName = string;
 type EventId = string;
 type AccessibleRoute =
@@ -10,6 +8,7 @@ type AccessibleRoute =
   | '/account/my-page?tab=account'
   | '/account/my-page?tab=personal-info'
   | '/channel'
+  | '/preview'
   // 이하는 type 검사가 실제로는 제대로 동작하지 않습니다
   | '/channel/create'
   | `/channel/${ChannelName}`

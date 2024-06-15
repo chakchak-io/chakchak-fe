@@ -29,10 +29,61 @@ const buttonVariants = cva(
         default: 'h-10 px-4 py-3',
         sm: 'h-9 px-3',
         lg: 'h-11 px-8',
-        icon: 'size-20',
+        'big-icon': 'size-20',
+        icon: 'size-6',
+      },
+      selected: {
+        true: '',
+        false: '',
+      },
+      activated: {
+        true: '',
+        false: '',
       },
       radius: radiusVariants,
     },
+    compoundVariants: [
+      // set selected style
+      {
+        selected: true,
+        variant: 'default',
+        className: 'bg-primary/90 text-primary-foreground',
+      },
+      {
+        selected: true,
+        variant: 'destructive',
+        className: 'bg-destructive/90 text-destructive-foreground',
+      },
+      {
+        selected: true,
+        variant: 'outline',
+        className: 'bg-accent text-accent-foreground',
+      },
+      {
+        selected: true,
+        variant: 'secondary',
+        className: 'bg-secondary/80 text-secondary-foreground',
+      },
+      {
+        variant: 'ghost',
+        selected: true,
+        className: 'bg-accent text-accent-foreground',
+      },
+      {
+        variant: 'link',
+        selected: true,
+        className: 'text-accent underline-offset-4',
+      },
+      // set activated style
+      {
+        activated: true,
+        variant: 'default',
+        className:
+          'bg-primary-foreground text-primary hover:bg-primary/90 hover:text-primary-foreground',
+      },
+      //@TODO: should define more activated style
+      //
+    ],
     defaultVariants: {
       variant: 'default',
       size: 'default',
@@ -60,6 +111,8 @@ const Button = React.forwardRef<
       variant,
       size,
       radius,
+      selected,
+      activated,
       // tag props
       className,
       type = 'button',
@@ -72,7 +125,11 @@ const Button = React.forwardRef<
     const Comp = asChild ? Slot : 'button';
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, radius, className }), fullWidth && 'w-full')}
+        className={cn(
+          buttonVariants({ variant, size, radius, selected, activated }),
+          fullWidth && 'w-full',
+          className,
+        )}
         ref={ref}
         type={type}
         {...props}
