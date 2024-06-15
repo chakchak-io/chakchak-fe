@@ -34,9 +34,18 @@ const config = {
         sourceSansPro: ['var(--font-source-sans-pro)'],
       },
       colors: {
+        positive: `hsl(var(--positive))`,
+        danger: '#F64582',
+        amber: {
+          200: '#FDE68A',
+        },
+        slate: {
+          100: 'hsl(var(--slate-100))',
+        },
         gray: {
           50: 'hsl(var(--gray-50))',
           100: 'hsl(var(--gray-100))',
+          200: 'hsl(var(--gray-200))',
           300: 'hsl(var(--gray-300))',
           400: 'hsl(var(--gray-400))',
           500: 'hsl(var(--gray-500))',
@@ -44,7 +53,6 @@ const config = {
           800: 'hsl(var(--gray-800))',
           900: 'hsl(var(--gray-900))',
         },
-        danger: '#F64582',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -53,9 +61,9 @@ const config = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
-          50: 'hsla(249, 64%, 98%, 1)',
-          100: 'hsla(252, 89%, 71%, 1)',
-          300: 'hsla(252, 89%, 51%, 1)',
+          50: 'hsl(var(--primary-50))',
+          100: 'hsl(var(--primary-100))',
+          300: 'hsl(var(--primary-300))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
