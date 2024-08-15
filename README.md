@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ChakChak.io
 
-## Getting Started
+for easy reservation
 
-First, run the development server:
+## Description
+
+## Setting
+
+### Before you start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# node setup
+nvm install
+nvm use
+
+# package install
+pnpm install
+
+# install [pre-commit](https://pre-commit.com/) to restrict commit
+# rule is defined in [.pre-commit-config.yaml](.pre-commit-config.yaml)
+pnpm pre-commit:install
+
+# setup .env
+cp .env.example .env
+
+# start
+pnpm run dev
+
+# ETC
+## test command list
+pnpm run test
+pnpm run test:watch
+## icon auto generate
+pnpm run build:ts-icons
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ENV
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We are using [@t3-oss/env-nextjs](https://env.t3.gg/docs/recipes) and zod for env management.
+If you want to add new env variable, please check env.ts at the root of the project.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### CVA(class-variance-authority)
 
-## Learn More
+You need to set up [tailwindcss intellisense setting](https://cva.style/docs/getting-started/installation)
 
-To learn more about Next.js, take a look at the following resources:
+for vscode. add the following
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. [Install the "Tailwind CSS IntelliSense" Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Add the following to your settings.json
 
-## Deploy on Vercel
+```.json
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "tailwindCSS.classAttributes": ["class", "className", ".*Variants"],
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design System(Enchant)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### How to use
+
+## Warning
+
+1. Do not declare type: "module" in package.json. It will break the build process.
+   1.1. Because some of the packages still need dynamic import.
+
+## Comment List
+
+1. @TODO -> comment for what to do in the future
+2. @WARN -> comment for preventing modification or explaining the reason for the controversial code
+
+## Job List
+
+### High Priority
+
+1. create active button using comopoundVariants of cva
+2. re design button component
+
+### Propose
+
+1. Remove required field in FromLabel. and detect required field from useFormContext(need to check possibility)
